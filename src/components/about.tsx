@@ -26,17 +26,6 @@ const cloudSlugs = [
 	'tailwindcss',
 ]
 
-const terminalPackages = [
-	'typescript',
-	'express',
-	'prisma',
-	'tailwindcss',
-	'firebase',
-	'docker',
-	'next',
-	'biome',
-]
-
 export function About() {
 	const images = cloudSlugs.map(
 		(slug) => `https://cdn.simpleicons.org/${slug}/white`,
@@ -70,46 +59,79 @@ export function About() {
 
 			<div className="flex flex-wrap justify-center gap-10 mt-10 px-4">
 				<BlurFade delay={0.2} inView>
-					<MagicCard
-						className="rounded-2xl max-w-xl w-full h-full"
-						gradientFrom="#EBB800"
-						gradientTo="#9c40ff"
-						gradientColor="#1a1a1a"
-					>
-						<Terminal className="w-full h-full border-none bg-transparent shadow-none text-left overflow-hidden">
-							<TypingAnimation className="text-lg">
-								&gt; npx stack --install
-							</TypingAnimation>
+					<div className="flex flex-col gap-3">
+						<h3 className="font-mono text-sm text-foreground/50 uppercase tracking-widest pl-1">
+							Meu Setup
+						</h3>
+						<MagicCard
+							className="rounded-2xl max-w-xl w-full h-full"
+							gradientFrom="#EBB800"
+							gradientTo="#9c40ff"
+							gradientColor="#1a1a1a"
+						>
+							<Terminal className="w-full h-full border-none bg-transparent shadow-none text-left overflow-hidden">
+								<TypingAnimation className="text-lg">
+									&gt; whoami
+								</TypingAnimation>
 
-							{terminalPackages.map((pkg) => (
-								<AnimatedSpan key={pkg} className="text-green-500 text-base">
-									✔ Instalando {pkg}...
+								<AnimatedSpan className="text-foreground/80 text-base">
+									<span className="border border-foreground/20 rounded-lg px-3 py-2 inline-block mt-1">
+										<span className="block font-semibold">Pedro Henrique Andrade</span>
+										<span className="block text-foreground/50 text-sm">Full Stack Developer</span>
+									</span>
 								</AnimatedSpan>
-							))}
 
-							<AnimatedSpan className="text-blue-500 text-base">
-								<span>ℹ Status:</span>
-								<span className="pl-2">
-									{terminalPackages.length} pacotes instalados com sucesso.
-								</span>
-							</AnimatedSpan>
-						</Terminal>
-					</MagicCard>
+								<TypingAnimation className="text-lg mt-2">
+									&gt; stack --list
+								</TypingAnimation>
+
+								<AnimatedSpan className="text-foreground/90 text-base">
+									<span className="text-yellow-500">📦 Frontend</span>
+								</AnimatedSpan>
+								<AnimatedSpan className="text-green-500 text-base">
+									{'  '}✔ react, next, typescript, tailwindcss
+								</AnimatedSpan>
+
+								<AnimatedSpan className="text-foreground/90 text-base">
+									<span className="text-yellow-500">🛠 Backend</span>
+								</AnimatedSpan>
+								<AnimatedSpan className="text-green-500 text-base">
+									{'  '}✔ express, prisma, postgresql, firebase
+								</AnimatedSpan>
+
+								<AnimatedSpan className="text-foreground/90 text-base">
+									<span className="text-yellow-500">☁ Infra</span>
+								</AnimatedSpan>
+								<AnimatedSpan className="text-green-500 text-base">
+									{'  '}✔ docker, vercel, aws
+								</AnimatedSpan>
+
+								<AnimatedSpan className="text-blue-500 text-base mt-1">
+									✔ 3 categorias carregadas.
+								</AnimatedSpan>
+							</Terminal>
+						</MagicCard>
+					</div>
 				</BlurFade>
 
 				<BlurFade delay={0.4} inView>
-					<MagicCard
-						className="rounded-2xl max-w-xl w-full h-full flex items-center justify-center"
-						gradientFrom="#EBB800"
-						gradientTo="#9c40ff"
-						gradientColor="#1a1a1a"
-					>
-						<div className="flex flex-col items-center justify-center w-full">
-							<div className="relative flex items-center justify-center overflow-hidden w-full">
-								<IconCloud images={images} />
+					<div className="flex flex-col gap-3">
+						<h3 className="font-mono text-sm text-foreground/50 uppercase tracking-widest pl-1">
+							Tecnologias
+						</h3>
+						<MagicCard
+							className="rounded-2xl max-w-xl w-full h-full flex items-center justify-center"
+							gradientFrom="#EBB800"
+							gradientTo="#9c40ff"
+							gradientColor="#1a1a1a"
+						>
+							<div className="flex flex-col items-center justify-center w-full">
+								<div className="relative flex items-center justify-center overflow-hidden w-full">
+									<IconCloud images={images} />
+								</div>
 							</div>
-						</div>
-					</MagicCard>
+						</MagicCard>
+					</div>
 				</BlurFade>
 			</div>
 		</div>
