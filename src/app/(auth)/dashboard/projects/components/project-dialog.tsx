@@ -1,12 +1,16 @@
 'use client'
 
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Loader2, Pencil, Plus } from 'lucide-react'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { Plus, Pencil, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
+import { z } from 'zod'
 
+const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false })
+
+import { Button } from '@/components/ui/button'
 import {
 	Dialog,
 	DialogContent,
@@ -16,7 +20,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
+import { FileUpload } from '@/components/ui/file-upload'
 import {
 	Form,
 	FormControl,
@@ -26,8 +30,7 @@ import {
 	FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { FileUpload } from '@/components/ui/file-upload'
+import { MultiFileUpload } from '@/components/ui/multi-file-upload'
 import {
 	Select,
 	SelectContent,
@@ -36,6 +39,7 @@ import {
 	SelectValue,
 } from '@/components/ui/select'
 import { createProject, updateProject } from '../actions'
+import { AiPromptHelper } from './ai-prompt-helper'
 
 const ProjectSchema = z.object({
 	title: z.string().min(1, 'Título é obrigatório'),
@@ -43,8 +47,13 @@ const ProjectSchema = z.object({
 	shortDescription: z.string().min(1, 'Descrição curta é obrigatória'),
 	content: z.string().min(1, 'Conteúdo é obrigatório'),
 	image: z.string().min(1, 'Imagem principal é obrigatória'),
-	images: z.string().transform((val) => val.split(',').map((s) => s.trim()).filter(Boolean)),
-	stack: z.string().transform((val) => val.split(',').map((s) => s.trim()).filter(Boolean)),
+	images: z.array(z.string()),
+	stack: z.string().transform((val) =>
+		val
+			.split(',')
+			.map((s) => s.trim())
+			.filter(Boolean),
+	),
 	link: z.string().optional(),
 	companyId: z.string().optional().nullable(),
 })
@@ -73,7 +82,7 @@ export function ProjectDialog({
 			shortDescription: project?.shortDescription || '',
 			content: project?.content || '',
 			image: project?.image || '',
-			images: project?.images?.join(', ') || '',
+			images: project?.images || [],
 			stack: project?.stack?.join(', ') || '',
 			link: project?.link || '',
 			companyId: project?.companyId || '',
@@ -104,16 +113,19 @@ export function ProjectDialog({
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
 				{isEdit ? (
-					<Button variant="ghost" size="icon">
+					<button
+						type="button"
+						className="inline-flex items-center justify-center h-9 w-9 rounded-md hover:bg-white/10 transition-colors"
+					>
 						<Pencil className="h-4 w-4" />
-					</Button>
+					</button>
 				) : (
 					<Button>
 						<Plus className="mr-2 h-4 w-4" /> Novo Projeto
 					</Button>
 				)}
 			</DialogTrigger>
-			<DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+			<DialogContent className="w-[95vw] max-w-5xl max-h-[90vh] overflow-y-auto">
 				<DialogHeader>
 					<DialogTitle>
 						{isEdit ? 'Editar Projeto' : 'Novo Projeto'}
@@ -124,6 +136,18 @@ export function ProjectDialog({
 				</DialogHeader>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+						{!isEdit && (
+							<AiPromptHelper
+								onApply={(data) => {
+									form.setValue('title', data.title)
+									form.setValue('slug', data.slug)
+									form.setValue('shortDescription', data.shortDescription)
+									form.setValue('content', data.content)
+									form.setValue('stack', data.stack)
+									form.setValue('link', data.link)
+								}}
+							/>
+						)}
 						<div className="grid grid-cols-2 gap-4">
 							<FormField
 								control={form.control}
@@ -174,11 +198,17 @@ export function ProjectDialog({
 								<FormItem>
 									<FormLabel>Conteúdo (Markdown)</FormLabel>
 									<FormControl>
-										<Textarea
-											placeholder="Conteúdo detalhado do projeto..."
-											className="min-h-32"
-											{...field}
-										/>
+										<div
+											data-color-mode="dark"
+											className="[&_.w-md-editor]:!bg-transparent [&_.w-md-editor]:!border [&_.w-md-editor]:!border-input [&_.w-md-editor]:!rounded-md [&_.w-md-editor]:!text-sm [&_.w-md-editor-toolbar]:!bg-black/30 [&_.w-md-editor-toolbar]:!border-b [&_.w-md-editor-toolbar]:!border-white/10 [&_.w-md-editor-toolbar_li_button]:!text-white/60 [&_.w-md-editor-toolbar_li_button:hover]:!text-white [&_.w-md-editor-content]:!bg-transparent [&_.w-md-editor-text-pre_>_code]:!bg-transparent [&_.w-md-editor-text]:!text-sm [&_.w-md-editor-text-pre]:!text-sm [&_::-webkit-scrollbar]:!w-1.5 [&_::-webkit-scrollbar-track]:!bg-transparent [&_::-webkit-scrollbar-thumb]:!rounded-full [&_::-webkit-scrollbar-thumb]:!bg-white/10 [&_::-webkit-scrollbar-thumb:hover]:!bg-white/20"
+										>
+											<MDEditor
+												value={field.value}
+												onChange={(val) => field.onChange(val ?? '')}
+												height={220}
+												preview="edit"
+											/>
+										</div>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -253,9 +283,19 @@ export function ProjectDialog({
 							name="images"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Outras Imagens (separadas por vírgula)</FormLabel>
+									<FormLabel>
+										Galeria de Imagens{' '}
+										<span className="text-muted-foreground font-normal">
+											({(field.value as string[]).length} imagem(ns))
+										</span>
+									</FormLabel>
 									<FormControl>
-										<Input placeholder="/img1.png, /img2.png" {...field} />
+										<MultiFileUpload
+											value={field.value as string[]}
+											onChange={field.onChange}
+											folder="projects"
+											label="Adicionar imagens à galeria"
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>

@@ -8,6 +8,7 @@ import { TextAnimate } from '@/components/ui/text-animate'
 import { ChevronLeft, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { HomeClient } from '@/components/home-client'
+import ReactMarkdown from 'react-markdown'
 
 export default async function ProjectPage({
 	params,
@@ -98,8 +99,41 @@ export default async function ProjectPage({
 							<span className="h-1 w-1 bg-primary rounded-full" />
 							Sobre o Projeto
 						</h3>
-						<div className="flex-1 overflow-y-auto custom-scrollbar font-mono text-xs lg:text-sm text-foreground/50 leading-relaxed pr-2">
-							{project.content}
+						<div className="flex-1 overflow-y-auto pr-2 scrollbar-thin">
+							<ReactMarkdown
+								components={{
+									h2: ({ children }) => (
+										<h2 className="text-sm font-semibold text-white/90 font-sentient mt-5 mb-2 first:mt-0">
+											{children}
+										</h2>
+									),
+									p: ({ children }) => (
+										<p className="font-mono text-xs lg:text-sm text-foreground/50 leading-relaxed mb-3">
+											{children}
+										</p>
+									),
+									strong: ({ children }) => (
+										<strong className="text-white/70 font-semibold">{children}</strong>
+									),
+									ul: ({ children }) => (
+										<ul className="font-mono text-xs lg:text-sm text-foreground/50 leading-relaxed mb-3 space-y-1 pl-4">
+											{children}
+										</ul>
+									),
+									li: ({ children }) => (
+										<li className="before:content-['—'] before:mr-2 before:text-primary/60">
+											{children}
+										</li>
+									),
+									code: ({ children }) => (
+										<code className="bg-white/5 text-primary/80 px-1 py-0.5 rounded text-[11px] font-mono">
+											{children}
+										</code>
+									),
+								}}
+							>
+								{project.content}
+							</ReactMarkdown>
 						</div>
 					</div>
 
