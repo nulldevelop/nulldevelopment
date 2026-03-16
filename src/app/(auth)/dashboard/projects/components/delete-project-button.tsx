@@ -1,7 +1,7 @@
 'use client'
 
+import { Loader2, Trash2 } from 'lucide-react'
 import { useState } from 'react'
-import { Trash2, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 
 import {
@@ -37,7 +37,7 @@ export function DeleteProjectButton({ id }: { id: string }) {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button variant="ghost" size="icon" className="text-destructive hover:text-destructive hover:bg-destructive/10">
+				<Button className="text-destructive hover:text-destructive hover:bg-destructive/10">
 					<Trash2 className="h-4 w-4" />
 				</Button>
 			</AlertDialogTrigger>

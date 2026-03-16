@@ -1,12 +1,12 @@
 'use client'
 
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Loader2, Pencil, Plus } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { Plus, Pencil, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
-
+import { z } from 'zod'
+import { Button } from '@/components/ui/button'
 import {
 	Dialog,
 	DialogContent,
@@ -16,7 +16,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
+import { FileUpload } from '@/components/ui/file-upload'
 import {
 	Form,
 	FormControl,
@@ -26,7 +26,6 @@ import {
 	FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { FileUpload } from '@/components/ui/file-upload'
 import { createCompany, updateCompany } from '../actions'
 
 const CompanySchema = z.object({
@@ -39,10 +38,7 @@ interface CompanyDialogProps {
 	isEdit?: boolean
 }
 
-export function CompanyDialog({
-	company,
-	isEdit = false,
-}: CompanyDialogProps) {
+export function CompanyDialog({ company, isEdit = false }: CompanyDialogProps) {
 	const [open, setOpen] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -78,7 +74,7 @@ export function CompanyDialog({
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
 				{isEdit ? (
-					<Button variant="ghost" size="icon">
+					<Button >
 						<Pencil className="h-4 w-4" />
 					</Button>
 				) : (

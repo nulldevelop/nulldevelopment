@@ -1,4 +1,6 @@
-import { prisma } from '@/lib/prisma'
+import { ExternalLink, Pencil, Plus, Trash2 } from 'lucide-react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 import {
 	Table,
 	TableBody,
@@ -7,11 +9,9 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table'
-import { Button } from '@/components/ui/button'
-import { Plus, Pencil, Trash2, ExternalLink } from 'lucide-react'
-import Link from 'next/link'
-import { ProjectDialog } from './components/project-dialog'
+import { prisma } from '@/lib/prisma'
 import { DeleteProjectButton } from './components/delete-project-button'
+import { ProjectDialog } from './components/project-dialog'
 
 export default async function ProjectsPage() {
 	const [projects, companies] = await Promise.all([
@@ -54,9 +54,7 @@ export default async function ProjectsPage() {
 						) : (
 							projects.map((project) => (
 								<TableRow key={project.id}>
-									<TableCell className="font-medium">
-										{project.title}
-									</TableCell>
+									<TableCell className="font-medium">{project.title}</TableCell>
 									<TableCell>{project.company?.name || '-'}</TableCell>
 									<TableCell>
 										<div className="flex flex-wrap gap-1">
@@ -72,10 +70,14 @@ export default async function ProjectsPage() {
 									</TableCell>
 									<TableCell className="text-right">
 										<div className="flex justify-end gap-2">
-											<ProjectDialog project={project} companies={companies} isEdit />
+											<ProjectDialog
+												project={project}
+												companies={companies}
+												isEdit
+											/>
 											<DeleteProjectButton id={project.id} />
 											{project.link && (
-												<Button variant="ghost" size="icon" asChild>
+												<Button asChild>
 													<a
 														href={project.link}
 														target="_blank"

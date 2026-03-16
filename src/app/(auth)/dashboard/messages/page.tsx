@@ -1,13 +1,5 @@
-import { prisma } from '@/lib/prisma'
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from '@/components/ui/table'
-import { DeleteMessageButton } from './components/delete-message-button'
+import { Eye } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import {
 	Dialog,
 	DialogContent,
@@ -16,8 +8,16 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { Eye } from 'lucide-react'
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from '@/components/ui/table'
+import { prisma } from '@/lib/prisma'
+import { DeleteMessageButton } from './components/delete-message-button'
 
 export default async function MessagesPage() {
 	const messages = await prisma.message.findMany({
@@ -29,7 +29,8 @@ export default async function MessagesPage() {
 			<div>
 				<h2 className="text-2xl font-bold tracking-tight">Mensagens</h2>
 				<p className="text-muted-foreground">
-					Visualize e gerencie as mensagens enviadas através do formulário de contato.
+					Visualize e gerencie as mensagens enviadas através do formulário de
+					contato.
 				</p>
 			</div>
 
@@ -57,9 +58,7 @@ export default async function MessagesPage() {
 									<TableCell className="whitespace-nowrap">
 										{new Date(message.createdAt).toLocaleDateString('pt-BR')}
 									</TableCell>
-									<TableCell className="font-medium">
-										{message.name}
-									</TableCell>
+									<TableCell className="font-medium">{message.name}</TableCell>
 									<TableCell>{message.email}</TableCell>
 									<TableCell>
 										<span className="text-xs text-muted-foreground">
@@ -70,7 +69,7 @@ export default async function MessagesPage() {
 										<div className="flex justify-end gap-2">
 											<Dialog>
 												<DialogTrigger asChild>
-													<Button variant="ghost" size="icon">
+													<Button>
 														<Eye className="h-4 w-4" />
 													</Button>
 												</DialogTrigger>
@@ -78,7 +77,10 @@ export default async function MessagesPage() {
 													<DialogHeader>
 														<DialogTitle>Detalhes da Mensagem</DialogTitle>
 														<DialogDescription>
-															Enviada em {new Date(message.createdAt).toLocaleString('pt-BR')}
+															Enviada em{' '}
+															{new Date(message.createdAt).toLocaleString(
+																'pt-BR',
+															)}
 														</DialogDescription>
 													</DialogHeader>
 													<div className="space-y-4 py-4">

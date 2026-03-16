@@ -16,8 +16,11 @@ const cloudSlugs = [
 	'react',
 	'nodejs',
 	'postgresql',
-	'mysql',
 	'firebase',
+	'mysql',
+	'claude',
+	'cursor',
+	'googlegemini',
 	'vercel',
 	'docker',
 	'git',
@@ -33,7 +36,7 @@ export function About() {
 
 	return (
 		<div
-			className="flex flex-col justify-center relative py-5 mt-3 z-10"
+			className="flex flex-col min-h-svh justify-center relative py-5 z-10"
 			id="sobre"
 		>
 			<div className="text-center relative mx-2">
@@ -57,9 +60,9 @@ export function About() {
 				</BlurFade>
 			</div>
 
-			<div className="flex flex-wrap justify-center gap-10 mt-10 px-4">
+			<div className="flex flex-wrap justify-center mt-10">
 				<BlurFade delay={0.2} inView>
-					<div className="flex flex-col gap-3">
+					<div className="flex flex-col min-w-160">
 						<h3 className="font-mono text-sm text-foreground/50 uppercase tracking-widest pl-1">
 							Meu Setup
 						</h3>
@@ -76,8 +79,12 @@ export function About() {
 
 								<AnimatedSpan className="text-foreground/80 text-base">
 									<span className="border border-foreground/20 rounded-lg px-3 py-2 inline-block mt-1">
-										<span className="block font-semibold">Pedro Henrique Andrade</span>
-										<span className="block text-foreground/50 text-sm">Full Stack Developer</span>
+										<span className="block font-semibold">
+											Pedro Henrique Andrade
+										</span>
+										<span className="block text-foreground/50 text-sm">
+											Full Stack Developer
+										</span>
 									</span>
 								</AnimatedSpan>
 
@@ -125,11 +132,7 @@ export function About() {
 							gradientTo="#9c40ff"
 							gradientColor="#1a1a1a"
 						>
-							<div className="flex flex-col items-center justify-center w-full">
-								<div className="relative flex items-center justify-center overflow-hidden w-full">
-									<IconCloud images={images} />
-								</div>
-							</div>
+							<IconCloud images={images} />
 						</MagicCard>
 					</div>
 				</BlurFade>

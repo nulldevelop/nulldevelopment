@@ -1,18 +1,20 @@
-import { getProjectBySlug } from '@/lib/get-projetos'
-import { notFound } from 'next/navigation'
+import { ChevronLeft, ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import ReactMarkdown from 'react-markdown'
+import { HomeClient } from '@/components/home-client'
 import { Pill } from '@/components/pill'
 import { BlurFade } from '@/components/ui/blur-fade'
-import { TextAnimate } from '@/components/ui/text-animate'
-import { ChevronLeft, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { HomeClient } from '@/components/home-client'
-import ReactMarkdown from 'react-markdown'
+import { TextAnimate } from '@/components/ui/text-animate'
+import { getProjectBySlug } from '@/lib/get-projetos'
 
 export default async function ProjectPage({
 	params,
-}: { params: Promise<{ slug: string }> }) {
+}: {
+	params: Promise<{ slug: string }>
+}) {
 	const { slug } = await params
 	const project = await getProjectBySlug(slug)
 
@@ -27,7 +29,10 @@ export default async function ProjectPage({
 				<div className="flex items-center justify-between h-12">
 					<BlurFade>
 						<Link href="/#portfolio">
-							<Button variant="ghost" className="group hover:bg-white/5 text-foreground/50 hover:text-foreground">
+							<Button
+								variant="ghost"
+								className="group hover:bg-white/5 text-foreground/50 hover:text-foreground"
+							>
 								<ChevronLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
 								Voltar ao Portfólio
 							</Button>
@@ -42,7 +47,6 @@ export default async function ProjectPage({
 
 				{/* Grid Principal - Ocupa o resto da tela */}
 				<div className="flex-1 grid grid-cols-1 lg:grid-cols-12 grid-rows-6 lg:grid-rows-4 gap-4 overflow-hidden">
-					
 					{/* INFO PRINCIPAL - Top Left (4 col, 2 row) */}
 					<div className="lg:col-span-4 lg:row-span-2 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-6 lg:p-10 flex flex-col justify-between">
 						<div className="space-y-4">
@@ -50,7 +54,7 @@ export default async function ProjectPage({
 								as="h1"
 								by="word"
 								animation="blurInUp"
-								className="text-4xl lg:text-5xl font-sentient leading-tight"
+								className="text-2xl lg:text-3xl font-sentient leading-tight"
 								once
 							>
 								{project.title}
@@ -59,11 +63,14 @@ export default async function ProjectPage({
 								{project.shortDescription}
 							</p>
 						</div>
-						
+
 						<div className="space-y-4 pt-4">
 							<div className="flex flex-wrap gap-2">
 								{project.stack.slice(0, 4).map((tech) => (
-									<span key={tech} className="text-[9px] uppercase tracking-tighter font-mono px-2 py-1 bg-white/5 border border-white/10 rounded-md">
+									<span
+										key={tech}
+										className="text-[14px] uppercase tracking-tighter font-mono px-2 py-1 bg-white/5 border border-white/10 rounded-md"
+									>
 										{tech}
 									</span>
 								))}
@@ -113,7 +120,9 @@ export default async function ProjectPage({
 										</p>
 									),
 									strong: ({ children }) => (
-										<strong className="text-white/70 font-semibold">{children}</strong>
+										<strong className="text-white/70 font-semibold">
+											{children}
+										</strong>
 									),
 									ul: ({ children }) => (
 										<ul className="font-mono text-xs lg:text-sm text-foreground/50 leading-relaxed mb-3 space-y-1 pl-4">
@@ -145,7 +154,10 @@ export default async function ProjectPage({
 						</h3>
 						<div className="flex-1 grid grid-cols-2 gap-3 overflow-hidden">
 							{project.images.slice(0, 2).map((img, index) => (
-								<div key={index} className="relative h-full w-full rounded-2xl border border-white/5 overflow-hidden group">
+								<div
+									key={index}
+									className="relative h-full w-full rounded-2xl border border-white/5 overflow-hidden group"
+								>
 									<Image
 										src={img}
 										alt="gallery"
