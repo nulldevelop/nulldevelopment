@@ -27,7 +27,7 @@ export default async function ProjectPage({
 				<div className="flex items-center justify-between h-12">
 					<BlurFade>
 						<Link href="/#portfolio">
-							<Button variant="ghost" className="group hover:bg-white/5 text-foreground/50 hover:text-foreground">
+							<Button className="group hover:bg-white/5 text-foreground/50 hover:text-foreground">
 								<ChevronLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
 								Voltar ao Portfólio
 							</Button>
@@ -42,7 +42,7 @@ export default async function ProjectPage({
 
 				{/* Grid Principal - Ocupa o resto da tela */}
 				<div className="flex-1 grid grid-cols-1 lg:grid-cols-12 grid-rows-6 lg:grid-rows-4 gap-4 overflow-hidden">
-					
+
 					{/* INFO PRINCIPAL - Top Left (4 col, 2 row) */}
 					<div className="lg:col-span-4 lg:row-span-2 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-6 lg:p-10 flex flex-col justify-between">
 						<div className="space-y-4">
@@ -59,7 +59,7 @@ export default async function ProjectPage({
 								{project.shortDescription}
 							</p>
 						</div>
-						
+
 						<div className="space-y-4 pt-4">
 							<div className="flex flex-wrap gap-2">
 								{project.stack.slice(0, 4).map((tech) => (

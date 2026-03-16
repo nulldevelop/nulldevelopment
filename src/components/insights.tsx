@@ -14,7 +14,7 @@ export async function Insights() {
 
 	return (
 		<div
-			className="flex flex-col justify-center relative py-5 md:mt-15 z-10"
+			className="flex flex-col min-h-svh justify-center relative py-5 md:mt-15 z-10"
 			id="clientes"
 		>
 			<div className="text-center relative mx-2">
@@ -39,16 +39,16 @@ export async function Insights() {
 			</div>
 
 			<BlurFade delay={0.5} inView>
-				<div className="relative w-full mt-12 overflow-hidden">
+				<div className="relative w-full mt-12">
 					<Marquee
 						pauseOnHover
 						className="[--duration:30s] [--gap:3rem]"
-						repeat={2}
+						repeat={7}
 					>
 						{clients.map((client) => (
 							<div
 								key={client.name}
-								className="flex items-center justify-center h-40 w-56 bg-black/40 backdrop-blur-sm rounded-2xl border border-white/10 p-6 hover:bg-black/60 transition-colors"
+								className="flex items-center justify-center h-40 w-68 bg-black/40 backdrop-blur-sm rounded-2xl border border-white/10 p-6 hover:bg-black/60 transition-colors"
 							>
 								<Image
 									src={client.logo}

@@ -63,8 +63,8 @@ export function FileUpload({
 						<div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
 							<Button
 								type="button"
-								variant="destructive"
-								size="icon"
+								variant="default"
+								size="sm"
 								onClick={() => onChange('')}
 							>
 								<X className="h-4 w-4" />

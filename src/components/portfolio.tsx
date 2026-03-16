@@ -11,7 +11,7 @@ export async function Portfolio() {
 
 	return (
 		<div
-			className="flex flex-col justify-center relative py-5 md:mt-15 z-10"
+			className="flex flex-col min-h-svh justify-center relative py-5 z-10"
 			id="portfolio"
 		>
 			<div>
