@@ -12,6 +12,14 @@ export async function Insights() {
 
 	if (clients.length === 0) return null
 
+	return <InsightsClient clients={clients} />
+}
+
+function InsightsClient({
+	clients,
+}: {
+	clients: { name: string; logo: string }[]
+}) {
 	return (
 		<div
 			className="flex flex-col min-h-svh justify-center relative py-5 md:mt-15 z-10"
