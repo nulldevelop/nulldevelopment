@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import * as z from 'zod'
+import { saveMessage } from '@/app/actions/contact'
 import { Pill } from './pill'
 import { BlurFade } from './ui/blur-fade'
 import { Input } from './ui/input'
@@ -13,8 +14,6 @@ import { ShimmerButton } from './ui/shimmer-button'
 import { ShineBorder } from './ui/shine-border'
 import { TextAnimate } from './ui/text-animate'
 import { Textarea } from './ui/textarea'
-
-import { saveMessage } from '@/app/actions/contact'
 
 const contactFormSchema = z.object({
 	name: z.string().min(2, 'O nome deve ter pelo menos 2 caracteres.'),
@@ -38,7 +37,7 @@ export function Contact() {
 			city: '',
 			industry: '',
 			message: '',
-		}
+		},
 	})
 
 	const onSubmit = async (data: ContactFormValues) => {
@@ -72,7 +71,7 @@ export function Contact() {
 
 	return (
 		<div
-			className="flex flex-col justify-center relative py-5 md:mt-5"
+			className="flex flex-col min-h-svh justify-center relative py-5 md:mt-5"
 			id="contato"
 		>
 			<div className="text-center relative mx-2">
@@ -100,11 +99,6 @@ export function Contact() {
 					className="relative max-w-2xl mx-auto mt-5 w-full px-4"
 				>
 					<div className="relative rounded-2xl border border-white/10 p-5 bg-background/50 backdrop-blur-sm">
-						<ShineBorder
-							shineColor={['#EBB800', '#9c40ff']}
-							borderWidth={1}
-							duration={10}
-						/>
 						<div className="grid md:grid-cols-2 gap-4">
 							<div className="grid gap-1.5">
 								<Label htmlFor="name">Nome</Label>
@@ -180,7 +174,7 @@ export function Contact() {
 							</div>
 							<ShimmerButton
 								type="submit"
-								className="w-full font-mono uppercase h-10 md:col-span-2"
+								className="w-full font-mono uppercase h-10 md:col-span-2 mt-2"
 								shimmerColor="#EBB800"
 								disabled={isLoading}
 							>
