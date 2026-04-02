@@ -31,14 +31,14 @@ export default function LoginPage() {
 		const { error } = await authClient.signIn.username({
 			username,
 			password,
-			callbackURL: '/',
+			callbackURL: '/dashboard',
 		})
 
 		if (error) {
 			toast.error(error.message || 'Erro ao fazer login')
 		} else {
 			toast.success('Login realizado com sucesso!')
-			router.push('/')
+			router.push('/dashboard')
 		}
 		setLoading(false)
 	}
