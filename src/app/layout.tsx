@@ -20,7 +20,11 @@ export const metadata: Metadata = {
 	description:
 		'Desbloqueie o crescimento do seu negócio com soluções de software escaláveis.',
 	icons: {
-		icon: '/favicon.svg',
+		icon: [
+			{ url: '/favicon.svg', type: 'image/svg+xml', sizes: 'any' },
+		],
+		apple: '/logo.svg',
+		shortcut: '/favicon.svg',
 	},
 }
 

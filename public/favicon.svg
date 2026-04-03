@@ -1,10 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="48" height="48">
-  <!-- Background -->
-  <rect width="56" height="56" rx="8" fill="#0f0f0f"/>
-  <!-- Gold diamond accent top -->
-  <polygon points="16,3 18,5 16,7 14,5" fill="#C9A84C"/>
-  <!-- N -->
-  <path d="M4 9 L4 23 L7 23 L7 14 L13 23 L16 23 L16 9 L13 9 L13 18 L7 9 Z" fill="white"/>
-  <!-- D -->
-  <path d="M18 9 L18 23 L23 23 C26.5 23 29 20.5 29 16 C29 11.5 26.5 9 23 9 Z M21 12 L23 12 C24.5 12 26 13.5 26 16 C26 18.5 24.5 20 23 20 L21 20 Z" fill="white"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="256" fill="#111111"/>
+  <circle cx="256" cy="256" r="254" fill="none" stroke="#3a3a3a" stroke-width="4"/>
+
+  <!-- Letter N (drawn as path, no font dependency) -->
+  <path d="M90 150 L90 362 L140 362 L140 232 L230 362 L280 362 L280 150 L230 150 L230 280 L140 150 Z" fill="white"/>
+
+  <!-- Letter D (drawn as path, no font dependency) -->
+  <path d="M310 150 L310 362 L390 362 C445 362 480 320 480 256 C480 192 445 150 390 150 Z
+           M360 195 L388 195 C415 195 430 222 430 256 C430 290 415 317 388 317 L360 317 Z" fill="white"/>
+
+  <!-- Gold diamond -->
+  <polygon points="256,400 278,422 256,444 234,422" fill="#C9A84C"/>
 </svg>
