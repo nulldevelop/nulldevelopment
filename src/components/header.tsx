@@ -1,6 +1,5 @@
 'use client'
 import { Briefcase, Home, Mail, User, Users } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { MobileMenu } from './mobile-menu'
@@ -35,14 +34,12 @@ export const Header = () => {
 						href="/"
 						className={`transition-opacity duration-500 ${scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
 					>
-						<Image
-							src="/logo.png"
-							alt="Logo da empresa"
-							width={60}
-							height={60}
-							className="object-contain"
-							quality={100}
-						/>
+						<div className="flex flex-col leading-none">
+							<span className="font-sentient font-bold text-2xl text-white tracking-tight">
+								null<span className="text-yellow-500">.</span>dev
+							</span>
+							<div className="h-0.5 bg-linear-to-r from-yellow-700 via-yellow-400 to-yellow-700 rounded-full mt-0.5" />
+						</div>
 					</Link>
 					<MobileMenu />
 				</header>

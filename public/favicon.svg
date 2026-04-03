@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="48" height="48">
+  <!-- Background -->
+  <rect width="56" height="56" rx="8" fill="#0f0f0f"/>
+  <!-- Gold diamond accent top -->
+  <polygon points="16,3 18,5 16,7 14,5" fill="#C9A84C"/>
+  <!-- N -->
+  <path d="M4 9 L4 23 L7 23 L7 14 L13 23 L16 23 L16 9 L13 9 L13 18 L7 9 Z" fill="white"/>
+  <!-- D -->
+  <path d="M18 9 L18 23 L23 23 C26.5 23 29 20.5 29 16 C29 11.5 26.5 9 23 9 Z M21 12 L23 12 C24.5 12 26 13.5 26 16 C26 18.5 24.5 20 23 20 L21 20 Z" fill="white"/>
+</svg>

@@ -40,19 +40,20 @@ export function AppSidebar() {
 			className="border-r border-white/5 bg-black/40 backdrop-blur-xl"
 		>
 			<SidebarHeader className="h-16 flex items-center justify-center border-b border-white/5">
-				<div className="flex items-center gap-2 px-2">
-					<div className="size-9 bg-gradient-to-br from-primary to-primary/60 rounded-lg flex items-center justify-center overflow-hidden shadow-lg shadow-primary/20">
-						<Image
-							src="/logo.png"
-							alt="Logo"
-							width={32}
-							height={32}
-							className="object-contain"
-						/>
+				<div className="flex items-center gap-3 px-2 group-data-[collapsible=icon]:justify-center">
+					<Image
+						src="/logo.svg"
+						alt="Null Development"
+						width={52}
+						height={52}
+						className="shrink-0"
+					/>
+					<div className="flex flex-col leading-none group-data-[collapsible=icon]:hidden">
+						<span className="font-sentient font-bold text-xl text-white tracking-tight">
+							null<span className="text-yellow-500">.</span>dev
+						</span>
+						<div className="h-0.5 bg-linear-to-r from-yellow-700 via-yellow-400 to-yellow-700 rounded-full mt-0.5" />
 					</div>
-					<span className="font-sentient text-lg truncate group-data-[collapsible=icon]:hidden">
-						Null Development
-					</span>
 				</div>
 			</SidebarHeader>
 			<SidebarContent>

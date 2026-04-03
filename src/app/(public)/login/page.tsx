@@ -1,19 +1,10 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { authClient } from '@/lib/auth-client'
@@ -44,30 +35,37 @@ export default function LoginPage() {
 	}
 
 	return (
-		<div className="flex min-h-screen items-center justify-center bg-black px-4">
-			<div className="absolute top-10 left-1/2 -translate-x-1/2">
-				<Link href="/">
-					<Image
-						src="/logo.png"
-						alt="Null Development Logo"
-						width={80}
-						height={80}
-						className="object-contain"
-					/>
-				</Link>
+		<div className="relative flex min-h-screen items-center justify-center bg-background px-4 overflow-hidden">
+			{/* Glow de fundo */}
+			<div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+				<div className="h-125 w-125 rounded-full bg-yellow-500/5 blur-[120px]" />
 			</div>
 
-			<Card className="w-full max-w-md border-white/10 bg-black/50 backdrop-blur-xl">
-				<CardHeader className="space-y-1 text-center">
-					<CardTitle className="text-2xl font-bold tracking-tight text-white">Login</CardTitle>
-					<CardDescription className="text-white/60">
-						Entre com suas credenciais para acessar o painel
-					</CardDescription>
-				</CardHeader>
-				<form onSubmit={handleLogin}>
-					<CardContent className="space-y-4">
-						<div className="space-y-2">
-							<Label htmlFor="username" className="text-white/80">Usuário</Label>
+			<div className="relative z-10 w-full max-w-sm flex flex-col items-center gap-8">
+				{/* Logo texto */}
+				<Link href="/" className="flex flex-col items-center leading-none">
+					<span className="font-sentient font-bold text-3xl text-white tracking-tight">
+						null<span className="text-yellow-500">.</span>dev
+					</span>
+					<div className="h-0.5 w-full bg-linear-to-r from-yellow-700 via-yellow-400 to-yellow-700 rounded-full mt-1" />
+				</Link>
+
+				{/* Card */}
+				<div className="w-full rounded-3xl border border-white/10 bg-zinc-900/80 backdrop-blur-xl p-8 flex flex-col gap-6">
+					<div className="text-center space-y-1">
+						<h1 className="font-sentient text-2xl font-bold text-white">
+							Acesso ao Painel
+						</h1>
+						<p className="font-mono text-xs text-foreground/40">
+							Entre com suas credenciais para continuar
+						</p>
+					</div>
+
+					<form onSubmit={handleLogin} className="flex flex-col gap-4">
+						<div className="space-y-1.5">
+							<Label htmlFor="username" className="font-mono text-xs text-foreground/50 uppercase tracking-widest">
+								Usuário
+							</Label>
 							<Input
 								id="username"
 								type="text"
@@ -75,34 +73,39 @@ export default function LoginPage() {
 								value={username}
 								onChange={(e) => setUsername(e.target.value)}
 								required
-								className="border-white/10 bg-white/5 text-white placeholder:text-white/30 focus-visible:ring-yellow-500"
+								className="border-white/10 bg-white/5 text-white placeholder:text-white/20 focus-visible:ring-yellow-500 focus-visible:border-yellow-500/50 h-11 rounded-xl"
 							/>
 						</div>
-						<div className="space-y-2">
-							<div className="flex items-center justify-between">
-								<Label htmlFor="password" className="text-white/80">Senha</Label>
-							</div>
+
+						<div className="space-y-1.5">
+							<Label htmlFor="password" className="font-mono text-xs text-foreground/50 uppercase tracking-widest">
+								Senha
+							</Label>
 							<Input
 								id="password"
 								type="password"
+								placeholder="••••••••"
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 								required
-								className="border-white/10 bg-white/5 text-white focus-visible:ring-yellow-500"
+								className="border-white/10 bg-white/5 text-white placeholder:text-white/20 focus-visible:ring-yellow-500 focus-visible:border-yellow-500/50 h-11 rounded-xl"
 							/>
 						</div>
-					</CardContent>
-					<CardFooter>
+
 						<Button
 							type="submit"
-							className="w-full bg-yellow-500 font-bold text-black hover:bg-yellow-600"
+							className="w-full h-11 mt-2 rounded-xl bg-yellow-500 font-mono font-bold text-black hover:bg-yellow-400 transition-all duration-200 hover:scale-[1.02]"
 							disabled={loading}
 						>
-							{loading ? "Entrando..." : "Entrar"}
+							{loading ? 'Entrando...' : 'Entrar →'}
 						</Button>
-					</CardFooter>
-				</form>
-			</Card>
-	</div>
+					</form>
+				</div>
+
+				<p className="font-mono text-xs text-foreground/20">
+					© {new Date().getFullYear()} Null Development
+				</p>
+			</div>
+		</div>
 	)
 }

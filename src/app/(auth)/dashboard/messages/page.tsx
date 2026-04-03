@@ -1,4 +1,4 @@
-import { Eye } from 'lucide-react'
+import { Eye, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
 	Dialog,
@@ -8,14 +8,6 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from '@/components/ui/table'
 import { prisma } from '@/lib/prisma'
 import { DeleteMessageButton } from './components/delete-message-button'
 
@@ -25,104 +17,106 @@ export default async function MessagesPage() {
 	})
 
 	return (
-		<div className="flex flex-col gap-4">
-			<div>
-				<h2 className="text-2xl font-bold tracking-tight">Mensagens</h2>
-				<p className="text-muted-foreground">
-					Visualize e gerencie as mensagens enviadas através do formulário de
-					contato.
-				</p>
+		<div className="flex flex-col gap-6">
+			<div className="flex items-center justify-between">
+				<div>
+					<h1 className="font-sentient text-3xl font-bold text-white">Mensagens</h1>
+					<p className="font-mono text-sm text-foreground/40 mt-1">
+						{messages.length} mensagem{messages.length !== 1 ? 's' : ''} recebida{messages.length !== 1 ? 's' : ''}
+					</p>
+				</div>
+				<div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-green-500/20 bg-green-500/5">
+					<Mail className="size-3 text-green-400" />
+					<span className="font-mono text-xs text-green-400">{messages.length} no{messages.length !== 1 ? 'vas' : 'va'}</span>
+				</div>
 			</div>
 
-			<div className="rounded-md border bg-card">
-				<Table>
-					<TableHeader>
-						<TableRow>
-							<TableHead>Data</TableHead>
-							<TableHead>Nome</TableHead>
-							<TableHead>Email</TableHead>
-							<TableHead>Ramo/Cidade</TableHead>
-							<TableHead className="text-right">Ações</TableHead>
-						</TableRow>
-					</TableHeader>
-					<TableBody>
-						{messages.length === 0 ? (
-							<TableRow>
-								<TableCell colSpan={5} className="h-24 text-center">
-									Nenhuma mensagem encontrada.
-								</TableCell>
-							</TableRow>
-						) : (
-							messages.map((message) => (
-								<TableRow key={message.id}>
-									<TableCell className="whitespace-nowrap">
-										{new Date(message.createdAt).toLocaleDateString('pt-BR')}
-									</TableCell>
-									<TableCell className="font-medium">{message.name}</TableCell>
-									<TableCell>{message.email}</TableCell>
-									<TableCell>
-										<span className="text-xs text-muted-foreground">
-											{message.industry || '-'} / {message.city || '-'}
+			<div className="rounded-2xl border border-white/10 bg-zinc-900/80 overflow-hidden">
+				{messages.length === 0 ? (
+					<div className="flex flex-col items-center justify-center py-16 gap-3">
+						<p className="font-mono text-sm text-foreground/30">Nenhuma mensagem recebida.</p>
+					</div>
+				) : (
+					<table className="w-full">
+						<thead>
+							<tr className="border-b border-white/5">
+								<th className="font-mono text-xs text-foreground/40 uppercase tracking-widest text-left px-6 py-4">Data</th>
+								<th className="font-mono text-xs text-foreground/40 uppercase tracking-widest text-left px-6 py-4">Nome</th>
+								<th className="font-mono text-xs text-foreground/40 uppercase tracking-widest text-left px-6 py-4">Email</th>
+								<th className="font-mono text-xs text-foreground/40 uppercase tracking-widest text-left px-6 py-4">Ramo / Cidade</th>
+								<th className="font-mono text-xs text-foreground/40 uppercase tracking-widest text-right px-6 py-4">Ações</th>
+							</tr>
+						</thead>
+						<tbody>
+							{messages.map((message, i) => (
+								<tr
+									key={message.id}
+									className={`border-b border-white/5 last:border-0 hover:bg-white/3 transition-colors ${i % 2 === 0 ? '' : 'bg-white/2'}`}
+								>
+									<td className="px-6 py-4 whitespace-nowrap">
+										<span className="font-mono text-xs text-foreground/50">
+											{new Date(message.createdAt).toLocaleDateString('pt-BR')}
 										</span>
-									</TableCell>
-									<TableCell className="text-right">
+									</td>
+									<td className="px-6 py-4">
+										<span className="font-medium text-foreground">{message.name}</span>
+									</td>
+									<td className="px-6 py-4">
+										<span className="font-mono text-sm text-foreground/60">{message.email}</span>
+									</td>
+									<td className="px-6 py-4">
+										<span className="font-mono text-xs text-foreground/40">
+											{message.industry || '—'} / {message.city || '—'}
+										</span>
+									</td>
+									<td className="px-6 py-4">
 										<div className="flex justify-end gap-2">
 											<Dialog>
 												<DialogTrigger asChild>
-													<Button>
+													<Button size="icon" variant="ghost" className="hover:bg-white/5">
 														<Eye className="h-4 w-4" />
 													</Button>
 												</DialogTrigger>
-												<DialogContent className="max-w-lg">
+												<DialogContent className="max-w-lg bg-zinc-900 border-white/10">
 													<DialogHeader>
-														<DialogTitle>Detalhes da Mensagem</DialogTitle>
-														<DialogDescription>
-															Enviada em{' '}
-															{new Date(message.createdAt).toLocaleString(
-																'pt-BR',
-															)}
+														<DialogTitle className="font-sentient text-xl">Mensagem de {message.name}</DialogTitle>
+														<DialogDescription className="font-mono text-xs text-foreground/40">
+															Enviada em {new Date(message.createdAt).toLocaleString('pt-BR')}
 														</DialogDescription>
 													</DialogHeader>
-													<div className="space-y-4 py-4">
-														<div className="grid grid-cols-2 gap-4 text-sm">
-															<div>
-																<p className="font-semibold">Nome</p>
-																<p>{message.name}</p>
-															</div>
-															<div>
-																<p className="font-semibold">Email</p>
-																<p>{message.email}</p>
-															</div>
-															<div>
-																<p className="font-semibold">Telefone</p>
-																<p>{message.phone || '-'}</p>
-															</div>
-															<div>
-																<p className="font-semibold">Cidade</p>
-																<p>{message.city || '-'}</p>
-															</div>
-															<div className="col-span-2">
-																<p className="font-semibold">Ramo de Atuação</p>
-																<p>{message.industry || '-'}</p>
+													<div className="flex flex-col gap-4 py-2">
+														<div className="grid grid-cols-2 gap-3">
+															{[
+																{ label: 'Nome', value: message.name },
+																{ label: 'Email', value: message.email },
+																{ label: 'Telefone', value: message.phone || '—' },
+																{ label: 'Cidade', value: message.city || '—' },
+															].map(({ label, value }) => (
+																<div key={label} className="rounded-xl bg-white/5 border border-white/10 px-4 py-3">
+																	<p className="font-mono text-xs text-foreground/40 uppercase tracking-widest mb-1">{label}</p>
+																	<p className="text-sm text-foreground">{value}</p>
+																</div>
+															))}
+															<div className="col-span-2 rounded-xl bg-white/5 border border-white/10 px-4 py-3">
+																<p className="font-mono text-xs text-foreground/40 uppercase tracking-widest mb-1">Ramo de Atuação</p>
+																<p className="text-sm text-foreground">{message.industry || '—'}</p>
 															</div>
 														</div>
-														<div className="space-y-2">
-															<p className="font-semibold text-sm">Mensagem</p>
-															<div className="rounded-md bg-muted p-4 text-sm whitespace-pre-wrap">
-																{message.content}
-															</div>
+														<div className="rounded-xl bg-white/5 border border-white/10 px-4 py-3">
+															<p className="font-mono text-xs text-foreground/40 uppercase tracking-widest mb-2">Mensagem</p>
+															<p className="text-sm text-foreground/80 whitespace-pre-wrap leading-relaxed">{message.content}</p>
 														</div>
 													</div>
 												</DialogContent>
 											</Dialog>
 											<DeleteMessageButton id={message.id} />
 										</div>
-									</TableCell>
-								</TableRow>
-							))
-						)}
-					</TableBody>
-				</Table>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				)}
 			</div>
 		</div>
 	)

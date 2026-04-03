@@ -7,7 +7,7 @@ import { HomeClient } from '@/components/home-client'
 import { Pill } from '@/components/pill'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { Button } from '@/components/ui/button'
-import { TextAnimate } from '@/components/ui/text-animate'
+import { GalleryLightbox } from '@/components/ui/gallery-lightbox'
 import { getProjectBySlug } from '@/lib/get-projetos'
 
 export default async function ProjectPage({
@@ -24,10 +24,10 @@ export default async function ProjectPage({
 
 	return (
 		<HomeClient>
-			<main className="h-screen w-full overflow-hidden relative z-10 p-4 lg:p-8 pt-20 lg:pt-24 flex flex-col gap-4">
-				{/* Header/Back - Linha 0 */}
-				<div className="flex items-center justify-between h-12">
-					<BlurFade>
+			<main className="min-h-screen w-full relative z-10 p-4 lg:p-8 pt-20 lg:pt-24 flex flex-col gap-6 max-w-7xl mx-auto">
+				{/* Header */}
+				<BlurFade>
+					<div className="flex items-center justify-between">
 						<Link href="/#portfolio">
 							<Button
 								variant="ghost"
@@ -37,56 +37,15 @@ export default async function ProjectPage({
 								Voltar ao Portfólio
 							</Button>
 						</Link>
-					</BlurFade>
-					<BlurFade delay={0.1}>
-						<Pill className="bg-primary/10 border-primary/20 text-primary uppercase text-[10px] tracking-widest font-mono">
-							Case Study: {project.title}
+						<Pill className="bg-primary/10 border-primary/20 text-primary uppercase text-[10px] tracking-widest font-mono hidden sm:flex">
+							Case Study
 						</Pill>
-					</BlurFade>
-				</div>
-
-				{/* Grid Principal - Ocupa o resto da tela */}
-				<div className="flex-1 grid grid-cols-1 lg:grid-cols-12 grid-rows-6 lg:grid-rows-4 gap-4 overflow-hidden">
-					{/* INFO PRINCIPAL - Top Left (4 col, 2 row) */}
-					<div className="lg:col-span-4 lg:row-span-2 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-6 lg:p-10 flex flex-col justify-between">
-						<div className="space-y-4">
-							<TextAnimate
-								as="h1"
-								by="word"
-								animation="blurInUp"
-								className="text-2xl lg:text-3xl font-sentient leading-tight"
-								once
-							>
-								{project.title}
-							</TextAnimate>
-							<p className="text-sm lg:text-base text-foreground/60 font-mono leading-relaxed line-clamp-4 lg:line-clamp-6">
-								{project.shortDescription}
-							</p>
-						</div>
-
-						<div className="space-y-4 pt-4">
-							<div className="flex flex-wrap gap-2">
-								{project.stack.slice(0, 4).map((tech) => (
-									<span
-										key={tech}
-										className="text-[14px] uppercase tracking-tighter font-mono px-2 py-1 bg-white/5 border border-white/10 rounded-md"
-									>
-										{tech}
-									</span>
-								))}
-							</div>
-							{project.link && (
-								<Link href={project.link} target="_blank" className="block">
-									<Button className="w-full rounded-2xl h-12 bg-white text-black hover:bg-white/90 font-mono transition-transform hover:scale-[1.02]">
-										Visualizar Live <ExternalLink className="ml-2 h-4 w-4" />
-									</Button>
-								</Link>
-							)}
-						</div>
 					</div>
+				</BlurFade>
 
-					{/* HERO IMAGE - Top Right (8 col, 2 row) */}
-					<div className="lg:col-span-8 lg:row-span-2 bg-white/5 rounded-3xl border border-white/10 relative overflow-hidden group">
+				{/* Hero Image */}
+				<BlurFade delay={0.1}>
+					<div className="relative w-full aspect-video rounded-3xl overflow-hidden border border-white/10 group">
 						<Image
 							src={project.image}
 							alt={project.title}
@@ -94,48 +53,103 @@ export default async function ProjectPage({
 							className="object-cover transition-transform duration-700 group-hover:scale-105"
 							priority
 						/>
-						<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-						<div className="absolute bottom-6 left-6 font-mono text-[10px] opacity-40 uppercase tracking-[0.3em]">
-							Primary Interface View
+						<div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+						<div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+							<h1 className="font-sentient font-bold text-3xl lg:text-5xl text-white leading-tight max-w-2xl">
+								{project.title}
+							</h1>
+							{project.link && (
+								<Link href={project.link} target="_blank" rel="noopener noreferrer">
+									<Button className="rounded-2xl h-11 bg-white text-black hover:bg-white/90 font-mono shrink-0">
+										Ver Live <ExternalLink className="ml-2 h-4 w-4" />
+									</Button>
+								</Link>
+							)}
 						</div>
 					</div>
+				</BlurFade>
 
-					{/* ABOUT CONTENT - Bottom Left (7 col, 2 row) */}
-					<div className="lg:col-span-7 lg:row-span-2 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-6 lg:p-8 overflow-hidden flex flex-col">
-						<h3 className="text-xl font-sentient mb-4 flex items-center gap-2">
-							<span className="h-1 w-1 bg-primary rounded-full" />
-							Sobre o Projeto
-						</h3>
-						<div className="flex-1 overflow-y-auto pr-2 scrollbar-thin">
+				{/* Grid */}
+				<div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:items-stretch">
+					{/* Coluna Esquerda: Sobre + Galeria */}
+					<div className="lg:col-span-5 flex flex-col gap-4 lg:h-full">
+						<BlurFade delay={0.2}>
+							<div className="bg-zinc-900/80 backdrop-blur-md rounded-3xl border border-white/10 p-6 lg:p-8 flex flex-col gap-6">
+								<div>
+									<p className="font-mono text-xs text-foreground/40 uppercase tracking-widest mb-3">
+										Sobre o Projeto
+									</p>
+									<p className="text-sm lg:text-base text-foreground/70 font-mono leading-relaxed">
+										{project.shortDescription}
+									</p>
+								</div>
+								{project.stack.length > 0 && (
+									<div>
+										<p className="font-mono text-xs text-foreground/40 uppercase tracking-widest mb-3">
+											Stack
+										</p>
+										<div className="flex flex-wrap gap-2">
+											{project.stack.map((tech) => (
+												<span
+													key={tech}
+													className="text-xs uppercase tracking-wide font-mono px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-foreground/70"
+												>
+													{tech}
+												</span>
+											))}
+										</div>
+									</div>
+								)}
+							</div>
+						</BlurFade>
+
+						{project.images.length > 0 && (
+							<BlurFade delay={0.35} className="flex-1 flex flex-col min-h-0">
+								<div className="bg-zinc-900/80 backdrop-blur-md rounded-3xl border border-white/10 p-6 lg:p-8 flex-1 flex flex-col min-h-0">
+									<p className="font-mono text-xs text-foreground/40 uppercase tracking-widest mb-4 shrink-0">
+										Galeria
+									</p>
+									<GalleryLightbox images={project.images} title={project.title} />
+								</div>
+							</BlurFade>
+						)}
+					</div>
+
+					{/* Coluna Direita: Detalhes */}
+					<BlurFade delay={0.3} className="lg:col-span-7">
+						<div className="bg-zinc-900/80 backdrop-blur-md rounded-3xl border border-white/10 p-6 lg:p-8 h-full flex flex-col gap-4">
+							<p className="font-mono text-xs text-foreground/40 uppercase tracking-widest">
+								Detalhes
+							</p>
 							<ReactMarkdown
 								components={{
 									h2: ({ children }) => (
-										<h2 className="text-sm font-semibold text-white/90 font-sentient mt-5 mb-2 first:mt-0">
+										<h2 className="text-base font-semibold text-white/90 font-sentient mt-5 mb-2 first:mt-0">
 											{children}
 										</h2>
 									),
 									p: ({ children }) => (
-										<p className="font-mono text-xs lg:text-sm text-foreground/50 leading-relaxed mb-3">
+										<p className="font-mono text-sm text-foreground/60 leading-relaxed mb-3">
 											{children}
 										</p>
 									),
 									strong: ({ children }) => (
-										<strong className="text-white/70 font-semibold">
+										<strong className="text-white/80 font-semibold">
 											{children}
 										</strong>
 									),
 									ul: ({ children }) => (
-										<ul className="font-mono text-xs lg:text-sm text-foreground/50 leading-relaxed mb-3 space-y-1 pl-4">
+										<ul className="font-mono text-sm text-foreground/60 leading-relaxed mb-3 space-y-1 pl-4">
 											{children}
 										</ul>
 									),
 									li: ({ children }) => (
-										<li className="before:content-['—'] before:mr-2 before:text-primary/60">
+										<li className="before:content-['—'] before:mr-2 before:text-yellow-500/60">
 											{children}
 										</li>
 									),
 									code: ({ children }) => (
-										<code className="bg-white/5 text-primary/80 px-1 py-0.5 rounded text-[11px] font-mono">
+										<code className="bg-white/5 text-yellow-400/80 px-1.5 py-0.5 rounded text-xs font-mono">
 											{children}
 										</code>
 									),
@@ -144,35 +158,7 @@ export default async function ProjectPage({
 								{project.content}
 							</ReactMarkdown>
 						</div>
-					</div>
-
-					{/* GALLERY - Bottom Right (5 col, 2 row) */}
-					<div className="lg:col-span-5 lg:row-span-2 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-6 flex flex-col gap-4">
-						<h3 className="text-lg font-sentient flex items-center gap-2">
-							<span className="h-1 w-1 bg-primary rounded-full" />
-							Galeria
-						</h3>
-						<div className="flex-1 grid grid-cols-2 gap-3 overflow-hidden">
-							{project.images.slice(0, 2).map((img, index) => (
-								<div
-									key={index}
-									className="relative h-full w-full rounded-2xl border border-white/5 overflow-hidden group"
-								>
-									<Image
-										src={img}
-										alt="gallery"
-										fill
-										className="object-cover transition-transform group-hover:scale-110"
-									/>
-								</div>
-							))}
-							{project.images.length === 0 && (
-								<div className="col-span-2 flex items-center justify-center border border-dashed border-white/10 rounded-2xl opacity-20 font-mono text-[10px] uppercase">
-									Nenhuma imagem adicional
-								</div>
-							)}
-						</div>
-					</div>
+					</BlurFade>
 				</div>
 			</main>
 		</HomeClient>

@@ -1,3 +1,4 @@
+import { getGitHubProjects } from '@/lib/get-github-projects'
 import { getProjects } from '@/lib/get-projetos'
 import { Pill } from './pill'
 import { PortfolioCarousel } from './portfolio-carousel'
@@ -5,7 +6,16 @@ import { BlurFade } from './ui/blur-fade'
 import { TextAnimate } from './ui/text-animate'
 
 export async function Portfolio() {
-	const projects = await getProjects()
+	const [dbProjects, githubProjects] = await Promise.all([
+		getProjects(),
+		getGitHubProjects(),
+	])
+
+	const dbSlugs = new Set(dbProjects.map((p) => p.slug))
+	const projects = [
+		...dbProjects.map(({ link: _link, ...p }) => p),
+		...githubProjects.filter((p) => !dbSlugs.has(p.slug)),
+	]
 
 	if (projects.length === 0) return null
 
@@ -26,11 +36,14 @@ export async function Portfolio() {
 						className="text-4xl sm:text-5xl md:text-6xl font-sentient mt-6"
 						once
 					>
-						Projetos que desenvolvemos
+						Do conceito ao produto final
 					</TextAnimate>
 					<BlurFade delay={0.3} inView>
-						<p className="font-mono text-sm sm:text-base text-foreground/60 text-balance mt-4 max-w-110 mx-auto">
-							Estes são alguns dos projetos que desenvolvemos.
+						<p className="font-mono text-sm sm:text-base text-foreground/60 text-balance mt-4 max-w-lg mx-auto">
+							Cada projeto é uma solução real — construída com{' '}
+							<span className="text-foreground/90">atenção aos detalhes</span>,{' '}
+							performance e foco em{' '}
+							<span className="text-foreground/90">resultado</span>.
 						</p>
 					</BlurFade>
 				</div>
