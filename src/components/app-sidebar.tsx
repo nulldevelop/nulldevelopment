@@ -51,7 +51,7 @@ export function AppSidebar() {
 						/>
 					</div>
 					<span className="font-sentient text-lg truncate group-data-[collapsible=icon]:hidden">
-						NullPHR
+						Null Development
 					</span>
 				</div>
 			</SidebarHeader>

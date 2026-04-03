@@ -1,10 +1,10 @@
-# NullPHR Empres
+# Null Development
 
 > Plataforma de portfólio e gestão de projetos para empresas de desenvolvimento de software.
 
 ## 📌 Descrição
 
-**NullPHR Empres** é uma aplicação web full-stack que combina um **site público de portfólio** com um **painel administrativo** para gerenciar todo o conteúdo. A plataforma permite que empresas de desenvolvimento exibam seus projetos de forma profissional, gerenciem clientes e recebam contatos de potenciais clientes — tudo em um único sistema.
+**Null Development** é uma aplicação web full-stack que combina um **site público de portfólio** com um **painel administrativo** para gerenciar todo o conteúdo. A plataforma permite que empresas de desenvolvimento exibam seus projetos de forma profissional, gerenciem clientes e recebam contatos de potenciais clientes — tudo em um único sistema.
 
 ## 🚀 Funcionalidades
 

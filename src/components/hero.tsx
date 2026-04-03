@@ -4,37 +4,38 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { BlurFade } from './ui/blur-fade'
 import { ShimmerButton } from './ui/shimmer-button'
-import { TextAnimate } from './ui/text-animate'
 
 export function Hero() {
 	return (
 		<div className="flex flex-col min-h-svh justify-center relative z-10 lg:pl-20">
 			<div className="py-5 md:mt-15 text-center relative">
-				<BlurFade delay={0.1} inView>
-					<Image
-						className="text-center relative mx-auto mb-8"
-						src="/logo.png"
-						alt="Skal Ventures Logo"
-						width={200}
-						height={200}
-					/>
+				<div className="inline-block mb-4">
+					<h1 className="text-5xl sm:text-3xl md:text-6xl font-sentient font-bold text-white tracking-tight">
+						Null Development
+					</h1>
+					<div className="h-0.75 bg-linear-to-r from-yellow-700 via-yellow-400 to-yellow-700 mt-2 rounded-full" />
+					<p className="font-mono text-sm sm:text-xs md:text-sm text-yellow-400 mt-2 flex items-center justify-center gap-2 tracking-widest uppercase">
+						<span>◆</span>
+						<span>Full Stack Developer</span>
+						<span>◆</span>
+					</p>
+				</div>
+
+				<BlurFade delay={0.3} inView>
+					<h2 className="text-5xl sm:text-3xl md:text-6xl font-sentient leading-tight">
+						Software que faz o seu negócio{' '}
+						<span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600">
+							escalar
+						</span>
+					</h2>
 				</BlurFade>
 
-				<TextAnimate
-					as="h1"
-					by="word"
-					animation="blurInUp"
-					className="text-5xl sm:text-3xl md:text-6xl font-sentient"
-					delay={0.3}
-					once
-				>
-					Desbloqueie o crescimento do seu negócio
-				</TextAnimate>
-
 				<BlurFade delay={0.6} inView>
-					<p className="font-mono text-sm sm:text-base text-foreground/60 text-balance mt-4  mx-auto">
-						Por meio de soluções de software escaláveis que impulsionam inovação
-						e performance
+					<p className="font-mono text-sm sm:text-base text-foreground/50 text-balance mt-5 mx-auto max-w-lg">
+						Do conceito ao produto — entregamos{' '}
+						<span className="text-foreground/80">velocidade</span>,{' '}
+						<span className="text-foreground/80">qualidade</span> e{' '}
+						<span className="text-foreground/80">resultados reais</span>.
 					</p>
 				</BlurFade>
 

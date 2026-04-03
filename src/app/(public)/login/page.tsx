@@ -49,7 +49,7 @@ export default function LoginPage() {
 				<Link href="/">
 					<Image
 						src="/logo.png"
-						alt="NullPHR Logo"
+						alt="Null Development Logo"
 						width={80}
 						height={80}
 						className="object-contain"
@@ -71,7 +71,7 @@ export default function LoginPage() {
 							<Input
 								id="email"
 								type="email"
-								placeholder="exemplo@nullphr.com"
+								placeholder="exemplo@nulldevelopment.com"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								required

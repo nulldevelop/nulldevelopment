@@ -1,10 +1,14 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist_Mono, Merriweather } from 'next/font/google'
 import '@/styles/globals.css'
 import { Toaster } from 'sonner'
 import { cn } from '@/lib/utils'
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-sans' })
+const merriweather = Merriweather({
+	weight: ['400', '700'],
+	subsets: ['latin'],
+	variable: '--font-sans',
+})
 
 const geistMono = Geist_Mono({
 	variable: '--font-geist-mono',
@@ -12,7 +16,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-	title: 'NullPHR Development',
+	title: 'Null Development',
 	description:
 		'Desbloqueie o crescimento do seu negócio com soluções de software escaláveis.',
 	icons: {
@@ -26,7 +30,11 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="pt-BR" className={cn('dark font-sans', geist.variable)} suppressHydrationWarning>
+		<html
+			lang="pt-BR"
+			className={cn('dark font-sans', merriweather.variable)}
+			suppressHydrationWarning
+		>
 			<body
 				className={`${geistMono.variable} antialiased bg-background text-foreground`}
 			>
