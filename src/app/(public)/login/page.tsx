@@ -19,7 +19,7 @@ import { Label } from '@/components/ui/label'
 import { authClient } from '@/lib/auth-client'
 
 export default function LoginPage() {
-	const [email, setEmail] = useState('')
+	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 	const [loading, setLoading] = useState(false)
 	const router = useRouter()
@@ -28,17 +28,17 @@ export default function LoginPage() {
 		e.preventDefault()
 		setLoading(true)
 
-		const { error } = await authClient.signIn.email({
-			email,
+		const { error } = await authClient.signIn.username({
+			username,
 			password,
-			callbackURL: '/',
+			callbackURL: '/dashboard',
 		})
 
 		if (error) {
 			toast.error(error.message || 'Erro ao fazer login')
 		} else {
 			toast.success('Login realizado com sucesso!')
-			router.push('/')
+			router.push('/dashboard')
 		}
 		setLoading(false)
 	}
@@ -67,13 +67,13 @@ export default function LoginPage() {
 				<form onSubmit={handleLogin}>
 					<CardContent className="space-y-4">
 						<div className="space-y-2">
-							<Label htmlFor="email" className="text-white/80">E-mail</Label>
+							<Label htmlFor="username" className="text-white/80">Usuário</Label>
 							<Input
-								id="email"
-								type="email"
-								placeholder="exemplo@nulldevelopment.com"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
+								id="username"
+								type="text"
+								placeholder="seu_usuario"
+								value={username}
+								onChange={(e) => setUsername(e.target.value)}
 								required
 								className="border-white/10 bg-white/5 text-white placeholder:text-white/30 focus-visible:ring-yellow-500"
 							/>
