@@ -14,4 +14,19 @@ export const auth = betterAuth({
 		enabled: true,
 	},
 	plugins: [username()],
+	rateLimit: {
+		window: 20,       // janela de 20 segundos
+		max: 5,           // máximo 5 tentativas por janela
+		storage: 'memory',
+		customRules: {
+			'/sign-in/username': {
+				window: 60,
+				max: 5,
+			},
+			'/sign-in/email': {
+				window: 60,
+				max: 5,
+			},
+		},
+	},
 })
