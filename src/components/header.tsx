@@ -28,20 +28,30 @@ export const Header = () => {
 
 	return (
 		<>
-			<div className="fixed z-50 top-0 left-0 w-full flex items-center">
-				<header className="container mx-auto flex items-center justify-between py-4 px-6 relative">
+			<div className="fixed z-50 top-0 left-0 w-full flex items-center justify-center pointer-events-none">
+				<header
+					className={`container mx-auto flex items-center justify-between py-4 px-6 transition-all duration-500 pointer-events-auto ${
+						scrolled
+							? 'max-sm:bg-black/60 max-sm:backdrop-blur-md max-sm:w-full max-sm:border-b max-sm:border-white/10 max-sm:py-3 max-sm:px-6'
+							: 'max-sm:bg-transparent max-sm:backdrop-blur-0 max-sm:border-transparent'
+					}`}
+				>
 					<Link
 						href="/"
-						className={`transition-opacity duration-500 ${scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+						className={`transition-all duration-500 ${
+							scrolled ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+						}`}
 					>
 						<div className="flex flex-col leading-none">
-							<span className="font-sentient font-bold text-2xl text-white tracking-tight">
+							<span className="font-sentient font-bold text-xl sm:text-2xl text-white tracking-tight">
 								null<span className="text-yellow-500">.</span>dev
 							</span>
 							<div className="h-0.5 bg-linear-to-r from-yellow-700 via-yellow-400 to-yellow-700 rounded-full mt-0.5" />
 						</div>
 					</Link>
-					<MobileMenu />
+					<div className={scrolled ? '' : 'bg-black/20 backdrop-blur-sm rounded-full p-1 border border-white/5 sm:bg-transparent sm:backdrop-blur-0 sm:border-none'}>
+						<MobileMenu />
+					</div>
 				</header>
 			</div>
 			<div

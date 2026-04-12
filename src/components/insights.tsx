@@ -47,7 +47,7 @@ function InsightsClient({
 					</p>
 				</BlurFade>
 				<BlurFade delay={0.45} inView>
-					<div className="flex flex-wrap justify-center gap-4 mt-8">
+					<div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-12">
 						{[
 							{ value: `${clients.length}+`, label: 'clientes ativos' },
 							{ value: '100%', label: 'satisfação' },
@@ -55,12 +55,12 @@ function InsightsClient({
 						].map(({ value, label }) => (
 							<div
 								key={label}
-								className="flex flex-col items-center px-6 py-3 rounded-xl border border-foreground/15 bg-zinc-900"
+								className="flex flex-col items-center justify-center w-full md:w-48 px-6 py-4 rounded-2xl border border-foreground/15 bg-zinc-950"
 							>
-								<span className="font-sentient text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600">
+								<span className="font-sentient text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600">
 									{value}
 								</span>
-								<span className="font-mono text-xs text-foreground/50 uppercase tracking-wider mt-0.5">
+								<span className="font-mono text-[10px] text-foreground/40 text-center uppercase tracking-[0.2em] mt-1">
 									{label}
 								</span>
 							</div>
