@@ -14,10 +14,14 @@ const footerLinks = {
 		{ label: 'Consultoria', href: '#sobre' },
 	],
 	social: [
-		{ label: 'LinkedIn', href: 'https://linkedin.com/in/seu-perfil', icon: Linkedin },
-		{ label: 'GitHub', href: 'https://github.com/seu-usuario', icon: Github },
+		{
+			label: 'LinkedIn',
+			href: 'https://linkedin.com/in/pedrodevfull',
+			icon: Linkedin,
+		},
+		{ label: 'GitHub', href: 'https://github.com/nulldevelop', icon: Github },
 		{ label: 'Email', href: 'mailto:seu-email@exemplo.com', icon: Mail },
-	]
+	],
 }
 
 export function Footer() {
@@ -43,7 +47,7 @@ export function Footer() {
 						<ul className="space-y-4">
 							{footerLinks.empresa.map((link) => (
 								<li key={link.label}>
-									<Link 
+									<Link
 										href={link.href}
 										className="font-mono text-sm text-foreground/60 hover:text-yellow-500 transition-colors flex items-center group"
 									>
@@ -61,7 +65,7 @@ export function Footer() {
 						<ul className="space-y-4">
 							{footerLinks.servicos.map((link) => (
 								<li key={link.label}>
-									<Link 
+									<Link
 										href={link.href}
 										className="font-mono text-sm text-foreground/60 hover:text-yellow-500 transition-colors"
 									>
@@ -77,7 +81,7 @@ export function Footer() {
 						<h4 className="font-sentient text-sm uppercase tracking-widest text-foreground/30 mb-6">Conecte-se</h4>
 						<div className="flex flex-col gap-4">
 							{footerLinks.social.map((item) => (
-								<Link 
+								<Link
 									key={item.label}
 									href={item.href}
 									target="_blank"
@@ -99,7 +103,7 @@ export function Footer() {
 					<p className="font-mono text-[10px] text-foreground/30 uppercase tracking-[0.2em]">
 						© {new Date().getFullYear()} Pedro Henrique Andrade • Todos os direitos reservados.
 					</p>
-					
+
 					<div className="flex items-center gap-6">
 						<Link href="#" className="font-mono text-[10px] text-foreground/30 hover:text-foreground/60 transition-colors uppercase tracking-[0.2em]">
 							Privacidade
