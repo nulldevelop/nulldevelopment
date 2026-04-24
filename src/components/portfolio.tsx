@@ -1,4 +1,3 @@
-import { getGitHubProjects } from '@/lib/get-github-projects'
 import { Pill } from './pill'
 import { PortfolioCarousel } from './portfolio-carousel'
 import { BlurFade } from './ui/blur-fade'
@@ -28,18 +27,11 @@ async function getApiProjects(): Promise<DbProject[]> {
 }
 
 export async function Portfolio() {
-	const [dbProjects, githubProjects] = await Promise.all([
-		getApiProjects(),
-		getGitHubProjects(),
-	])
+	const projects = await getApiProjects()
 
-	const dbSlugs = new Set(dbProjects.map((p) => p.slug))
-	const projects = [
-		...dbProjects.map(({ link: _link, ...p }) => p),
-		...githubProjects.filter((p) => !dbSlugs.has(p.slug)),
-	]
+	const projectsWithoutLink = projects.map(({ link: _link, ...p }) => p)
 
-	if (projects.length === 0) return null
+	if (projectsWithoutLink.length === 0) return null
 
 	return (
 		<div
@@ -71,7 +63,7 @@ export async function Portfolio() {
 				</div>
 				<BlurFade delay={0.5} inView>
 					<div className="w-full max-w-6xl mx-auto mt-12 px-4">
-						<PortfolioCarousel projects={projects} />
+						<PortfolioCarousel projects={projectsWithoutLink} />
 					</div>
 				</BlurFade>
 			</div>
