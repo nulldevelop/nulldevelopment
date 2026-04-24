@@ -1,5 +1,5 @@
+import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
 import Link from 'next/link'
-import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react'
 
 const footerLinks = {
 	empresa: [
@@ -37,13 +37,16 @@ export function Footer() {
 							</span>
 						</Link>
 						<p className="font-mono text-sm text-foreground/50 leading-relaxed max-w-xs">
-							Transformando desafios complexos em produtos digitais de alta performance e escalabilidade.
+							Transformando desafios complexos em produtos digitais de alta
+							performance e escalabilidade.
 						</p>
 					</div>
 
 					{/* Links: Empresa */}
 					<div>
-						<h4 className="font-sentient text-sm uppercase tracking-widest text-foreground/30 mb-6">Navegação</h4>
+						<h4 className="font-sentient text-sm uppercase tracking-widest text-foreground/30 mb-6">
+							Navegação
+						</h4>
 						<ul className="space-y-4">
 							{footerLinks.empresa.map((link) => (
 								<li key={link.label}>
@@ -52,7 +55,10 @@ export function Footer() {
 										className="font-mono text-sm text-foreground/60 hover:text-yellow-500 transition-colors flex items-center group"
 									>
 										{link.label}
-										<ArrowUpRight size={14} className="ml-1 opacity-0 group-hover:opacity-100 transition-all -translate-y-1 group-hover:translate-y-0" />
+										<ArrowUpRight
+											size={14}
+											className="ml-1 opacity-0 group-hover:opacity-100 transition-all -translate-y-1 group-hover:translate-y-0"
+										/>
 									</Link>
 								</li>
 							))}
@@ -61,7 +67,9 @@ export function Footer() {
 
 					{/* Links: Serviços */}
 					<div>
-						<h4 className="font-sentient text-sm uppercase tracking-widest text-foreground/30 mb-6">Soluções</h4>
+						<h4 className="font-sentient text-sm uppercase tracking-widest text-foreground/30 mb-6">
+							Soluções
+						</h4>
 						<ul className="space-y-4">
 							{footerLinks.servicos.map((link) => (
 								<li key={link.label}>
@@ -78,7 +86,9 @@ export function Footer() {
 
 					{/* Social & Contact */}
 					<div>
-						<h4 className="font-sentient text-sm uppercase tracking-widest text-foreground/30 mb-6">Conecte-se</h4>
+						<h4 className="font-sentient text-sm uppercase tracking-widest text-foreground/30 mb-6">
+							Conecte-se
+						</h4>
 						<div className="flex flex-col gap-4">
 							{footerLinks.social.map((item) => (
 								<Link
@@ -101,14 +111,21 @@ export function Footer() {
 				{/* Bottom Bar */}
 				<div className="pt-10 border-t border-foreground/5 flex flex-col md:flex-row justify-between items-center gap-6">
 					<p className="font-mono text-[10px] text-foreground/30 uppercase tracking-[0.2em]">
-						© {new Date().getFullYear()} Pedro Henrique Andrade • Todos os direitos reservados.
+						© {new Date().getFullYear()} Pedro Henrique Andrade • Todos os
+						direitos reservados.
 					</p>
 
 					<div className="flex items-center gap-6">
-						<Link href="#" className="font-mono text-[10px] text-foreground/30 hover:text-foreground/60 transition-colors uppercase tracking-[0.2em]">
+						<Link
+							href="#"
+							className="font-mono text-[10px] text-foreground/30 hover:text-foreground/60 transition-colors uppercase tracking-[0.2em]"
+						>
 							Privacidade
 						</Link>
-						<Link href="#" className="font-mono text-[10px] text-foreground/30 hover:text-foreground/60 transition-colors uppercase tracking-[0.2em]">
+						<Link
+							href="#"
+							className="font-mono text-[10px] text-foreground/30 hover:text-foreground/60 transition-colors uppercase tracking-[0.2em]"
+						>
 							Termos
 						</Link>
 					</div>

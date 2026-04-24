@@ -8,7 +8,15 @@ import { Pill } from '@/components/pill'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { Button } from '@/components/ui/button'
 import { GalleryLightbox } from '@/components/ui/gallery-lightbox'
-import { getProjectBySlug } from '@/lib/get-projetos'
+
+async function getApiProject(slug: string) {
+	const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+	const res = await fetch(`${baseUrl}/api/projects?slug=${slug}`, { cache: 'no-store' })
+	if (!res.ok) {
+		return null
+	}
+	return res.json()
+}
 
 export default async function ProjectPage({
 	params,
@@ -16,7 +24,7 @@ export default async function ProjectPage({
 	params: Promise<{ slug: string }>
 }) {
 	const { slug } = await params
-	const project = await getProjectBySlug(slug)
+	const project = await getApiProject(slug)
 
 	if (!project) {
 		notFound()

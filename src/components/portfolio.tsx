@@ -1,13 +1,30 @@
 import { getGitHubProjects } from '@/lib/get-github-projects'
-import { getProjects } from '@/lib/get-projetos'
 import { Pill } from './pill'
 import { PortfolioCarousel } from './portfolio-carousel'
 import { BlurFade } from './ui/blur-fade'
 import { TextAnimate } from './ui/text-animate'
 
+interface DbProject {
+	id: string
+	title: string
+	slug: string
+	shortDescription: string
+	image: string
+	link: string | null
+}
+
+async function getApiProjects(): Promise<DbProject[]> {
+	const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+	const res = await fetch(`${baseUrl}/api/projects`, { cache: 'no-store' })
+	if (!res.ok) {
+		throw new Error('Failed to fetch projects')
+	}
+	return res.json()
+}
+
 export async function Portfolio() {
 	const [dbProjects, githubProjects] = await Promise.all([
-		getProjects(),
+		getApiProjects(),
 		getGitHubProjects(),
 	])
 

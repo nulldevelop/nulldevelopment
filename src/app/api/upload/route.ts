@@ -1,8 +1,8 @@
-import { auth } from '@/lib/auth'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 import { headers } from 'next/headers'
 import { type NextRequest, NextResponse } from 'next/server'
-import path from 'node:path'
-import fs from 'node:fs/promises'
+import { auth } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
 	// Proteção por autenticação
@@ -20,12 +20,18 @@ export async function POST(request: NextRequest) {
 		const folder = (formData.get('folder') as string) || 'general'
 
 		if (!file) {
-			return NextResponse.json({ error: 'Nenhum arquivo enviado' }, { status: 400 })
+			return NextResponse.json(
+				{ error: 'Nenhum arquivo enviado' },
+				{ status: 400 },
+			)
 		}
 
 		// Validação simples de tipo (apenas imagens)
 		if (!file.type.startsWith('image/')) {
-			return NextResponse.json({ error: 'Tipo de arquivo não suportado' }, { status: 400 })
+			return NextResponse.json(
+				{ error: 'Tipo de arquivo não suportado' },
+				{ status: 400 },
+			)
 		}
 
 		// Garante que a pasta de destino exista
@@ -50,6 +56,9 @@ export async function POST(request: NextRequest) {
 		})
 	} catch (error) {
 		console.error('Erro no upload:', error)
-		return NextResponse.json({ error: 'Falha ao processar upload' }, { status: 500 })
+		return NextResponse.json(
+			{ error: 'Falha ao processar upload' },
+			{ status: 500 },
+		)
 	}
 }
