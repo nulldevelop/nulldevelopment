@@ -1,33 +1,25 @@
+import { getProjects } from '@/lib/get-projetos'
 import { Pill } from './pill'
 import { PortfolioCarousel } from './portfolio-carousel'
 import { BlurFade } from './ui/blur-fade'
 import { TextAnimate } from './ui/text-animate'
 
-interface DbProject {
+interface Project {
 	id: string
 	title: string
 	slug: string
 	shortDescription: string
 	image: string
-	link: string | null
-}
-
-async function getApiProjects(): Promise<DbProject[]> {
-	const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-	const res = await fetch(`${baseUrl}/api/projects`, {
-		cache: 'no-store',
-	}).catch((err) => {
-		console.error('Failed to fetch projects:', err)
-		return null
-	})
-	if (!res || !res.ok) {
-		return []
-	}
-	return res.json()
+	link?: string | null
 }
 
 export async function Portfolio() {
-	const projects = await getApiProjects()
+	let projects: Project[] = []
+	try {
+		projects = await getProjects()
+	} catch (err) {
+		console.error('Failed to fetch projects:', err)
+	}
 
 	const projectsWithoutLink = projects.map(({ link: _link, ...p }) => p)
 
