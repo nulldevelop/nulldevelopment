@@ -35,9 +35,12 @@ export async function getGitHubProjects(): Promise<GitHubProject[]> {
 			headers,
 			next: { revalidate: 3600 },
 		},
-	)
+	).catch(() => {
+		console.error('Failed to fetch GitHub projects')
+		return null
+	})
 
-	if (!res.ok) return []
+	if (!res || !res.ok) return []
 
 	const repos: GitHubRepo[] = await res.json()
 

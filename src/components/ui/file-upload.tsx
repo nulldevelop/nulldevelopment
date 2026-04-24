@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
-import { Upload, X, Loader2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { toast } from 'sonner'
+import { Loader2, Upload, X } from 'lucide-react'
 import Image from 'next/image'
+import { useState } from 'react'
+import { toast } from 'sonner'
+import { Button } from '@/components/ui/button'
 
 interface FileUploadProps {
 	value?: string
@@ -34,16 +34,19 @@ export function FileUpload({
 			const res = await fetch('/api/upload', {
 				method: 'POST',
 				body: formData,
+			}).catch((err) => {
+				console.error('Upload failed:', err)
+				return null
 			})
 
-			if (!res.ok) throw new Error('Falha no upload')
+			if (!res || !res.ok) {
+				toast.error('Erro ao enviar o arquivo.')
+				return
+			}
 
 			const data = await res.json()
 			onChange(data.url)
 			toast.success('Upload realizado com sucesso!')
-		} catch (error) {
-			console.error(error)
-			toast.error('Erro ao enviar o arquivo.')
 		} finally {
 			setIsUploading(false)
 		}

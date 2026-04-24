@@ -11,8 +11,13 @@ import { GalleryLightbox } from '@/components/ui/gallery-lightbox'
 
 async function getApiProject(slug: string) {
 	const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-	const res = await fetch(`${baseUrl}/api/projects?slug=${slug}`, { cache: 'no-store' })
-	if (!res.ok) {
+	const res = await fetch(`${baseUrl}/api/projects?slug=${slug}`, {
+		cache: 'no-store',
+	}).catch((err) => {
+		console.error('Failed to fetch project:', err)
+		return null
+	})
+	if (!res || !res.ok) {
 		return null
 	}
 	return res.json()

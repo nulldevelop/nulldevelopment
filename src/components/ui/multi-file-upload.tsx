@@ -36,9 +36,14 @@ export function MultiFileUpload({
 				const res = await fetch('/api/upload', {
 					method: 'POST',
 					body: formData,
+				}).catch((err) => {
+					console.error('Upload failed:', err)
+					return null
 				})
 
-				if (!res.ok) throw new Error(`Falha no upload de ${file.name}`)
+				if (!res || !res.ok) {
+					throw new Error(`Falha no upload de ${file.name}`)
+				}
 
 				const data = await res.json()
 				uploaded.push(data.url)
@@ -46,9 +51,6 @@ export function MultiFileUpload({
 
 			onChange([...value, ...uploaded])
 			toast.success(`${uploaded.length} imagem(ns) enviada(s) com sucesso!`)
-		} catch (error) {
-			console.error(error)
-			toast.error('Erro ao enviar uma ou mais imagens.')
 		} finally {
 			setIsUploading(false)
 			// reset input so same files can be re-selected if needed

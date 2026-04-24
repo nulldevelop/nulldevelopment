@@ -15,9 +15,14 @@ interface DbProject {
 
 async function getApiProjects(): Promise<DbProject[]> {
 	const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-	const res = await fetch(`${baseUrl}/api/projects`, { cache: 'no-store' })
-	if (!res.ok) {
-		throw new Error('Failed to fetch projects')
+	const res = await fetch(`${baseUrl}/api/projects`, {
+		cache: 'no-store',
+	}).catch((err) => {
+		console.error('Failed to fetch projects:', err)
+		return null
+	})
+	if (!res || !res.ok) {
+		return []
 	}
 	return res.json()
 }
