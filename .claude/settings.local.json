@@ -9,7 +9,8 @@
       "Bash(npx @biomejs/biome check:*)",
       "Bash(npx next build:*)",
       "Bash(npx tsc:*)",
-      "Bash(pnpm remove:*)"
+      "Bash(pnpm remove:*)",
+      "Bash(xargs grep -l \"portfolio\")"
     ]
   }
 }

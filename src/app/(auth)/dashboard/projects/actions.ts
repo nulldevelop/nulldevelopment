@@ -25,6 +25,7 @@ export async function createProject(data: z.infer<typeof ProjectSchema>) {
 		},
 	})
 	revalidatePath('/dashboard/projects')
+	revalidatePath('/')
 	return project
 }
 
@@ -38,6 +39,7 @@ export async function updateProject(id: string, data: z.infer<typeof ProjectSche
 		},
 	})
 	revalidatePath('/dashboard/projects')
+	revalidatePath('/')
 	return project
 }
 
@@ -46,4 +48,5 @@ export async function deleteProject(id: string) {
 		where: { id },
 	})
 	revalidatePath('/dashboard/projects')
+	revalidatePath('/')
 }
