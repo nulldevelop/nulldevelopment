@@ -4,13 +4,13 @@ import { PortfolioCarousel } from './portfolio-carousel'
 import { BlurFade } from './ui/blur-fade'
 import { TextAnimate } from './ui/text-animate'
 
-interface Project {
+type Project = {
 	id: string
 	title: string
 	slug: string
 	shortDescription: string
 	image: string
-	link?: string | null
+	link: string | null
 }
 
 export async function Portfolio() {
@@ -21,9 +21,7 @@ export async function Portfolio() {
 		console.error('Failed to fetch projects:', err)
 	}
 
-	const projectsWithoutLink = projects.map(({ link: _link, ...p }) => p)
-
-	if (projectsWithoutLink.length === 0) return null
+	if (projects.length === 0) return null
 
 	return (
 		<div
@@ -55,7 +53,7 @@ export async function Portfolio() {
 				</div>
 				<BlurFade delay={0.5} inView>
 					<div className="w-full max-w-6xl mx-auto mt-12 px-4">
-						<PortfolioCarousel projects={projectsWithoutLink} />
+						<PortfolioCarousel projects={projects} />
 					</div>
 				</BlurFade>
 			</div>

@@ -8,20 +8,7 @@ import { Pill } from '@/components/pill'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { Button } from '@/components/ui/button'
 import { GalleryLightbox } from '@/components/ui/gallery-lightbox'
-
-async function getApiProject(slug: string) {
-	const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-	const res = await fetch(`${baseUrl}/api/projects?slug=${slug}`, {
-		cache: 'no-store',
-	}).catch((err) => {
-		console.error('Failed to fetch project:', err)
-		return null
-	})
-	if (!res || !res.ok) {
-		return null
-	}
-	return res.json()
-}
+import { getProjectBySlug } from '@/lib/get-projetos'
 
 export default async function ProjectPage({
 	params,
@@ -29,7 +16,7 @@ export default async function ProjectPage({
 	params: Promise<{ slug: string }>
 }) {
 	const { slug } = await params
-	const project = await getApiProject(slug)
+	const project = await getProjectBySlug(slug)
 
 	if (!project) {
 		notFound()

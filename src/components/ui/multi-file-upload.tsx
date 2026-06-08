@@ -26,6 +26,7 @@ export function MultiFileUpload({
 
 		setIsUploading(true)
 		const uploaded: string[] = []
+		const failed: string[] = []
 
 		try {
 			for (const file of Array.from(files)) {
@@ -42,18 +43,23 @@ export function MultiFileUpload({
 				})
 
 				if (!res || !res.ok) {
-					throw new Error(`Falha no upload de ${file.name}`)
+					failed.push(file.name)
+					continue
 				}
 
 				const data = await res.json()
 				uploaded.push(data.url)
 			}
 
-			onChange([...value, ...uploaded])
-			toast.success(`${uploaded.length} imagem(ns) enviada(s) com sucesso!`)
+			if (uploaded.length > 0) {
+				onChange([...value, ...uploaded])
+				toast.success(`${uploaded.length} imagem(ns) enviada(s) com sucesso!`)
+			}
+			if (failed.length > 0) {
+				toast.error(`Falha ao enviar: ${failed.join(', ')}`)
+			}
 		} finally {
 			setIsUploading(false)
-			// reset input so same files can be re-selected if needed
 			e.target.value = ''
 		}
 	}

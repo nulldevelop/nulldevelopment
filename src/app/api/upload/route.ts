@@ -14,10 +14,17 @@ export async function POST(request: NextRequest) {
 		return NextResponse.json({ error: 'Não autorizado' }, { status: 401 })
 	}
 
+	const ALLOWED_FOLDERS = ['projects', 'companies', 'avatars', 'general']
+
 	try {
 		const formData = await request.formData()
 		const file = formData.get('file') as File
-		const folder = (formData.get('folder') as string) || 'general'
+		const rawFolder = (formData.get('folder') as string) || 'general'
+
+		if (!ALLOWED_FOLDERS.includes(rawFolder)) {
+			return NextResponse.json({ error: 'Pasta inválida' }, { status: 400 })
+		}
+		const folder = rawFolder
 
 		if (!file) {
 			return NextResponse.json(
@@ -26,7 +33,6 @@ export async function POST(request: NextRequest) {
 			)
 		}
 
-		// Validação simples de tipo (apenas imagens)
 		if (!file.type.startsWith('image/')) {
 			return NextResponse.json(
 				{ error: 'Tipo de arquivo não suportado' },
@@ -34,8 +40,13 @@ export async function POST(request: NextRequest) {
 			)
 		}
 
-		// Garante que a pasta de destino exista
-		const targetDir = path.join(process.cwd(), 'public', 'uploads', folder)
+		const baseDir = path.join(process.cwd(), 'public', 'uploads')
+		const targetDir = path.join(baseDir, folder)
+
+		// Garante que o caminho resolvido não escape de public/uploads
+		if (!targetDir.startsWith(baseDir)) {
+			return NextResponse.json({ error: 'Pasta inválida' }, { status: 400 })
+		}
 		await fs.mkdir(targetDir, { recursive: true })
 
 		// Gera um nome de arquivo único para evitar conflitos

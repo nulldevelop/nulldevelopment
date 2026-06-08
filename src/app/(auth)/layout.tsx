@@ -1,11 +1,17 @@
+import { headers } from 'next/headers'
+import { redirect } from 'next/navigation'
 import { AppSidebar } from '@/components/app-sidebar'
+import { auth } from '@/lib/auth'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 
-export default function AuthLayout({
+export default async function AuthLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	const session = await auth.api.getSession({ headers: await headers() })
+	if (!session) redirect('/login')
+
 	return (
 		<SidebarProvider>
 			<AppSidebar />

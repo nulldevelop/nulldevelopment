@@ -1,11 +1,15 @@
-import { unstable_noStore as noStore } from 'next/cache'
 import { prisma } from './prisma'
 
 export async function getProjects() {
-	noStore()
 	return await prisma.project.findMany({
-		orderBy: {
-			createdAt: 'desc',
+		orderBy: { createdAt: 'desc' },
+		select: {
+			id: true,
+			title: true,
+			slug: true,
+			shortDescription: true,
+			image: true,
+			link: true,
 		},
 	})
 }

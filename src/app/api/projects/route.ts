@@ -6,9 +6,22 @@ export async function GET(request: NextRequest) {
 		const { searchParams } = new URL(request.url)
 		const slug = searchParams.get('slug')
 
+		const publicSelect = {
+			id: true,
+			title: true,
+			slug: true,
+			shortDescription: true,
+			content: true,
+			image: true,
+			images: true,
+			stack: true,
+			link: true,
+		}
+
 		if (slug) {
 			const project = await prisma.project.findUnique({
 				where: { slug },
+				select: publicSelect,
 			})
 			if (!project) {
 				return NextResponse.json(
@@ -20,9 +33,8 @@ export async function GET(request: NextRequest) {
 		}
 
 		const projects = await prisma.project.findMany({
-			orderBy: {
-				createdAt: 'desc',
-			},
+			orderBy: { createdAt: 'desc' },
+			select: publicSelect,
 		})
 
 		return NextResponse.json(projects)
