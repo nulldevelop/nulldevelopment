@@ -28,6 +28,7 @@ export function ProjectCard({ title, shortDescription, image, slug, link }: Proj
 						alt={title}
 						width={385}
 						height={300}
+						sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 						className="object-cover w-full aspect-video transition-transform duration-500 group-hover:scale-105"
 						quality={100}
 					/>

@@ -70,7 +70,7 @@ export function About() {
 					</p>
 				</BlurFade>
 				<BlurFade delay={0.5} inView>
-					<div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-12 px-4">
+					<div className="flex flex-col md:flex-row items-stretch justify-center gap-4 mt-12 px-4 w-full max-w-xl mx-auto">
 						{[
 							{ value: '3+', label: 'anos de experiência' },
 							{ value: '20+', label: 'projetos entregues' },
@@ -78,12 +78,12 @@ export function About() {
 						].map(({ value, label }) => (
 							<div
 								key={label}
-								className="flex flex-col items-center justify-center w-full md:w-48 px-4 py-6 rounded-2xl border border-foreground/15 bg-zinc-950"
+								className="flex flex-col items-center justify-center flex-1 px-4 py-6 rounded-2xl border border-foreground/15 bg-zinc-950"
 							>
-								<span className="font-sentient text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600">
+								<span className="font-sentient text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600 leading-none">
 									{value}
 								</span>
-								<span className="font-mono text-[10px] text-foreground/40 text-center uppercase tracking-[0.2em] mt-1">
+								<span className="font-mono text-[10px] text-foreground/40 text-center uppercase tracking-[0.2em] mt-2 leading-relaxed">
 									{label}
 								</span>
 							</div>

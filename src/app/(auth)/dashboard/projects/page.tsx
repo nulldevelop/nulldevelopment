@@ -32,7 +32,8 @@ export default async function ProjectsPage() {
 						<p className="font-mono text-sm text-foreground/30">Nenhum projeto cadastrado.</p>
 					</div>
 				) : (
-					<table className="w-full">
+					<div className="overflow-x-auto">
+					<table className="w-full min-w-[640px]">
 						<thead>
 							<tr className="border-b border-white/5">
 								<th className="font-mono text-xs text-foreground/40 uppercase tracking-widest text-left px-6 py-4">Título</th>
@@ -93,6 +94,7 @@ export default async function ProjectsPage() {
 							))}
 						</tbody>
 					</table>
+					</div>
 				)}
 			</div>
 		</div>

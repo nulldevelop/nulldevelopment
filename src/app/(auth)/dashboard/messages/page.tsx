@@ -37,7 +37,8 @@ export default async function MessagesPage() {
 						<p className="font-mono text-sm text-foreground/30">Nenhuma mensagem recebida.</p>
 					</div>
 				) : (
-					<table className="w-full">
+					<div className="overflow-x-auto">
+					<table className="w-full min-w-[680px]">
 						<thead>
 							<tr className="border-b border-white/5">
 								<th className="font-mono text-xs text-foreground/40 uppercase tracking-widest text-left px-6 py-4">Data</th>
@@ -85,7 +86,7 @@ export default async function MessagesPage() {
 														</DialogDescription>
 													</DialogHeader>
 													<div className="flex flex-col gap-4 py-2">
-														<div className="grid grid-cols-2 gap-3">
+														<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
 															{[
 																{ label: 'Nome', value: message.name },
 																{ label: 'Email', value: message.email },
@@ -116,6 +117,7 @@ export default async function MessagesPage() {
 							))}
 						</tbody>
 					</table>
+					</div>
 				)}
 			</div>
 		</div>

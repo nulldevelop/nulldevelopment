@@ -55,6 +55,7 @@ export function GalleryLightbox({ images, title }: GalleryLightboxProps) {
 								src={images[selected]}
 								alt={`${title} screenshot`}
 								fill
+								sizes="75vw"
 								className="object-contain"
 								quality={100}
 							/>

@@ -10,7 +10,8 @@
       "Bash(npx next build:*)",
       "Bash(npx tsc:*)",
       "Bash(pnpm remove:*)",
-      "Bash(xargs grep -l \"portfolio\")"
+      "Bash(xargs grep -l \"portfolio\")",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\('tailwindcss:', p.dependencies?.tailwindcss||p.devDependencies?.tailwindcss\\)\")"
     ]
   }
 }

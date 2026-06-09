@@ -56,11 +56,12 @@ export function FileUpload({
 		<div className="space-y-4 w-full">
 			<div className="flex flex-col items-center justify-center gap-4">
 				{value ? (
-					<div className="relative h-40 w-full group overflow-hidden rounded-lg border">
+					<div className="relative h-40 w-full group overflow-hidden rounded-lg border border-white/10">
 						<Image
 							src={value}
 							alt="Preview"
 							fill
+							sizes="(max-width: 640px) 100vw, 400px"
 							className="object-contain bg-muted/20"
 						/>
 						<div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
