@@ -18,6 +18,7 @@ interface Project {
 	shortDescription: string
 	image: string
 	link?: string | null
+	stack: string[]
 }
 
 export function PortfolioCarousel({ projects }: { projects: Project[] }) {

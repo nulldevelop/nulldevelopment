@@ -10,6 +10,7 @@ export async function getProjects() {
 			shortDescription: true,
 			image: true,
 			link: true,
+			stack: true,
 		},
 	})
 }

@@ -6,6 +6,7 @@ import { Portfolio } from '@/components/portfolio'
 import { HomeClient } from '@/components/home-client'
 import { FAQ } from '@/components/faq'
 import { Footer } from '@/components/footer'
+import { Institutional } from '@/components/institutional'
 
 export default function Home() {
 	return (
@@ -13,6 +14,7 @@ export default function Home() {
 			<Hero />
 			<About />
 			<Portfolio />
+			<Institutional />
 			<Insights />
 			<FAQ />
 			<Contact />

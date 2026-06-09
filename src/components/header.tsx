@@ -1,5 +1,5 @@
 'use client'
-import { Briefcase, Home, Mail, User, Users } from 'lucide-react'
+import { Briefcase, Building2, Home, Mail, User, Users } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { MobileMenu } from './mobile-menu'
@@ -10,6 +10,7 @@ const navItems = [
 	{ name: 'Home', href: '#', icon: Home },
 	{ name: 'Sobre', href: '#sobre', icon: User },
 	{ name: 'Portfolio', href: '#portfolio', icon: Briefcase },
+	{ name: 'Institucional', href: '#institucional', icon: Building2 },
 	{ name: 'Clientes', href: '#clientes', icon: Users },
 	{ name: 'Contato', href: '#contato', icon: Mail },
 ]
