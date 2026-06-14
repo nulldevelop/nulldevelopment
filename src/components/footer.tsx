@@ -37,8 +37,7 @@ export function Footer() {
 							</span>
 						</Link>
 						<p className="font-mono text-sm text-foreground/50 leading-relaxed max-w-xs">
-							Transformando desafios complexos em produtos digitais de alta
-							performance e escalabilidade.
+							Desenvolvedor Full Stack apaixonado por construir produtos digitais que fazem sentido de verdade.
 						</p>
 					</div>
 
@@ -68,7 +67,7 @@ export function Footer() {
 					{/* Links: Serviços */}
 					<div>
 						<h4 className="font-sentient text-sm uppercase tracking-widest text-foreground/30 mb-6">
-							Soluções
+							Especialidades
 						</h4>
 						<ul className="space-y-4">
 							{footerLinks.servicos.map((link) => (

@@ -40,14 +40,14 @@ export async function Portfolio() {
 					className="text-4xl sm:text-5xl md:text-6xl font-sentient mt-6"
 					once
 				>
-					Do conceito ao produto final
+					Projetos que construí
 				</TextAnimate>
 				<BlurFade delay={0.3} inView>
 					<p className="font-mono text-sm sm:text-base text-foreground/60 text-balance mt-4 max-w-lg mx-auto">
-						Cada projeto é uma solução real — construída com{' '}
+						Cada projeto aqui foi ao ar de verdade — construído com{' '}
 						<span className="text-foreground/90">atenção aos detalhes</span>,{' '}
-						performance e foco em{' '}
-						<span className="text-foreground/90">resultado</span>.
+						performance e comprometimento com a{' '}
+						<span className="text-foreground/90">qualidade final</span>.
 					</p>
 				</BlurFade>
 			</div>

@@ -27,7 +27,7 @@ function InsightsClient({
 		>
 			<div className="text-center relative mx-2">
 				<BlurFade inView>
-					<Pill className="w-full md:w-75">Nossos Clientes</Pill>
+					<Pill className="w-full md:w-75">Clientes</Pill>
 				</BlurFade>
 				<TextAnimate
 					as="h2"
@@ -36,22 +36,22 @@ function InsightsClient({
 					className="text-4xl sm:text-5xl md:text-6xl font-sentient mt-6"
 					once
 				>
-					Empresas que confiam no nosso trabalho
+					Empresas com quem já trabalhei
 				</TextAnimate>
 				<BlurFade delay={0.3} inView>
 					<p className="font-mono text-sm sm:text-base text-foreground/60 text-balance mt-4 max-w-lg mx-auto">
-						Cada cliente é uma parceria de{' '}
-						<span className="text-foreground/90">longo prazo</span> — entregamos
-						resultados reais e construímos relações baseadas em{' '}
-						<span className="text-foreground/90">confiança</span>.
+						Cada cliente representa um projeto real — entregue com{' '}
+						<span className="text-foreground/90">comprometimento</span> e atenção
+						a cada detalhe que importa para o{' '}
+						<span className="text-foreground/90">resultado final</span>.
 					</p>
 				</BlurFade>
 				<BlurFade delay={0.45} inView>
 					<div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-12">
 						{[
-							{ value: `${clients.length}+`, label: 'clientes ativos' },
-							{ value: '100%', label: 'satisfação' },
-							{ value: '24h', label: 'suporte' },
+							{ value: `${clients.length}+`, label: 'clientes' },
+							{ value: '100%', label: 'dedicação' },
+							{ value: '3+', label: 'anos de experiência' },
 						].map(({ value, label }) => (
 							<div
 								key={label}
@@ -100,12 +100,12 @@ function InsightsClient({
 			<BlurFade delay={0.8} inView>
 				<div className="text-center mt-12 mx-2">
 					<p className="font-mono text-sm text-foreground/40 max-w-md mx-auto">
-						Quer fazer parte disso?{' '}
+						Tem interesse em trabalhar junto?{' '}
 						<a
 							href="/#contato"
 							className="text-yellow-500 hover:text-yellow-400 transition-colors underline underline-offset-4"
 						>
-							Fale com a gente →
+							Entre em contato →
 						</a>
 					</p>
 				</div>

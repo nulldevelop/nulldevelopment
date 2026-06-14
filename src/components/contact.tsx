@@ -89,7 +89,7 @@ export function Contact() {
 				</TextAnimate>
 				<BlurFade delay={0.3} inView>
 					<p className="font-mono text-sm sm:text-base text-foreground/60 text-balance mt-2  mx-auto">
-						Preencha o formulário abaixo para entrar em contato conosco.
+						Preencha o formulário abaixo ou me chame direto no WhatsApp.
 					</p>
 				</BlurFade>
 			</div>
@@ -150,10 +150,10 @@ export function Contact() {
 								/>
 							</div>
 							<div className="grid gap-1.5 md:col-span-2">
-								<Label htmlFor="industry">Ramo</Label>
+								<Label htmlFor="industry">Assunto</Label>
 								<Input
 									id="industry"
-									placeholder="Ramo de atuação da sua empresa"
+									placeholder="Sobre o que você quer conversar?"
 									className="h-9"
 									{...form.register('industry')}
 								/>

@@ -13,31 +13,31 @@ import { TextAnimate } from './ui/text-animate'
 const specialties = [
 	{
 		title: 'Sistemas & SaaS',
-		description: 'Desenvolvimento de plataformas complexas, escaláveis e prontas para o mercado.',
+		description: 'Plataformas complexas, multi-tenant e escaláveis — arquitetadas para crescer sem virar dívida técnica.',
 		icon: Cpu,
 		className: 'md:col-span-2'
 	},
 	{
 		title: 'Landing Pages',
-		description: 'Páginas de alta conversão com foco em performance e SEO.',
+		description: 'Páginas rápidas, acessíveis e bem posicionadas nos buscadores.',
 		icon: Globe,
 		className: 'md:col-span-1'
 	},
 	{
 		title: 'E-commerce & Dashboards',
-		description: 'Soluções robustas para vendas e gestão de dados em tempo real.',
+		description: 'Interfaces ricas para visualização de dados e fluxos de compra.',
 		icon: Layout,
 		className: 'md:col-span-1'
 	},
 	{
-		title: 'Consultoria Estratégica',
-		description: 'Apoio técnico para tirar seu produto do papel da forma correta.',
+		title: 'Arquitetura & Decisão Técnica',
+		description: 'Definição de stack, modelagem de dados e estrutura de projeto desde o início.',
 		icon: Rocket,
 		className: 'md:col-span-1'
 	},
 	{
 		title: 'Alta Performance',
-		description: 'Código limpo e otimizado para garantir a melhor experiência do usuário.',
+		description: 'Código limpo, otimizado e com atenção a cada detalhe que o usuário percebe.',
 		icon: Zap,
 		className: 'md:col-span-1'
 	}
@@ -65,8 +65,8 @@ export function About() {
 				</TextAnimate>
 				<BlurFade delay={0.3} inView>
 					<p className="font-mono text-sm sm:text-base text-foreground/60 text-balance mt-4 max-w-xl mx-auto">
-						Desenvolvedor Full Stack especializado em transformar desafios de negócios em software de alta qualidade. 
-						Não apenas escrevo código, construo soluções que geram valor real para o seu projeto.
+						Desenvolvedor Full Stack com foco em construir software que funciona de verdade.
+						Não apenas escrevo código — projeto, desenvolvo e entrego produtos do conceito à produção.
 					</p>
 				</BlurFade>
 				<BlurFade delay={0.5} inView>
@@ -107,11 +107,11 @@ export function About() {
 						className="text-3xl md:text-5xl font-sentient mb-6"
 						once
 					>
-						O Que Entregamos
+						O Que Faço
 					</TextAnimate>
 					<BlurFade delay={0.3} inView>
 						<p className="font-mono text-sm text-foreground/50 max-w-xl mx-auto">
-							Soluções completas e personalizadas para cada etapa do seu negócio digital.
+							Minhas principais áreas de atuação — da infraestrutura ao pixel.
 						</p>
 					</BlurFade>
 				</div>

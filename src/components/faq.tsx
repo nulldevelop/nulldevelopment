@@ -13,35 +13,35 @@ import { Pill } from './pill'
 const faqs = [
 	{
 		question: 'Quanto tempo leva para desenvolver um projeto?',
-		answer: 'O prazo varia conforme a complexidade. Uma Landing Page pode ser entregue em 5 a 10 dias, enquanto sistemas SaaS ou plataformas personalizadas podem levar de 4 a 12 semanas. Definimos um cronograma claro na fase de planejamento.'
+		answer: 'O prazo varia conforme a complexidade. Uma Landing Page pode ser entregue em 5 a 10 dias, enquanto sistemas SaaS ou plataformas completas podem levar de 4 a 12 semanas. Defino um cronograma claro na fase de planejamento.'
 	},
 	{
 		question: 'Quais tecnologias você utiliza nos projetos?',
-		answer: 'Utilizamos as stacks mais modernas e performáticas do mercado, como Next.js, React, Node.js, TypeScript e bancos de dados como PostgreSQL e MongoDB. Isso garante que seu produto seja rápido, seguro e escalável.'
+		answer: 'Trabalho principalmente com Next.js, React, Node.js e TypeScript, usando PostgreSQL ou MySQL como banco de dados. A stack é escolhida de acordo com o que faz mais sentido para cada projeto.'
 	},
 	{
 		question: 'Você oferece suporte após o lançamento?',
-		answer: 'Sim, oferecemos diferentes modalidades de suporte e manutenção evolutiva. Garantimos que o sistema continue funcionando perfeitamente e possa receber novas funcionalidades conforme o seu negócio cresce.'
+		answer: 'Sim, ofereço suporte e manutenção após a entrega. Podemos definir um modelo que funcione para o seu caso — seja suporte pontual ou acompanhamento contínuo.'
 	},
 	{
 		question: 'Como funciona o processo de pagamento?',
-		answer: 'Trabalhamos geralmente com um modelo de entrada + parcelas durante o desenvolvimento, ou por marcos de entrega (milestones). Aceitamos pagamentos via PIX, transferência bancária ou boleto.'
+		answer: 'Trabalho geralmente com um modelo de entrada + parcelas durante o desenvolvimento, ou por marcos de entrega (milestones). Aceito pagamentos via PIX ou transferência bancária.'
 	},
 	{
-		question: 'Como funciona o orçamento e o tempo de resposta?',
-		answer: 'Analisamos cada desafio de forma única. Após o primeiro contato, enviamos um orçamento detalhado em até 24h. Nossos projetos personalizados possuem investimento inicial a partir de R$ 2.000, garantindo a qualidade e o suporte que seu negócio merece.'
+		question: 'Como funciona o orçamento?',
+		answer: 'Analiso cada projeto de forma individual. Após o primeiro contato, envio uma proposta detalhada em até 24h, com escopo, prazo e valor — sem surpresas no meio do caminho.'
 	},
 	{
-		question: 'Por que são cobradas mensalidades após a entrega?',
-		answer: 'As mensalidades são fundamentais para manter seu projeto online e seguro. Elas cobrem os custos de hospedagem em servidores de alta performance (AWS/Vercel), manutenção preventiva, atualizações de segurança e suporte técnico especializado, garantindo que sua plataforma esteja sempre disponível e otimizada.'
+		question: 'O projeto vai ter custos recorrentes depois da entrega?',
+		answer: 'Depende da infraestrutura escolhida. Hospedagem em servidores como Vercel, Railway ou AWS tem custos mensais — eu ajudo a escolher a opção mais adequada ao porte do projeto e explico tudo antes de decidirmos.'
 	},
 	{
-		question: 'O site será otimizado para SEO e dispositivos móveis?',
-		answer: 'Sim, todos os nossos projetos são desenvolvidos com a metodologia "Mobile First" e seguem as melhores práticas de SEO. Isso garante que seu site carregue rápido, funcione perfeitamente em qualquer tela (celulares, tablets e desktops) e seja encontrado facilmente pelos motores de busca como o Google.'
+		question: 'O projeto será otimizado para SEO e dispositivos móveis?',
+		answer: 'Sim, todos os projetos que desenvolvo seguem a metodologia "Mobile First" e as melhores práticas de SEO — performance, acessibilidade e indexação fazem parte do processo, não são adicionados no final.'
 	},
 	{
-		question: 'Eu terei acesso ao código-fonte do projeto?',
-		answer: 'Com certeza. Ao final do projeto, todo o código-fonte, documentação e acessos às plataformas de infraestrutura (como AWS ou Vercel) são transferidos integralmente para você.'
+		question: 'Você entrega o código-fonte?',
+		answer: 'Com certeza. O código é seu. Ao final do projeto, todo o código-fonte, documentação e acessos às plataformas de infraestrutura são transferidos integralmente para você.'
 	}
 ]
 
@@ -70,7 +70,7 @@ export function FAQ() {
 					</TextAnimate>
 					<BlurFade delay={0.3} inView>
 						<p className="font-mono text-sm text-foreground/50 max-w-xl mx-auto">
-							Tire suas dúvidas sobre como trabalhamos e o que esperar da nossa parceria.
+							Respostas para as dúvidas mais comuns sobre como trabalho.
 						</p>
 					</BlurFade>
 				</div>
@@ -117,9 +117,9 @@ export function FAQ() {
 
 				<BlurFade delay={0.6} inView>
 					<div className="mt-16 p-8 rounded-3xl border border-yellow-500/20 bg-yellow-500/5 text-center max-w-2xl mx-auto">
-						<h4 className="font-sentient text-xl mb-2">Pronto para tirar sua ideia do papel?</h4>
+						<h4 className="font-sentient text-xl mb-2">Tem um projeto em mente?</h4>
 						<p className="font-mono text-sm text-foreground/60 mb-8 max-w-md mx-auto">
-							Receba um orçamento personalizado em até 24h e comece a transformar seu negócio hoje mesmo.
+							Me conta o que você precisa — respondo em até 24h com uma proposta clara e sem enrolação.
 						</p>
 						<a 
 							href="https://wa.me/5541991798306?text=Olá! Vim através do site e gostaria de solicitar um orçamento para um projeto personalizado."

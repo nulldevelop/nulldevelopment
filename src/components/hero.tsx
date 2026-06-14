@@ -23,19 +23,19 @@ export function Hero() {
 
 				<BlurFade delay={0.3} inView>
 					<h2 className="text-5xl sm:text-3xl md:text-6xl font-sentient leading-tight">
-						Software que faz o seu negócio{' '}
+						Ideias que se tornam{' '}
 						<span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600">
-							escalar
+							software real
 						</span>
 					</h2>
 				</BlurFade>
 
 				<BlurFade delay={0.6} inView>
 					<p className="font-mono text-sm sm:text-base text-foreground/50 text-balance mt-5 mx-auto max-w-lg">
-						Do conceito ao produto — entregamos{' '}
-						<span className="text-foreground/80">velocidade</span>,{' '}
-						<span className="text-foreground/80">qualidade</span> e{' '}
-						<span className="text-foreground/80">resultados reais</span>.
+						Do back ao front, com cuidado nos{' '}
+						<span className="text-foreground/80">detalhes</span> e foco na{' '}
+						<span className="text-foreground/80">experiência</span> que chega ao{' '}
+						<span className="text-foreground/80">usuário final</span>.
 					</p>
 				</BlurFade>
 
