@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist_Mono, Merriweather } from 'next/font/google'
 import '@/styles/globals.css'
+import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from 'sonner'
 import { cn } from '@/lib/utils'
 
@@ -20,9 +21,7 @@ export const metadata: Metadata = {
 	description:
 		'Desbloqueie o crescimento do seu negócio com soluções de software escaláveis.',
 	icons: {
-		icon: [
-			{ url: '/favicon.svg', type: 'image/svg+xml', sizes: 'any' },
-		],
+		icon: [{ url: '/favicon.svg', type: 'image/svg+xml', sizes: 'any' }],
 		apple: '/logo.svg',
 		shortcut: '/favicon.svg',
 	},
@@ -44,6 +43,7 @@ export default function RootLayout({
 			>
 				{children}
 				<Toaster duration={2000} richColors closeButton={true} />
+				<Analytics />
 			</body>
 		</html>
 	)
