@@ -43,6 +43,8 @@ export const GL = ({ hovering }: { hovering: boolean }) => {
 	return (
 		<div id="webgl">
 			<Canvas
+				dpr={[1, 1.5]}
+				gl={{ powerPreference: 'high-performance', antialias: false }}
 				camera={{
 					position: [
 						1.2629783123314589, 2.664606471394044, -1.8178993743288914,

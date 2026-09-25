@@ -1,7 +1,6 @@
 'use client'
 
 import {
-	AnimatePresence,
 	type MotionProps,
 	motion,
 	type UseInViewOptions,
@@ -37,8 +36,8 @@ export function BlurFade({
 	offset = 6,
 	direction = 'down',
 	inView = false,
-	inViewMargin = '-50px',
-	blur = '6px',
+	inViewMargin = '0px',
+	blur = '0px',
 	...props
 }: BlurFadeProps) {
 	const ref = useRef(null)
@@ -49,33 +48,30 @@ export function BlurFade({
 			[direction === 'left' || direction === 'right' ? 'x' : 'y']:
 				direction === 'right' || direction === 'down' ? -offset : offset,
 			opacity: 0,
-			filter: `blur(${blur})`,
+			...(blur && blur !== '0px' ? { filter: `blur(${blur})` } : {}),
 		},
 		visible: {
 			[direction === 'left' || direction === 'right' ? 'x' : 'y']: 0,
 			opacity: 1,
-			filter: `blur(0px)`,
+			...(blur && blur !== '0px' ? { filter: 'blur(0px)' } : {}),
 		},
 	}
 	const combinedVariants = variant || defaultVariants
 	return (
-		<AnimatePresence>
-			<motion.div
-				ref={ref}
-				initial="hidden"
-				animate={isInView ? 'visible' : 'hidden'}
-				exit="hidden"
-				variants={combinedVariants}
-				transition={{
-					delay: 0.04 + delay,
-					duration,
-					ease: 'easeOut',
-				}}
-				className={className}
-				{...props}
-			>
-				{children}
-			</motion.div>
-		</AnimatePresence>
+		<motion.div
+			ref={ref}
+			initial="hidden"
+			animate={isInView ? 'visible' : 'hidden'}
+			variants={combinedVariants}
+			transition={{
+				delay,
+				duration,
+				ease: [0.21, 0.47, 0.32, 0.98],
+			}}
+			className={className}
+			{...props}
+		>
+			{children}
+		</motion.div>
 	)
 }

@@ -21,7 +21,7 @@ export function Hero() {
 					</p>
 				</div>
 
-				<BlurFade delay={0.3} inView>
+				<BlurFade delay={0.1} inView>
 					<h2 className="text-5xl sm:text-3xl md:text-6xl font-sentient leading-tight">
 						Ideias que se tornam{' '}
 						<span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600">
@@ -30,7 +30,7 @@ export function Hero() {
 					</h2>
 				</BlurFade>
 
-				<BlurFade delay={0.6} inView>
+				<BlurFade delay={0.2} inView>
 					<p className="font-mono text-sm sm:text-base text-foreground/50 text-balance mt-5 mx-auto max-w-lg">
 						Do back ao front, com cuidado nos{' '}
 						<span className="text-foreground/80">detalhes</span> e foco na{' '}
@@ -39,7 +39,7 @@ export function Hero() {
 					</p>
 				</BlurFade>
 
-				<BlurFade delay={1} inView>
+				<BlurFade delay={0.3} inView>
 					<Link className="contents max-sm:hidden" href="/#contato">
 						<ShimmerButton
 							className="mt-14 mx-auto font-mono uppercase text-base h-16 px-8"

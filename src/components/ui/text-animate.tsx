@@ -1,7 +1,6 @@
 'use client'
 
 import {
-	AnimatePresence,
 	type MotionProps,
 	motion,
 	type Variants,
@@ -89,15 +88,13 @@ const defaultItemAnimationVariants: Record<
 	blurIn: {
 		container: defaultContainerVariants,
 		item: {
-			hidden: { opacity: 0, filter: 'blur(10px)' },
+			hidden: { opacity: 0 },
 			show: {
 				opacity: 1,
-				filter: 'blur(0px)',
 				transition: { duration: 0.3 },
 			},
 			exit: {
 				opacity: 0,
-				filter: 'blur(10px)',
 				transition: { duration: 0.3 },
 			},
 		},
@@ -105,42 +102,38 @@ const defaultItemAnimationVariants: Record<
 	blurInUp: {
 		container: defaultContainerVariants,
 		item: {
-			hidden: { opacity: 0, filter: 'blur(10px)', y: 20 },
+			hidden: { opacity: 0, y: 12 },
 			show: {
 				opacity: 1,
-				filter: 'blur(0px)',
 				y: 0,
 				transition: {
-					y: { duration: 0.3 },
-					opacity: { duration: 0.4 },
-					filter: { duration: 0.3 },
+					y: { duration: 0.3, ease: 'easeOut' },
+					opacity: { duration: 0.35 },
 				},
 			},
 			exit: {
 				opacity: 0,
-				filter: 'blur(10px)',
-				y: 20,
-				transition: {
-					y: { duration: 0.3 },
-					opacity: { duration: 0.4 },
-					filter: { duration: 0.3 },
-				},
+				y: 12,
+				transition: { duration: 0.2 },
 			},
 		},
 	},
 	blurInDown: {
 		container: defaultContainerVariants,
 		item: {
-			hidden: { opacity: 0, filter: 'blur(10px)', y: -20 },
+			hidden: { opacity: 0, y: -12 },
 			show: {
 				opacity: 1,
-				filter: 'blur(0px)',
 				y: 0,
 				transition: {
-					y: { duration: 0.3 },
-					opacity: { duration: 0.4 },
-					filter: { duration: 0.3 },
+					y: { duration: 0.3, ease: 'easeOut' },
+					opacity: { duration: 0.35 },
 				},
+			},
+			exit: {
+				opacity: 0,
+				y: -12,
+				transition: { duration: 0.2 },
 			},
 		},
 	},
@@ -272,7 +265,7 @@ const TextAnimateBase = ({
 	segmentClassName,
 	as: Component = 'p',
 	startOnView = true,
-	once = false,
+	once = true,
 	by = 'word',
 	animation = 'fadeIn',
 	accessible = true,
@@ -291,7 +284,7 @@ const TextAnimateBase = ({
 		case 'line':
 			segments = children.split('\n')
 			break
-			default:
+		default:
 			segments = [children]
 			break
 	}
@@ -342,35 +335,32 @@ const TextAnimateBase = ({
 			: { container: defaultContainerVariants, item: defaultItemVariants }
 
 	return (
-		<AnimatePresence mode="popLayout">
-			<MotionComponent
-				variants={finalVariants.container as Variants}
-				initial="hidden"
-				whileInView={startOnView ? 'show' : undefined}
-				animate={startOnView ? undefined : 'show'}
-				exit="exit"
-				className={cn('whitespace-pre-wrap', className)}
-				viewport={{ once }}
-				aria-label={accessible ? children : undefined}
-				{...props}
-			>
-				{accessible && <span className="sr-only">{children}</span>}
-				{segments.map((segment, i) => (
-					<motion.span
-						key={`${by}-${segment}-${i}`}
-						variants={finalVariants.item}
-						custom={i * staggerTimings[by]}
-						className={cn(
-							by === 'line' ? 'block' : 'inline-block whitespace-pre',
-							segmentClassName,
-						)}
-						aria-hidden={accessible ? true : undefined}
-					>
-						{segment}
-					</motion.span>
-				))}
-			</MotionComponent>
-		</AnimatePresence>
+		<MotionComponent
+			variants={finalVariants.container as Variants}
+			initial="hidden"
+			whileInView={startOnView ? 'show' : undefined}
+			animate={startOnView ? undefined : 'show'}
+			className={cn('whitespace-pre-wrap', className)}
+			viewport={{ once }}
+			aria-label={accessible ? children : undefined}
+			{...props}
+		>
+			{accessible && <span className="sr-only">{children}</span>}
+			{segments.map((segment, i) => (
+				<motion.span
+					key={`${by}-${segment}-${i}`}
+					variants={finalVariants.item}
+					custom={i * staggerTimings[by]}
+					className={cn(
+						by === 'line' ? 'block' : 'inline-block whitespace-pre',
+						segmentClassName,
+					)}
+					aria-hidden={accessible ? true : undefined}
+				>
+					{segment}
+				</motion.span>
+			))}
+		</MotionComponent>
 	)
 }
 
