@@ -1,18 +1,16 @@
 'use client'
-import { Briefcase, Building2, Home, Mail, User, Users } from 'lucide-react'
+
+import { Code2, MessageCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { MobileMenu } from './mobile-menu'
-import { Dock, DockIcon } from './ui/dock'
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
 
 const navItems = [
-	{ name: 'Home', href: '#', icon: Home },
-	{ name: 'Sobre', href: '#sobre', icon: User },
-	{ name: 'Portfolio', href: '#portfolio', icon: Briefcase },
-	{ name: 'Institucional', href: '#institucional', icon: Building2 },
-	{ name: 'Clientes', href: '#clientes', icon: Users },
-	{ name: 'Contato', href: '#contato', icon: Mail },
+	{ name: 'Projetos', href: '#portfolio' },
+	{ name: 'Trajetória', href: '#experiencia' },
+	{ name: 'Serviços', href: '#servicos' },
+	{ name: 'FAQ', href: '#faq' },
+	{ name: 'Contato', href: '#contato' },
 ]
 
 export const Header = () => {
@@ -20,77 +18,62 @@ export const Header = () => {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			setScrolled(window.scrollY > 100)
+			setScrolled(window.scrollY > 40)
 		}
 		handleScroll()
-		window.addEventListener('scroll', handleScroll)
+		window.addEventListener('scroll', handleScroll, { passive: true })
 		return () => window.removeEventListener('scroll', handleScroll)
 	}, [])
 
 	return (
-		<>
-			<div className="fixed z-50 top-0 left-0 w-full flex items-center justify-center pointer-events-none">
-				<header
-					className={`container mx-auto flex items-center justify-between py-4 px-6 transition-all duration-500 pointer-events-auto ${
-						scrolled
-							? 'max-sm:bg-black/60 max-sm:backdrop-blur-md max-sm:w-full max-sm:border-b max-sm:border-white/10 max-sm:py-3 max-sm:px-6'
-							: 'max-sm:bg-transparent max-sm:backdrop-blur-0 max-sm:border-transparent'
-					}`}
-				>
-					<Link
-						href="/"
-						className={`transition-all duration-500 ${
-							scrolled ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
-						}`}
-					>
-						<div className="flex flex-col leading-none">
-							<span className="font-sentient font-bold text-xl sm:text-2xl text-white tracking-tight">
-								null<span className="text-yellow-500">.</span>dev
-							</span>
-							<div className="h-0.5 bg-linear-to-r from-yellow-700 via-yellow-400 to-yellow-700 rounded-full mt-0.5" />
-						</div>
-					</Link>
-					<div className={scrolled ? '' : 'bg-black/20 backdrop-blur-sm rounded-full p-1 border border-white/5 sm:bg-transparent sm:backdrop-blur-0 sm:border-none'}>
-						<MobileMenu />
-					</div>
-				</header>
-			</div>
-			<div
-				className={`fixed z-50 max-lg:hidden transition-all duration-500 ${
+		<div className="fixed z-50 top-0 left-0 w-full flex items-center justify-center p-3 sm:p-4 pointer-events-none">
+			<header
+				className={`w-full max-w-5xl mx-auto flex items-center justify-between py-2.5 px-4 sm:px-6 rounded-2xl transition-all duration-300 pointer-events-auto ${
 					scrolled
-						? 'left-4 top-1/2 -translate-y-1/2'
-						: 'top-4 right-6'
+						? 'bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-xl'
+						: 'bg-transparent border border-transparent'
 				}`}
 			>
-				<Dock
-					orientation={scrolled ? 'vertical' : 'horizontal'}
-					iconSize={50}
-					iconMagnification={60}
-					iconDistance={140}
-					className="border-white/10 bg-black/30 backdrop-blur-md"
-				>
+				{/* Logo */}
+				<Link href="/" className="group flex items-center gap-2">
+					<div className="w-7 h-7 rounded-lg bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400 group-hover:scale-105 transition-transform">
+						<Code2 className="w-3.5 h-3.5" />
+					</div>
+					<span className="font-sentient font-bold text-base text-white tracking-tight">
+						pedro<span className="text-yellow-400">.dev</span>
+					</span>
+				</Link>
+
+				{/* Center Navigation Links (Desktop) */}
+				<nav className="hidden md:flex items-center gap-6">
 					{navItems.map((item) => (
-						<DockIcon key={item.name}>
-							<Tooltip>
-								<TooltipTrigger asChild>
-									<Link
-										href={item.href}
-										className="text-foreground/60 hover:text-foreground duration-150 transition-colors ease-out"
-									>
-										<item.icon className="size-5" />
-									</Link>
-								</TooltipTrigger>
-								<TooltipContent
-									side={scrolled ? 'right' : 'bottom'}
-									sideOffset={8}
-								>
-									{item.name}
-								</TooltipContent>
-							</Tooltip>
-						</DockIcon>
+						<Link
+							key={item.name}
+							href={item.href}
+							className="font-mono text-xs uppercase tracking-wider text-zinc-400 hover:text-white transition-colors"
+						>
+							{item.name}
+						</Link>
 					))}
-				</Dock>
-			</div>
-		</>
+				</nav>
+
+				{/* Right CTA */}
+				<div className="flex items-center gap-3">
+					<a
+						href="https://wa.me/5541991798306?text=Ol%C3%A1%20Pedro!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20um%20projeto."
+						target="_blank"
+						rel="noopener noreferrer"
+						className="inline-flex items-center gap-2 font-mono text-xs uppercase px-3.5 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 transition-all font-medium"
+					>
+						<MessageCircle className="w-3.5 h-3.5" />
+						<span>WhatsApp</span>
+					</a>
+
+					<div className="md:hidden">
+						<MobileMenu />
+					</div>
+				</div>
+			</header>
+		</div>
 	)
 }

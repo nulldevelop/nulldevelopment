@@ -11,10 +11,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-background border-primary text-primary-foreground [&>[data-border]]:bg-primary [box-shadow:inset_0_0_54px_0px_var(--tw-shadow-color)] shadow-[#EBB800] hover:shadow-[#EBB800]/80",
+        ghost: "border-transparent bg-transparent hover:bg-white/10 text-foreground",
+        outline: "border-white/15 bg-transparent hover:bg-white/10 text-foreground",
+        secondary: "border-white/10 bg-zinc-900 text-foreground hover:bg-zinc-800",
+        destructive: "border-destructive/30 bg-destructive/20 text-destructive-foreground hover:bg-destructive/30",
       },
       size: {
         default: "h-16 px-6 text-base",
         sm: "h-14 px-6 text-sm",
+        lg: "h-16 px-8 text-base",
+        icon: "size-9 p-0 rounded-lg",
       },
     },
     defaultVariants: {

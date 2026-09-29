@@ -48,7 +48,7 @@ export function GalleryLightbox({ images, title }: GalleryLightboxProps) {
 
 			<Dialog open={selected !== null} onOpenChange={() => setSelected(null)}>
 				<DialogContent className="w-[75vw] max-w-[75vw] bg-black/90 border-white/10 p-0 overflow-hidden">
-					<DialogTitle className="sr-only">{title} — Galeria</DialogTitle>
+					<DialogTitle className="sr-only">{title}: Galeria</DialogTitle>
 					<div className="relative w-full aspect-video">
 						{selected !== null && (
 							<Image

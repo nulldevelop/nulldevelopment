@@ -6,43 +6,51 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from '@/components/ui/accordion'
+import { Pill } from './pill'
 import { BlurFade } from './ui/blur-fade'
 import { TextAnimate } from './ui/text-animate'
-import { Pill } from './pill'
 
 const faqs = [
 	{
-		question: 'Quanto tempo leva para desenvolver um projeto?',
-		answer: 'O prazo varia conforme a complexidade. Uma Landing Page pode ser entregue em 5 a 10 dias, enquanto sistemas SaaS ou plataformas completas podem levar de 4 a 12 semanas. Defino um cronograma claro na fase de planejamento.'
+		question: 'Quanto tempo leva para desenvolver um projeto ou SaaS?',
+		answer:
+			'O prazo varia de acordo com o escopo: uma Landing Page de alta conversão costuma levar entre 5 e 10 dias úteis. Projetos de SaaS, dashboards ou plataformas completas variam de 3 a 8 semanas. No primeiro contato, apresento um cronograma claro com datas de entrega definidas.',
 	},
 	{
-		question: 'Quais tecnologias você utiliza nos projetos?',
-		answer: 'Trabalho principalmente com Next.js, React, Node.js e TypeScript, usando PostgreSQL ou MySQL como banco de dados. A stack é escolhida de acordo com o que faz mais sentido para cada projeto.'
+		question: 'Como funciona o pagamento para contratações freelance?',
+		answer:
+			'Geralmente trabalhamos com o modelo tradicional de mercado: 50% de entrada para início do desenvolvimento e 50% na aprovação final antes do deploy definitivo (ou dividido em marcos/milestones para projetos maiores). Aceito PIX e transferência, com emissão de Nota Fiscal.',
 	},
 	{
-		question: 'Você oferece suporte após o lançamento?',
-		answer: 'Sim, ofereço suporte e manutenção após a entrega. Podemos definir um modelo que funcione para o seu caso — seja suporte pontual ou acompanhamento contínuo.'
+		question: 'O código-fonte será 100% de minha propriedade?',
+		answer:
+			'Sim, com certeza. Você é o dono exclusivo do produto. Ao final do projeto, todo o repositório no GitHub, credenciais de bancos de dados, chaves de API e arquivos de documentação são transferidos integralmente para você ou sua empresa.',
 	},
 	{
-		question: 'Como funciona o processo de pagamento?',
-		answer: 'Trabalho geralmente com um modelo de entrada + parcelas durante o desenvolvimento, ou por marcos de entrega (milestones). Aceito pagamentos via PIX ou transferência bancária.'
+		question: 'Você oferece suporte e garantia após a entrega?',
+		answer:
+			'Sim! Todo projeto inclui 30 dias de garantia técnica pós-lançamento para correção de eventuais inconsistências ou ajustes finos. Além disso, disponibilizo planos de manutenção contínua e evolução de funcionalidades caso deseje um parceiro de longo prazo.',
 	},
 	{
-		question: 'Como funciona o orçamento?',
-		answer: 'Analiso cada projeto de forma individual. Após o primeiro contato, envio uma proposta detalhada em até 24h, com escopo, prazo e valor — sem surpresas no meio do caminho.'
+		question: 'Você emite Nota Fiscal e faz contrato formal?',
+		answer:
+			'Sim, atuo com emissão regular de Nota Fiscal de Serviços (prestação de serviços de software) e firmamos contrato formal especificando escopo, prazos, obrigações de ambas as partes e cláusula de confidencialidade (NDA).',
 	},
 	{
-		question: 'O projeto vai ter custos recorrentes depois da entrega?',
-		answer: 'Depende da infraestrutura escolhida. Hospedagem em servidores como Vercel, Railway ou AWS tem custos mensais — eu ajudo a escolher a opção mais adequada ao porte do projeto e explico tudo antes de decidirmos.'
+		question: 'Como acompanho o andamento do projeto durante a criação?',
+		answer:
+			'Sem burocracia e com total transparência: disponibilizo um link privado de homologação (staging) onde você pode testar a aplicação em tempo real conforme as telas e regras de negócio forem sendo implementadas. Realizamos alinhamentos semanais rápidos.',
 	},
 	{
-		question: 'O projeto será otimizado para SEO e dispositivos móveis?',
-		answer: 'Sim, todos os projetos que desenvolvo seguem a metodologia "Mobile First" e as melhores práticas de SEO — performance, acessibilidade e indexação fazem parte do processo, não são adicionados no final.'
+		question: 'Quais tecnologias você mais recomenda para o meu produto?',
+		answer:
+			'Trabalho primordialmente com a stack Next.js (App Router), React 19, TypeScript, Tailwind CSS e bancos PostgreSQL / MySQL com Prisma ORM. Essa é a mesma stack utilizada pelas maiores startups do Vale do Silício, garantindo velocidade, segurança e fácil contratação de novos desenvolvedores no futuro.',
 	},
 	{
-		question: 'Você entrega o código-fonte?',
-		answer: 'Com certeza. O código é seu. Ao final do projeto, todo o código-fonte, documentação e acessos às plataformas de infraestrutura são transferidos integralmente para você.'
-	}
+		question: 'E se eu já tiver um sistema pronto e precisar apenas de melhorias?',
+		answer:
+			'Também realizo consultorias pontuais, refatoração de código legado, otimização de performance (Core Web Vitals para carregamento instantâneo) e implementação de novas features ou integrações de APIs em sistemas já existentes.',
+	},
 ]
 
 export function FAQ() {
@@ -56,38 +64,38 @@ export function FAQ() {
 				<div className="text-center mb-16">
 					<BlurFade inView>
 						<div className="flex justify-center mb-4">
-							<Pill className="w-full md:w-32">FAQ</Pill>
+							<Pill className="w-full md:w-44">Dúvidas Frequentes</Pill>
 						</div>
 					</BlurFade>
 					<TextAnimate
 						as="h2"
 						by="word"
 						animation="blurInUp"
-						className="text-4xl md:text-5xl font-sentient mb-4"
+						className="text-3xl sm:text-5xl md:text-6xl font-sentient mb-4 text-balance"
 						once
 					>
 						Perguntas Frequentes
 					</TextAnimate>
-					<BlurFade delay={0.3} inView>
-						<p className="font-mono text-sm text-foreground/50 max-w-xl mx-auto">
-							Respostas para as dúvidas mais comuns sobre como trabalho.
+					<BlurFade delay={0.2} inView>
+						<p className="font-mono text-sm sm:text-base text-foreground/60 max-w-xl mx-auto">
+							Respostas diretas sobre prazos, contratação freelance, garantias e processo de entrega.
 						</p>
 					</BlurFade>
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-					<BlurFade delay={0.4} inView>
+					<BlurFade delay={0.3} inView>
 						<Accordion type="single" collapsible className="w-full space-y-4">
 							{leftCol.map((faq, index) => (
-								<AccordionItem 
-									key={index} 
+								<AccordionItem
+									key={index}
 									value={`left-${index}`}
-									className="border border-foreground/15 bg-zinc-950 rounded-2xl px-6 transition-all hover:border-foreground/25"
+									className="border border-white/10 bg-zinc-950/80 backdrop-blur-md rounded-2xl px-6 transition-all hover:border-yellow-500/30"
 								>
-									<AccordionTrigger className="text-base font-sentient py-6 hover:no-underline text-left leading-snug">
+									<AccordionTrigger className="text-base font-sentient py-6 hover:no-underline text-left leading-snug text-foreground">
 										{faq.question}
 									</AccordionTrigger>
-									<AccordionContent className="font-mono text-sm text-foreground/70 leading-relaxed pb-6 border-t border-foreground/5 pt-4">
+									<AccordionContent className="font-mono text-xs sm:text-sm text-foreground/70 leading-relaxed pb-6 border-t border-white/5 pt-4">
 										{faq.answer}
 									</AccordionContent>
 								</AccordionItem>
@@ -95,18 +103,18 @@ export function FAQ() {
 						</Accordion>
 					</BlurFade>
 
-					<BlurFade delay={0.5} inView>
+					<BlurFade delay={0.4} inView>
 						<Accordion type="single" collapsible className="w-full space-y-4">
 							{rightCol.map((faq, index) => (
-								<AccordionItem 
-									key={index} 
+								<AccordionItem
+									key={index}
 									value={`right-${index}`}
-									className="border border-foreground/15 bg-zinc-950 rounded-2xl px-6 transition-all hover:border-foreground/25"
+									className="border border-white/10 bg-zinc-950/80 backdrop-blur-md rounded-2xl px-6 transition-all hover:border-yellow-500/30"
 								>
-									<AccordionTrigger className="text-base font-sentient py-6 hover:no-underline text-left leading-snug">
+									<AccordionTrigger className="text-base font-sentient py-6 hover:no-underline text-left leading-snug text-foreground">
 										{faq.question}
 									</AccordionTrigger>
-									<AccordionContent className="font-mono text-sm text-foreground/70 leading-relaxed pb-6 border-t border-foreground/5 pt-4">
+									<AccordionContent className="font-mono text-xs sm:text-sm text-foreground/70 leading-relaxed pb-6 border-t border-white/5 pt-4">
 										{faq.answer}
 									</AccordionContent>
 								</AccordionItem>
@@ -114,23 +122,6 @@ export function FAQ() {
 						</Accordion>
 					</BlurFade>
 				</div>
-
-				<BlurFade delay={0.6} inView>
-					<div className="mt-16 p-8 rounded-3xl border border-yellow-500/20 bg-yellow-500/5 text-center max-w-2xl mx-auto">
-						<h4 className="font-sentient text-xl mb-2">Tem um projeto em mente?</h4>
-						<p className="font-mono text-sm text-foreground/60 mb-8 max-w-md mx-auto">
-							Me conta o que você precisa — respondo em até 24h com uma proposta clara e sem enrolação.
-						</p>
-						<a 
-							href="https://wa.me/5541991798306?text=Olá! Vim através do site e gostaria de solicitar um orçamento para um projeto personalizado."
-							target="_blank"
-							rel="noopener noreferrer"
-							className="inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black font-sentient px-8 py-4 rounded-xl transition-all hover:scale-105 active:scale-95"
-						>
-							Solicitar Orçamento via WhatsApp
-						</a>
-					</div>
-				</BlurFade>
 			</div>
 		</section>
 	)

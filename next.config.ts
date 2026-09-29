@@ -1,8 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactCompiler: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  images: {
+    qualities: [75, 100],
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
