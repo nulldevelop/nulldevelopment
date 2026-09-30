@@ -70,15 +70,15 @@ export default async function ProjectPage({
 				<BlurFade delay={0.1}>
 					<div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
 						<div className="max-w-3xl">
-							<div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-yellow-500/30 bg-yellow-500/10 text-yellow-400 font-mono text-xs uppercase mb-3">
-								<span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
+							<div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-md border border-yellow-500/30 bg-yellow-500/10 text-yellow-400 text-xs sm:text-sm font-semibold uppercase mb-3">
+								<span className="w-2 h-2 rounded-full bg-yellow-400" />
 								<span>{badge}</span>
 							</div>
 
-							<h1 className="text-3xl sm:text-5xl lg:text-6xl font-sentient font-bold text-white tracking-tight leading-[1.1]">
+							<h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1]">
 								{project.title}
 							</h1>
-							<p className="font-mono text-sm sm:text-base text-zinc-400 mt-4 leading-relaxed max-w-2xl">
+							<p className="text-base sm:text-lg text-zinc-300 mt-4 leading-relaxed max-w-2xl">
 								{project.shortDescription}
 							</p>
 						</div>
@@ -90,10 +90,10 @@ export default async function ProjectPage({
 									href={project.link}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="inline-flex items-center gap-2 font-mono text-xs uppercase px-5 py-3 rounded-xl bg-white hover:bg-zinc-200 text-black font-semibold transition-all shadow-md"
+									className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase px-6 py-3.5 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold transition-all shadow-md"
 								>
 									<span>Ver Projeto Ao Vivo</span>
-									<ExternalLink className="w-3.5 h-3.5" />
+									<ExternalLink className="w-4 h-4" />
 								</a>
 							)}
 
@@ -101,7 +101,7 @@ export default async function ProjectPage({
 								href={`https://wa.me/5541991798306?text=${whatsappMessage}`}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="inline-flex items-center gap-2 font-mono text-xs uppercase px-4 py-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 transition-colors"
+								className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase px-5 py-3.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 font-semibold transition-colors"
 							>
 								<MessageCircle className="w-4 h-4" />
 								<span className="hidden sm:inline">Projeto Similar</span>
@@ -112,7 +112,7 @@ export default async function ProjectPage({
 
 				{/* Big Hero Banner Image */}
 				<BlurFade delay={0.15}>
-					<div className="relative aspect-video w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-zinc-950 mb-10 group shadow-2xl">
+					<div className="relative aspect-video w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-zinc-950 mb-10 group shadow-2xl">
 						<Image
 							src={project.image}
 							alt={project.title}
@@ -127,19 +127,19 @@ export default async function ProjectPage({
 
 				{/* Meta Strip Bar */}
 				<BlurFade delay={0.2}>
-					<div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl border border-white/10 bg-zinc-900/40 backdrop-blur-xs mb-10 font-mono text-xs">
+					<div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 rounded-2xl border border-white/10 bg-zinc-900/50 backdrop-blur-xs mb-10">
 						<div>
-							<span className="text-zinc-500 uppercase text-[10px] tracking-wider block mb-1">
+							<span className="text-zinc-400 uppercase text-xs tracking-wider block mb-1 font-medium">
 								Minha Atuação
 							</span>
-							<span className="text-zinc-200 font-medium">Full Stack & Arquiteto</span>
+							<span className="text-zinc-100 font-semibold text-sm sm:text-base">Full Stack & Arquiteto</span>
 						</div>
 
 						<div>
-							<span className="text-zinc-500 uppercase text-[10px] tracking-wider block mb-1">
+							<span className="text-zinc-400 uppercase text-xs tracking-wider block mb-1 font-medium">
 								Tipo de Solução
 							</span>
-							<span className="text-zinc-200 font-medium">
+							<span className="text-zinc-100 font-semibold text-sm sm:text-base">
 								{project.category === 'saas'
 									? 'Plataforma SaaS'
 									: project.category === 'governamental'
@@ -149,29 +149,29 @@ export default async function ProjectPage({
 						</div>
 
 						<div>
-							<span className="text-zinc-500 uppercase text-[10px] tracking-wider block mb-1">
+							<span className="text-zinc-400 uppercase text-xs tracking-wider block mb-1 font-medium">
 								Status
 							</span>
-							<span className="text-emerald-400 font-medium flex items-center gap-1.5">
-								<span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+							<span className="text-emerald-400 font-semibold text-sm sm:text-base flex items-center gap-2">
+								<span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
 								{badge}
 							</span>
 						</div>
 
 						<div>
-							<span className="text-zinc-500 uppercase text-[10px] tracking-wider block mb-1">
+							<span className="text-zinc-400 uppercase text-xs tracking-wider block mb-1 font-medium">
 								Código & Acesso
 							</span>
-							<span className="text-zinc-300">
+							<span className="text-zinc-200 font-semibold text-sm sm:text-base">
 								{project.link ? (
 									<a
 										href={project.link}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-yellow-400 hover:underline flex items-center gap-1"
+										className="text-yellow-400 hover:underline flex items-center gap-1.5"
 									>
 										<span>Online</span>
-										<ArrowUpRight className="w-3 h-3" />
+										<ArrowUpRight className="w-3.5 h-3.5" />
 									</a>
 								) : (
 									'Privado / Corporativo'
@@ -186,18 +186,18 @@ export default async function ProjectPage({
 					{/* Left / Main Column: Markdown Content */}
 					<div className={project.images.length > 0 ? 'lg:col-span-8' : 'lg:col-span-12'}>
 						<BlurFade delay={0.25}>
-							<div className="rounded-2xl border border-white/10 bg-zinc-900/40 backdrop-blur-xs p-6 sm:p-8 space-y-6">
+							<div className="rounded-2xl border border-white/10 bg-zinc-900/50 backdrop-blur-xs p-6 sm:p-9 space-y-6">
 								{/* Tech Stack Chips inside Content */}
 								{project.stack.length > 0 && (
 									<div>
-										<h3 className="font-mono text-xs uppercase tracking-widest text-zinc-400 mb-3 font-semibold">
+										<h3 className="text-xs uppercase tracking-widest text-yellow-400 mb-3 font-semibold">
 											Tecnologias Utilizadas:
 										</h3>
 										<div className="flex flex-wrap gap-2">
 											{project.stack.map((tech) => (
 												<span
 													key={tech}
-													className="font-mono text-xs px-3 py-1 rounded-lg border border-white/10 bg-white/5 text-zinc-300"
+													className="text-xs sm:text-sm px-3.5 py-1.5 rounded-lg border border-white/15 bg-white/5 text-zinc-200 font-medium"
 												>
 													{tech}
 												</span>
@@ -213,35 +213,35 @@ export default async function ProjectPage({
 									<ReactMarkdown
 										components={{
 											h2: ({ children }) => (
-												<h2 className="text-xl sm:text-2xl font-sentient font-bold text-white mt-8 mb-3 first:mt-0">
+												<h2 className="text-2xl sm:text-3xl font-bold text-white mt-10 mb-4 first:mt-0">
 													{children}
 												</h2>
 											),
 											h3: ({ children }) => (
-												<h3 className="text-lg sm:text-xl font-sentient font-semibold text-yellow-400 mt-6 mb-2">
+												<h3 className="text-xl sm:text-2xl font-bold text-yellow-400 mt-8 mb-3">
 													{children}
 												</h3>
 											),
 											p: ({ children }) => (
-												<p className="font-mono text-xs sm:text-sm text-zinc-300 leading-relaxed mb-4">
+												<p className="text-base sm:text-lg text-zinc-200 leading-relaxed mb-5">
 													{children}
 												</p>
 											),
 											strong: ({ children }) => (
-												<strong className="text-white font-semibold">{children}</strong>
+												<strong className="text-white font-bold">{children}</strong>
 											),
 											ul: ({ children }) => (
-												<ul className="font-mono text-xs sm:text-sm text-zinc-300 leading-relaxed mb-4 space-y-2 pl-4">
+												<ul className="text-base sm:text-lg text-zinc-200 leading-relaxed mb-5 space-y-3 pl-4">
 													{children}
 												</ul>
 											),
 											li: ({ children }) => (
-												<li className="before:content-['•'] before:mr-2 before:text-yellow-400 flex items-start">
+												<li className="before:content-['•'] before:mr-2.5 before:text-yellow-400 before:font-bold flex items-start">
 													<span>{children}</span>
 												</li>
 											),
 											code: ({ children }) => (
-												<code className="bg-white/10 text-yellow-300 px-1.5 py-0.5 rounded text-xs font-mono">
+												<code className="bg-white/10 text-yellow-300 px-2 py-0.5 rounded text-sm font-mono font-medium">
 													{children}
 												</code>
 											),

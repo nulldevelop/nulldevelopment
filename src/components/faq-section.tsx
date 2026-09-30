@@ -55,10 +55,10 @@ export function FAQSection() {
 				{/* Section Header */}
 				<div className="mb-12 border-b border-white/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
 					<div>
-						<span className="font-mono text-xs uppercase tracking-widest text-yellow-400 font-semibold">
+						<span className="text-xs sm:text-sm uppercase tracking-widest text-yellow-400 font-semibold">
 							Tire suas dúvidas
 						</span>
-						<h2 className="text-3xl sm:text-4xl font-sentient font-bold text-white mt-1.5">
+						<h2 className="text-3xl sm:text-5xl font-bold text-white mt-2">
 							Perguntas Frequentes
 						</h2>
 					</div>
@@ -66,15 +66,15 @@ export function FAQSection() {
 						href="https://wa.me/5541991798306?text=Ol%C3%A1%20Pedro!%20Tenho%20uma%20d%C3%BAvida%20sobre%20contrata%C3%A7%C3%A3o%20de%20projeto."
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center gap-1.5 font-mono text-xs uppercase text-emerald-400 hover:text-emerald-300 transition-colors"
+						className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase text-emerald-400 hover:text-emerald-300 transition-colors"
 					>
-						<MessageCircle className="w-3.5 h-3.5" />
+						<MessageCircle className="w-4 h-4" />
 						<span>Outra dúvida? Fale no WhatsApp</span>
 					</a>
 				</div>
 
 				{/* Accordion List */}
-				<div className="space-y-3">
+				<div className="space-y-4">
 					{faqs.map((faq, idx) => {
 						const isOpen = openIndex === idx
 						return (
@@ -83,7 +83,7 @@ export function FAQSection() {
 									className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
 										isOpen
 											? 'border-yellow-400/40 bg-zinc-900/80 shadow-lg'
-											: 'border-white/10 bg-zinc-900/30 hover:bg-zinc-900/50 hover:border-white/20'
+											: 'border-white/10 bg-zinc-900/40 hover:bg-zinc-900/60 hover:border-white/20'
 									}`}
 								>
 									<button
@@ -92,14 +92,14 @@ export function FAQSection() {
 										className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer"
 										aria-expanded={isOpen}
 									>
-										<span className="font-sentient text-base sm:text-lg font-medium text-white">
+										<span className="text-base sm:text-lg font-semibold text-white">
 											{faq.question}
 										</span>
 										<div
-											className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
+											className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
 												isOpen
 													? 'bg-yellow-400/20 text-yellow-400 rotate-180'
-													: 'bg-white/5 text-zinc-400'
+													: 'bg-white/5 text-zinc-300'
 											}`}
 										>
 											<ChevronDown className="w-4 h-4" />
@@ -108,7 +108,7 @@ export function FAQSection() {
 
 									{isOpen && (
 										<div className="px-5 sm:px-6 pb-6 pt-1">
-											<p className="font-mono text-xs sm:text-sm text-zinc-300 leading-relaxed border-t border-white/5 pt-4">
+											<p className="text-sm sm:text-base text-zinc-200 leading-relaxed border-t border-white/10 pt-4">
 												{faq.answer}
 											</p>
 										</div>

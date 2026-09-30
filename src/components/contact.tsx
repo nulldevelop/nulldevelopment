@@ -68,13 +68,13 @@ export function Contact() {
 			<div className="max-w-4xl mx-auto w-full">
 				{/* Section Header */}
 				<div className="text-center mb-14">
-					<span className="font-mono text-xs uppercase tracking-widest text-yellow-400 font-semibold">
+					<span className="text-xs sm:text-sm uppercase tracking-widest text-yellow-400 font-semibold">
 						Contato Direto
 					</span>
-					<h2 className="text-3xl sm:text-5xl font-sentient font-bold text-white mt-2">
+					<h2 className="text-3xl sm:text-5xl font-bold text-white mt-2">
 						Vamos tirar sua ideia do papel?
 					</h2>
-					<p className="font-mono text-sm text-zinc-400 max-w-lg mx-auto mt-3">
+					<p className="text-sm sm:text-base text-zinc-300 max-w-lg mx-auto mt-3 leading-relaxed">
 						Chame direto no WhatsApp para uma resposta em poucos minutos ou envie os detalhes do seu projeto abaixo.
 					</p>
 				</div>
@@ -90,19 +90,19 @@ export function Contact() {
 							className="block p-5 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/15 transition-all group"
 						>
 							<div className="flex items-center gap-3.5 mb-2">
-								<div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+								<div className="w-11 h-11 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
 									<MessageCircle className="w-5 h-5" />
 								</div>
 								<div>
-									<h3 className="font-sentient text-base font-semibold text-emerald-200">
+									<h3 className="text-lg font-bold text-emerald-200">
 										WhatsApp Direto
 									</h3>
-									<p className="font-mono text-xs text-emerald-400">
+									<p className="text-sm sm:text-base font-semibold text-emerald-400">
 										(41) 99179-8306
 									</p>
 								</div>
 							</div>
-							<p className="font-mono text-xs text-emerald-300/70 mt-2">
+							<p className="text-xs sm:text-sm text-emerald-300/80 mt-1">
 								Canal mais rápido para orçamentos e dúvidas.
 							</p>
 						</a>
@@ -115,29 +115,33 @@ export function Contact() {
 						>
 							<div className="flex items-center justify-between mb-2">
 								<div className="flex items-center gap-3.5">
-									<div className="w-10 h-10 rounded-xl bg-white/5 text-zinc-300 flex items-center justify-center">
+									<div className="w-11 h-11 rounded-xl bg-white/5 text-zinc-300 flex items-center justify-center shrink-0">
 										<Mail className="w-5 h-5" />
 									</div>
 									<div>
-										<h3 className="font-sentient text-base font-semibold text-white">
+										<h3 className="text-lg font-bold text-white">
 											Email
 										</h3>
-										<p className="font-mono text-xs text-zinc-400">
+										<p className="text-sm text-zinc-300 font-medium">
 											contato@nulldev.com.br
 										</p>
 									</div>
 								</div>
-								<span className="font-mono text-xs text-yellow-400 flex items-center gap-1">
-									{copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+								<span className="text-xs sm:text-sm text-yellow-400 font-medium flex items-center gap-1">
+									{copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
 									{copied ? 'Copiado' : 'Copiar'}
 								</span>
 							</div>
 						</button>
 
 						{/* Small Trust Note */}
-						<div className="p-4 rounded-xl border border-white/5 bg-zinc-900/20 font-mono text-[11px] text-zinc-500 space-y-1">
-							<p>⚡ Respondo em até 24 horas úteis</p>
-							<p>📄 Emissão de Nota Fiscal de Serviços</p>
+						<div className="p-4 rounded-xl border border-white/10 bg-zinc-900/40 text-xs sm:text-sm text-zinc-300 space-y-1.5">
+							<p className="flex items-center gap-2">
+								<span>⚡</span> Respondo em até 24 horas úteis
+							</p>
+							<p className="flex items-center gap-2">
+								<span>📄</span> Emissão de Nota Fiscal de Serviços (PJ)
+							</p>
 						</div>
 					</div>
 
@@ -145,54 +149,54 @@ export function Contact() {
 					<div className="md:col-span-7">
 						<form
 							onSubmit={form.handleSubmit(onSubmit)}
-							className="p-6 sm:p-7 rounded-2xl border border-white/10 bg-zinc-900/40 backdrop-blur-xs space-y-4"
+							className="p-6 sm:p-7 rounded-2xl border border-white/10 bg-zinc-900/50 backdrop-blur-xs space-y-4"
 						>
 							<div className="grid gap-1.5">
-								<Label htmlFor="name" className="font-mono text-xs text-zinc-300">
+								<Label htmlFor="name" className="text-sm font-semibold text-zinc-200">
 									Seu Nome
 								</Label>
 								<Input
 									id="name"
 									placeholder="Ex: Carlos Oliveira"
-									className="h-10 bg-zinc-950/60 border-white/10 font-mono text-xs"
+									className="h-11 bg-zinc-950/60 border-white/15 text-sm sm:text-base text-zinc-100 placeholder:text-zinc-500"
 									{...form.register('name')}
 								/>
 								{form.formState.errors.name && (
-									<p className="text-red-400 text-xs font-mono">
+									<p className="text-red-400 text-xs sm:text-sm">
 										{form.formState.errors.name.message}
 									</p>
 								)}
 							</div>
 
 							<div className="grid gap-1.5">
-								<Label htmlFor="phone" className="font-mono text-xs text-zinc-300">
+								<Label htmlFor="phone" className="text-sm font-semibold text-zinc-200">
 									WhatsApp ou Telefone
 								</Label>
 								<Input
 									id="phone"
 									placeholder="(00) 00000-0000"
-									className="h-10 bg-zinc-950/60 border-white/10 font-mono text-xs"
+									className="h-11 bg-zinc-950/60 border-white/15 text-sm sm:text-base text-zinc-100 placeholder:text-zinc-500"
 									{...form.register('phone')}
 								/>
 								{form.formState.errors.phone && (
-									<p className="text-red-400 text-xs font-mono">
+									<p className="text-red-400 text-xs sm:text-sm">
 										{form.formState.errors.phone.message}
 									</p>
 								)}
 							</div>
 
 							<div className="grid gap-1.5">
-								<Label htmlFor="message" className="font-mono text-xs text-zinc-300">
+								<Label htmlFor="message" className="text-sm font-semibold text-zinc-200">
 									Como posso te ajudar?
 								</Label>
 								<Textarea
 									id="message"
 									placeholder="Conte brevemente sobre o projeto ou sistema que você precisa..."
-									className="min-h-24 bg-zinc-950/60 border-white/10 font-mono text-xs resize-none"
+									className="min-h-28 bg-zinc-950/60 border-white/15 text-sm sm:text-base text-zinc-100 placeholder:text-zinc-500 resize-none leading-relaxed"
 									{...form.register('message')}
 								/>
 								{form.formState.errors.message && (
-									<p className="text-red-400 text-xs font-mono">
+									<p className="text-red-400 text-xs sm:text-sm">
 										{form.formState.errors.message.message}
 									</p>
 								)}
@@ -201,10 +205,10 @@ export function Contact() {
 							<button
 								type="submit"
 								disabled={isLoading}
-								className="w-full inline-flex items-center justify-center gap-2 font-mono text-xs uppercase h-11 rounded-xl bg-white hover:bg-zinc-200 text-black font-semibold transition-colors cursor-pointer disabled:opacity-50"
+								className="w-full inline-flex items-center justify-center gap-2 text-sm sm:text-base uppercase h-12 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold transition-all cursor-pointer disabled:opacity-50 shadow-md"
 							>
 								<span>{isLoading ? 'Enviando...' : 'Enviar Mensagem'}</span>
-								<Send className="w-3.5 h-3.5" />
+								<Send className="w-4 h-4" />
 							</button>
 						</form>
 					</div>

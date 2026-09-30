@@ -38,20 +38,20 @@ export function StatsStrip() {
 					{stats.map((stat, idx) => (
 						<BlurFade key={stat.label} delay={0.06 * (idx + 1)} inView>
 							<div className="flex flex-col">
-								<div className="flex items-center gap-2 mb-2">
-									<div className="w-7 h-7 rounded-lg bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400">
-										<stat.icon className="w-3.5 h-3.5" />
+								<div className="flex items-center gap-2.5 mb-2.5">
+									<div className="w-8 h-8 rounded-lg bg-yellow-400/10 border border-yellow-400/25 flex items-center justify-center text-yellow-400 shrink-0">
+										<stat.icon className="w-4 h-4" />
 									</div>
-									<span className="font-mono text-xs uppercase tracking-wider text-zinc-400">
+									<span className="text-xs sm:text-sm uppercase tracking-wider text-zinc-300 font-medium">
 										{stat.label}
 									</span>
 								</div>
 
-								<div className="font-sentient text-2xl sm:text-3xl font-bold text-white tracking-tight">
+								<div className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
 									{stat.value}
 								</div>
 
-								<p className="font-mono text-[11px] text-zinc-400 mt-1 leading-normal">
+								<p className="text-xs sm:text-sm text-zinc-300 mt-1.5 leading-relaxed">
 									{stat.detail}
 								</p>
 							</div>

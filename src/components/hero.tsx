@@ -10,10 +10,10 @@ export function Hero() {
 			<div className="max-w-3xl mx-auto w-full text-center">
 				{/* Availability Badge */}
 				<BlurFade delay={0.05} inView>
-					<div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/25 bg-emerald-500/10 text-emerald-400 text-xs font-mono mb-8 backdrop-blur-sm">
-						<span className="relative flex h-2 w-2">
+					<div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 text-xs sm:text-sm font-medium mb-8 backdrop-blur-sm">
+						<span className="relative flex h-2.5 w-2.5">
 							<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-							<span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+							<span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
 						</span>
 						<span>Disponível para novos projetos freelance</span>
 					</div>
@@ -21,47 +21,47 @@ export function Hero() {
 
 				{/* Name & Title */}
 				<BlurFade delay={0.1} inView>
-					<h1 className="text-4xl sm:text-6xl md:text-7xl font-sentient font-bold text-white tracking-tight leading-[1.1]">
+					<h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-[1.1]">
 						Pedro Henrique Andrade
 					</h1>
-					<p className="font-mono text-sm sm:text-base text-yellow-400/90 font-medium mt-3 tracking-wide">
+					<p className="text-base sm:text-xl text-yellow-400 font-semibold mt-4 tracking-normal">
 						Full Stack Engineer • Next.js & TypeScript
 					</p>
 				</BlurFade>
 
-				{/* Minimal Value Statement */}
+				{/* Value Statement */}
 				<BlurFade delay={0.2} inView>
-					<p className="font-mono text-sm sm:text-base text-zinc-400 text-balance mt-6 max-w-xl mx-auto leading-relaxed">
-						Construo aplicações web de alta performance, plataformas SaaS e landing pages focadas em conversão, do banco de dados ao deploy final.
+					<p className="text-base sm:text-lg text-zinc-300 text-balance mt-6 max-w-2xl mx-auto leading-relaxed">
+						Construo aplicações web de alta performance, plataformas SaaS escaláveis e landing pages focadas em conversão, do banco de dados ao deploy final.
 					</p>
 				</BlurFade>
 
 				{/* Primary CTAs */}
 				<BlurFade delay={0.3} inView>
-					<div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mt-9">
+					<div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-9">
 						<a
 							href="https://wa.me/5541991798306?text=Ol%C3%A1%20Pedro!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20um%20projeto."
 							target="_blank"
 							rel="noopener noreferrer"
-							className="w-full sm:w-auto inline-flex items-center justify-center gap-2 font-mono text-sm uppercase px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold transition-all duration-200 shadow-lg shadow-emerald-500/20 hover:scale-[1.02]"
+							className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-sm sm:text-base px-7 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold transition-all duration-200 shadow-lg shadow-emerald-500/25 hover:scale-[1.02]"
 						>
-							<MessageCircle className="w-4 h-4" />
+							<MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
 							<span>Falar no WhatsApp</span>
 						</a>
 
 						<Link
 							href="#portfolio"
-							className="w-full sm:w-auto inline-flex items-center justify-center gap-2 font-mono text-sm uppercase px-6 py-3.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 text-white transition-all duration-200"
+							className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-sm sm:text-base px-7 py-3.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40 text-white font-medium transition-all duration-200"
 						>
 							<span>Ver Projetos</span>
-							<ArrowDown className="w-4 h-4 text-zinc-400" />
+							<ArrowDown className="w-4 h-4 text-zinc-300" />
 						</Link>
 					</div>
 				</BlurFade>
 
 				{/* Quick Social & Contact Row */}
 				<BlurFade delay={0.35} inView>
-					<div className="flex items-center justify-center gap-5 mt-10 text-zinc-500 text-xs font-mono">
+					<div className="flex flex-wrap items-center justify-center gap-6 mt-10 text-zinc-400 text-sm">
 						<a
 							href="https://github.com/nulldevelop"
 							target="_blank"
@@ -71,7 +71,7 @@ export function Hero() {
 							<Github className="w-4 h-4" />
 							<span>GitHub</span>
 						</a>
-						<span>•</span>
+						<span className="text-zinc-600">•</span>
 						<a
 							href="https://www.linkedin.com/in/pedrodevfull/"
 							target="_blank"
@@ -81,7 +81,7 @@ export function Hero() {
 							<Linkedin className="w-4 h-4" />
 							<span>LinkedIn</span>
 						</a>
-						<span>•</span>
+						<span className="text-zinc-600">•</span>
 						<a
 							href="mailto:contato@nulldev.com.br"
 							className="flex items-center gap-1.5 hover:text-white transition-colors"

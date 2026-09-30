@@ -35,22 +35,22 @@ export const Header = () => {
 				}`}
 			>
 				{/* Logo */}
-				<Link href="/" className="group flex items-center gap-2">
-					<div className="w-7 h-7 rounded-lg bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400 group-hover:scale-105 transition-transform">
-						<Code2 className="w-3.5 h-3.5" />
+				<Link href="/" className="group flex items-center gap-2.5">
+					<div className="w-8 h-8 rounded-lg bg-yellow-400/10 border border-yellow-400/25 flex items-center justify-center text-yellow-400 group-hover:scale-105 transition-transform">
+						<Code2 className="w-4 h-4" />
 					</div>
-					<span className="font-sentient font-bold text-base text-white tracking-tight">
+					<span className="font-bold text-lg text-white tracking-tight">
 						pedro<span className="text-yellow-400">.dev</span>
 					</span>
 				</Link>
 
 				{/* Center Navigation Links (Desktop) */}
-				<nav className="hidden md:flex items-center gap-6">
+				<nav className="hidden md:flex items-center gap-7">
 					{navItems.map((item) => (
 						<Link
 							key={item.name}
 							href={item.href}
-							className="font-mono text-xs uppercase tracking-wider text-zinc-400 hover:text-white transition-colors"
+							className="text-sm font-medium text-zinc-300 hover:text-white transition-colors"
 						>
 							{item.name}
 						</Link>
@@ -63,9 +63,9 @@ export const Header = () => {
 						href="https://wa.me/5541991798306?text=Ol%C3%A1%20Pedro!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20um%20projeto."
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 font-mono text-xs uppercase px-3.5 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 transition-all font-medium"
+						className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase px-4 py-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 transition-all font-semibold"
 					>
-						<MessageCircle className="w-3.5 h-3.5" />
+						<MessageCircle className="w-4 h-4" />
 						<span>WhatsApp</span>
 					</a>
 

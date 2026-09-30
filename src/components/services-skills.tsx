@@ -60,47 +60,47 @@ export function ServicesSkills() {
 				{/* Section Header */}
 				<div className="mb-12 border-b border-white/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
 					<div>
-						<span className="font-mono text-xs uppercase tracking-widest text-yellow-400 font-semibold">
+						<span className="text-xs sm:text-sm uppercase tracking-widest text-yellow-400 font-semibold">
 							Soluções & Tecnologias
 						</span>
-						<h2 className="text-3xl sm:text-4xl font-sentient font-bold text-white mt-1.5">
+						<h2 className="text-3xl sm:text-5xl font-bold text-white mt-2">
 							Como posso ajudar seu projeto
 						</h2>
 					</div>
 					<Link
 						href="#contato"
-						className="inline-flex items-center gap-1.5 font-mono text-xs uppercase text-yellow-400 hover:text-yellow-300 transition-colors"
+						className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase text-yellow-400 hover:text-yellow-300 transition-colors"
 					>
 						<span>Pedir orçamento personalizado</span>
-						<ArrowRight className="w-3.5 h-3.5" />
+						<ArrowRight className="w-4 h-4" />
 					</Link>
 				</div>
 
 				{/* 3 Clean Service Pillars */}
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14">
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
 					{services.map((item, idx) => (
 						<BlurFade key={item.title} delay={0.08 * (idx + 1)} inView>
-							<div className="p-6 rounded-2xl border border-white/10 bg-zinc-900/40 hover:bg-zinc-900/70 hover:border-yellow-500/30 transition-all duration-200 h-full flex flex-col justify-between">
+							<div className="p-6 sm:p-7 rounded-2xl border border-white/10 bg-zinc-900/50 hover:bg-zinc-900/80 hover:border-yellow-500/40 transition-all duration-200 h-full flex flex-col justify-between">
 								<div>
-									<div className="w-10 h-10 rounded-xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 flex items-center justify-center mb-4">
-										<item.icon className="w-5 h-5" />
+									<div className="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/25 text-yellow-400 flex items-center justify-center mb-5">
+										<item.icon className="w-6 h-6" />
 									</div>
-									<h3 className="font-sentient text-lg font-semibold text-white mb-2">
+									<h3 className="text-xl sm:text-2xl font-bold text-white mb-2.5">
 										{item.title}
 									</h3>
-									<p className="font-mono text-xs text-zinc-400 leading-relaxed mb-4">
+									<p className="text-sm sm:text-base text-zinc-300 leading-relaxed mb-5">
 										{item.description}
 									</p>
 
 									{/* Deliverables */}
-									<div className="space-y-1.5 pt-3 border-t border-white/5">
-										<span className="font-mono text-[10px] uppercase tracking-wider text-yellow-400/90 font-medium block mb-1">
+									<div className="space-y-2 pt-4 border-t border-white/10">
+										<span className="text-xs uppercase tracking-wider text-yellow-400 font-semibold block mb-2">
 											O que está incluso:
 										</span>
 										{item.deliverables.map((deliv) => (
-											<div key={deliv} className="flex items-start gap-2">
-												<Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-												<span className="font-mono text-[11px] text-zinc-300">
+											<div key={deliv} className="flex items-start gap-2.5">
+												<Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+												<span className="text-xs sm:text-sm text-zinc-200">
 													{deliv}
 												</span>
 											</div>
@@ -108,13 +108,13 @@ export function ServicesSkills() {
 									</div>
 								</div>
 
-								<div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
+								<div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
 									<Link
 										href="#contato"
-										className="font-mono text-xs text-yellow-400 hover:text-yellow-300 font-medium transition-colors flex items-center gap-1.5"
+										className="text-xs sm:text-sm text-yellow-400 hover:text-yellow-300 font-semibold transition-colors flex items-center gap-1.5"
 									>
 										<span>Iniciar este projeto</span>
-										<ArrowRight className="w-3 h-3" />
+										<ArrowRight className="w-3.5 h-3.5" />
 									</Link>
 								</div>
 							</div>
@@ -123,24 +123,24 @@ export function ServicesSkills() {
 				</div>
 
 				{/* Tech Stack Chips Bar */}
-				<div className="rounded-2xl border border-white/10 bg-zinc-900/30 p-6 sm:p-8">
+				<div className="rounded-2xl border border-white/10 bg-zinc-900/40 p-6 sm:p-8">
 					<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
 						<div>
-							<h4 className="font-sentient text-lg font-medium text-white">
+							<h4 className="text-xl font-bold text-white">
 								Tecnologias que domino
 							</h4>
-							<p className="font-mono text-xs text-zinc-400 mt-0.5">
+							<p className="text-sm sm:text-base text-zinc-300 mt-1">
 								Stack moderna para garantir alta velocidade e facilidade de manutenção.
 							</p>
 						</div>
 
-						<div className="flex items-center gap-4 text-xs font-mono text-zinc-400">
-							<span className="flex items-center gap-1.5">
-								<Check className="w-3.5 h-3.5 text-emerald-400" />
+						<div className="flex items-center gap-5 text-xs sm:text-sm text-zinc-300 font-medium">
+							<span className="flex items-center gap-2">
+								<Check className="w-4 h-4 text-emerald-400" />
 								Código 100% seu
 							</span>
-							<span className="flex items-center gap-1.5">
-								<Check className="w-3.5 h-3.5 text-emerald-400" />
+							<span className="flex items-center gap-2">
+								<Check className="w-4 h-4 text-emerald-400" />
 								Garantia inclusa
 							</span>
 						</div>
@@ -150,7 +150,7 @@ export function ServicesSkills() {
 						{technologies.map((tech) => (
 							<span
 								key={tech.name}
-								className={`font-mono text-xs px-3.5 py-1.5 rounded-xl border transition-colors ${tech.color}`}
+								className={`text-xs sm:text-sm px-4 py-2 rounded-xl border transition-colors font-medium ${tech.color}`}
 							>
 								{tech.name}
 							</span>

@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
-import { Geist_Mono, Merriweather } from 'next/font/google'
+import { Geist_Mono, Inter } from 'next/font/google'
 import '@/styles/globals.css'
 import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from 'sonner'
 import { cn } from '@/lib/utils'
 
-const merriweather = Merriweather({
-	weight: ['400', '700'],
+const inter = Inter({
 	subsets: ['latin'],
 	variable: '--font-sans',
+	display: 'swap',
 })
 
 const geistMono = Geist_Mono({
@@ -46,11 +46,11 @@ export default function RootLayout({
 	return (
 		<html
 			lang="pt-BR"
-			className={cn('dark font-sans scroll-smooth', merriweather.variable)}
+			className={cn('dark font-sans scroll-smooth', inter.variable, geistMono.variable)}
 			suppressHydrationWarning
 		>
 			<body
-				className={`${geistMono.variable} antialiased bg-background text-foreground`}
+				className="font-sans antialiased bg-background text-foreground text-zinc-100"
 			>
 				{children}
 				<Toaster duration={2000} richColors closeButton={true} />

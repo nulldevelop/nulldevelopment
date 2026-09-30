@@ -42,61 +42,61 @@ export function Experience() {
 			<div className="max-w-4xl mx-auto w-full">
 				{/* Section Header */}
 				<div className="mb-12 border-b border-white/10 pb-6">
-					<span className="font-mono text-xs uppercase tracking-widest text-yellow-400 font-semibold">
+					<span className="text-xs sm:text-sm uppercase tracking-widest text-yellow-400 font-semibold">
 						Carreira
 					</span>
-					<h2 className="text-3xl sm:text-4xl font-sentient font-bold text-white mt-1.5">
+					<h2 className="text-3xl sm:text-5xl font-bold text-white mt-2">
 						Trajetória & Experiência
 					</h2>
 				</div>
 
 				{/* Minimal Linear Timeline */}
-				<div className="space-y-10 relative before:absolute before:inset-0 before:left-3 sm:before:left-4 before:w-px before:bg-white/10">
+				<div className="space-y-12 relative before:absolute before:inset-0 before:left-3 sm:before:left-4 before:w-px before:bg-white/15">
 					{experiences.map((exp, index) => (
 						<BlurFade key={exp.company} delay={0.1 * (index + 1)} inView>
 							<div className="relative pl-9 sm:pl-12 group">
 								{/* Timeline Dot */}
-								<div className="absolute left-1.5 sm:left-2.5 top-1.5 w-3.5 h-3.5 rounded-full border-2 border-yellow-400 bg-black group-hover:scale-125 transition-transform" />
+								<div className="absolute left-1.5 sm:left-2.5 top-2 w-3.5 h-3.5 rounded-full border-2 border-yellow-400 bg-black group-hover:scale-125 transition-transform" />
 
 								{/* Header Info */}
-								<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-									<div className="flex items-center gap-2.5 flex-wrap">
-										<h3 className="font-sentient text-xl font-semibold text-white">
+								<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-2">
+									<div className="flex items-center gap-3 flex-wrap">
+										<h3 className="text-xl sm:text-2xl font-bold text-white">
 											{exp.role}
 										</h3>
-										<span className={`font-mono text-[10px] px-2 py-0.5 rounded-md border ${exp.badgeColor}`}>
+										<span className={`text-xs px-2.5 py-1 rounded-md border font-medium ${exp.badgeColor}`}>
 											{exp.badge}
 										</span>
 									</div>
-									<span className="font-mono text-xs text-zinc-500 shrink-0">
+									<span className="text-sm text-zinc-400 font-medium shrink-0">
 										{exp.period}
 									</span>
 								</div>
 
-								<p className="font-mono text-xs text-yellow-400/90 font-medium mb-3">
+								<p className="text-sm sm:text-base text-yellow-400 font-semibold mb-3">
 									{exp.company}
 								</p>
 
-								<p className="font-mono text-xs sm:text-sm text-zinc-400 leading-relaxed mb-4">
+								<p className="text-sm sm:text-base text-zinc-300 leading-relaxed mb-4">
 									{exp.description}
 								</p>
 
 								{/* Highlights List */}
-								<ul className="space-y-2 mb-4">
+								<ul className="space-y-2.5 mb-5">
 									{exp.highlights.map((h) => (
-										<li key={h} className="flex items-start gap-2 font-mono text-xs text-zinc-300">
-											<span className="text-yellow-400 mt-0.5">•</span>
+										<li key={h} className="flex items-start gap-2.5 text-sm sm:text-base text-zinc-200 leading-relaxed">
+											<span className="text-yellow-400 font-bold mt-0.5">•</span>
 											<span>{h}</span>
 										</li>
 									))}
 								</ul>
 
 								{/* Tech Tags */}
-								<div className="flex flex-wrap gap-1.5 pt-2">
+								<div className="flex flex-wrap gap-2 pt-2">
 									{exp.stack.map((t) => (
 										<span
 											key={t}
-											className="font-mono text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400"
+											className="text-xs px-3 py-1 rounded-lg bg-white/[0.06] border border-white/15 text-zinc-200 font-medium"
 										>
 											{t}
 										</span>

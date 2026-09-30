@@ -30,16 +30,16 @@ export function PortfolioSection({ dbProjects }: PortfolioSectionProps) {
 				{/* Section Header */}
 				<div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-white/10 pb-6">
 					<div>
-						<span className="font-mono text-xs uppercase tracking-widest text-yellow-400 font-semibold">
+						<span className="text-xs sm:text-sm uppercase tracking-widest text-yellow-400 font-semibold">
 							Cases Selecionados
 						</span>
-						<h2 className="text-3xl sm:text-4xl font-sentient font-bold text-white mt-1.5">
+						<h2 className="text-3xl sm:text-5xl font-bold text-white mt-2">
 							Projetos em Destaque
 						</h2>
 					</div>
 
 					{/* Category Filter Pills */}
-					<div className="flex items-center gap-1.5 flex-wrap">
+					<div className="flex items-center gap-2 flex-wrap">
 						{[
 							{ id: 'all', label: 'Todos (6)' },
 							{ id: 'saas', label: 'SaaS & Web Apps' },
@@ -49,10 +49,10 @@ export function PortfolioSection({ dbProjects }: PortfolioSectionProps) {
 							<button
 								key={tab.id}
 								onClick={() => setActiveCategory(tab.id)}
-								className={`font-mono text-xs px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
+								className={`text-xs sm:text-sm px-4 py-2 rounded-xl transition-all cursor-pointer font-medium ${
 									activeCategory === tab.id
-										? 'bg-white text-black font-semibold shadow-sm'
-										: 'text-zinc-400 hover:text-white hover:bg-white/5'
+										? 'bg-white text-black font-semibold shadow-md'
+										: 'text-zinc-300 hover:text-white hover:bg-white/10 border border-white/5'
 								}`}
 							>
 								{tab.label}
@@ -69,12 +69,12 @@ export function PortfolioSection({ dbProjects }: PortfolioSectionProps) {
 
 						return (
 							<BlurFade key={project.id} delay={0.07 * (index + 1)} inView>
-								<div className="group rounded-2xl border border-white/10 bg-zinc-900/50 hover:bg-zinc-900/90 hover:border-yellow-500/30 transition-all duration-300 p-5 flex flex-col justify-between h-full backdrop-blur-xs">
+								<div className="group rounded-2xl border border-white/10 bg-zinc-900/50 hover:bg-zinc-900/90 hover:border-yellow-500/40 transition-all duration-300 p-6 flex flex-col justify-between h-full backdrop-blur-xs">
 									<div>
 										{/* Preview Image with Link */}
 										<Link
 											href={`/projects/${project.slug}`}
-											className="block relative aspect-video rounded-xl overflow-hidden bg-zinc-950 border border-white/5 mb-4 cursor-pointer"
+											className="block relative aspect-video rounded-xl overflow-hidden bg-zinc-950 border border-white/10 mb-5 cursor-pointer"
 										>
 											<Image
 												src={project.image}
@@ -85,27 +85,27 @@ export function PortfolioSection({ dbProjects }: PortfolioSectionProps) {
 											/>
 											<div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
 
-											<span className="absolute top-2.5 right-2.5 font-mono text-[10px] font-medium px-2 py-0.5 rounded-md border border-white/15 bg-black/80 backdrop-blur-md text-zinc-300">
+											<span className="absolute top-3 right-3 text-xs font-semibold px-2.5 py-1 rounded-md border border-white/20 bg-black/85 backdrop-blur-md text-zinc-100">
 												{badge}
 											</span>
 										</Link>
 
 										{/* Title & One-Liner */}
 										<Link href={`/projects/${project.slug}`} className="block group/title">
-											<h3 className="font-sentient text-lg font-medium text-white group-hover/title:text-yellow-400 transition-colors">
+											<h3 className="text-xl sm:text-2xl font-bold text-white group-hover/title:text-yellow-400 transition-colors">
 												{project.title}
 											</h3>
 										</Link>
-										<p className="font-mono text-xs text-zinc-400 leading-relaxed mt-2 line-clamp-2">
+										<p className="text-sm sm:text-base text-zinc-300 leading-relaxed mt-2.5 line-clamp-2">
 											{project.shortDescription}
 										</p>
 
 										{/* Tech Stack Tags */}
-										<div className="flex flex-wrap items-center gap-1.5 mt-4">
+										<div className="flex flex-wrap items-center gap-2 mt-4">
 											{project.stack.slice(0, 4).map((tech) => (
 												<span
 													key={tech}
-													className="font-mono text-[11px] px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-zinc-300"
+													className="text-xs px-3 py-1 rounded-lg bg-white/[0.06] border border-white/15 text-zinc-200 font-medium"
 												>
 													{tech}
 												</span>
@@ -114,33 +114,33 @@ export function PortfolioSection({ dbProjects }: PortfolioSectionProps) {
 									</div>
 
 									{/* Dedicated Card Action Buttons */}
-									<div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-2.5">
+									<div className="mt-6 pt-5 border-t border-white/10 flex items-center gap-3">
 										{project.link ? (
 											<>
 												<a
 													href={project.link}
 													target="_blank"
 													rel="noopener noreferrer"
-													className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 font-mono text-xs font-medium transition-all"
+													className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 text-xs sm:text-sm font-semibold transition-all"
 												>
 													<span>Ao Vivo</span>
-													<ExternalLink className="w-3.5 h-3.5" />
+													<ExternalLink className="w-4 h-4" />
 												</a>
 												<Link
 													href={`/projects/${project.slug}`}
-													className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-white/15 bg-white/10 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 text-white font-mono text-xs font-medium transition-all group/btn"
+													className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-white/20 bg-white/10 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 text-white text-xs sm:text-sm font-semibold transition-all group/btn"
 												>
 													<span>Ver Case</span>
-													<ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+													<ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
 												</Link>
 											</>
 										) : (
 											<Link
 												href={`/projects/${project.slug}`}
-												className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg border border-white/15 bg-white/10 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 text-white font-mono text-xs font-medium transition-all group/btn"
+												className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-white/20 bg-white/10 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 text-white text-xs sm:text-sm font-semibold transition-all group/btn"
 											>
 												<span>Ver Case Completo</span>
-												<ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+												<ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
 											</Link>
 										)}
 									</div>

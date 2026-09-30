@@ -121,8 +121,8 @@
 	--color-primary-foreground: var(--primary-foreground);
 	--color-border: var(--border);
 
-	--font-mono: var(--font-geist-mono);
-	--font-sentient: "Sentient", sans-serif;
+	--font-mono: var(--font-geist-mono), monospace;
+	--font-sentient: var(--font-sans), system-ui, -apple-system, sans-serif;
 
 	--shadow-glow: 0 0 8px 2px var(--tw-shadow-color);
 
@@ -267,6 +267,11 @@ html {
 @layer base {
 	* {
 		@apply border-border outline-ring/50;
+	}
+	html {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
 	}
 	body {
 		@apply bg-background text-foreground;
