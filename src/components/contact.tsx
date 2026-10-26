@@ -1,6 +1,8 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import Link from 'next/link'
+import { company } from '@/lib/company'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -38,7 +40,7 @@ export function Contact() {
 		try {
 			const result = await saveMessage({
 				name: data.name,
-				email: 'via-formulario@nulldev.com.br',
+				email: company.email,
 				phone: data.phone,
 				message: data.message,
 			})
@@ -57,7 +59,7 @@ export function Contact() {
 	}
 
 	const copyEmail = () => {
-		navigator.clipboard.writeText('contato@nulldev.com.br')
+		navigator.clipboard.writeText(company.email)
 		setCopied(true)
 		toast.success('Email copiado!')
 		setTimeout(() => setCopied(false), 2500)
@@ -123,7 +125,7 @@ export function Contact() {
 											Email
 										</h3>
 										<p className="text-sm text-zinc-300 font-medium">
-											contato@nulldev.com.br
+											{company.email}
 										</p>
 									</div>
 								</div>
@@ -210,6 +212,17 @@ export function Contact() {
 								<span>{isLoading ? 'Enviando...' : 'Enviar Mensagem'}</span>
 								<Send className="w-4 h-4" />
 							</button>
+							<p className="text-xs text-zinc-400 text-center">
+								Ao enviar, você concorda com a{' '}
+								<Link href="/privacidade" className="text-yellow-400 hover:underline">
+									Política de Privacidade
+								</Link>{' '}
+								e os{' '}
+								<Link href="/termos" className="text-yellow-400 hover:underline">
+									Termos de Uso
+								</Link>
+								.
+							</p>
 						</form>
 					</div>
 				</div>

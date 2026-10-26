@@ -2,6 +2,7 @@
 
 import { ArrowDown, Github, Linkedin, Mail, MessageCircle, Sparkles } from 'lucide-react'
 import Link from 'next/link'
+import { company } from '@/lib/company'
 import { BlurFade } from './ui/blur-fade'
 
 export function Hero() {
@@ -83,11 +84,11 @@ export function Hero() {
 						</a>
 						<span className="text-zinc-600">•</span>
 						<a
-							href="mailto:contato@nulldev.com.br"
+							href={`mailto:${company.email}`}
 							className="flex items-center gap-1.5 hover:text-white transition-colors"
 						>
 							<Mail className="w-4 h-4" />
-							<span>contato@nulldev.com.br</span>
+							<span>{company.email}</span>
 						</a>
 					</div>
 				</BlurFade>
