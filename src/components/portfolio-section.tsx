@@ -5,6 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ExternalLink, ArrowUpRight } from 'lucide-react'
 import { BlurFade } from './ui/blur-fade'
+import { localizeProject } from '@/i18n/projects'
+import { useI18n } from '@/i18n/provider'
 import { curatedProjects, type ProjectData } from '@/lib/projects-data'
 
 interface PortfolioSectionProps {
@@ -12,9 +14,12 @@ interface PortfolioSectionProps {
 }
 
 export function PortfolioSection({ dbProjects }: PortfolioSectionProps) {
+	const { t, locale } = useI18n()
 	const [activeCategory, setActiveCategory] = useState<string>('all')
 
-	const projectsToDisplay = dbProjects.length > 0 ? dbProjects : curatedProjects
+	const projectsToDisplay = (dbProjects.length > 0 ? dbProjects : curatedProjects).map((p) =>
+		localizeProject(p, locale, t),
+	)
 
 	const filteredProjects = projectsToDisplay.filter((item) => {
 		if (activeCategory === 'all') return true
@@ -31,20 +36,20 @@ export function PortfolioSection({ dbProjects }: PortfolioSectionProps) {
 				<div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-white/10 pb-6">
 					<div>
 						<span className="text-xs sm:text-sm uppercase tracking-widest text-yellow-400 font-semibold">
-							Cases Selecionados
+							{t.portfolio.eyebrow}
 						</span>
 						<h2 className="text-3xl sm:text-5xl font-bold text-white mt-2">
-							Projetos em Destaque
+							{t.portfolio.title}
 						</h2>
 					</div>
 
 					{/* Category Filter Pills */}
 					<div className="flex items-center gap-2 flex-wrap">
 						{[
-							{ id: 'all', label: 'Todos (6)' },
-							{ id: 'saas', label: 'SaaS & Web Apps' },
-							{ id: 'governamental', label: 'Setor Público' },
-							{ id: 'landing', label: 'Landing Pages' },
+							{ id: 'all', label: `${t.portfolio.all} (${projectsToDisplay.length})` },
+							{ id: 'saas', label: t.portfolio.saas },
+							{ id: 'governamental', label: t.portfolio.public },
+							{ id: 'landing', label: t.portfolio.landing },
 						].map((tab) => (
 							<button
 								key={tab.id}
@@ -65,7 +70,7 @@ export function PortfolioSection({ dbProjects }: PortfolioSectionProps) {
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 					{filteredProjects.map((project, index) => {
 						const isLive = !!project.link
-						const badge = project.statusBadge || (isLive ? 'Ao Vivo' : 'Case')
+						const badge = project.statusBadge || (isLive ? t.portfolio.live : t.portfolio.caseBadge)
 
 						return (
 							<BlurFade key={project.id} delay={0.07 * (index + 1)} inView>
@@ -123,14 +128,14 @@ export function PortfolioSection({ dbProjects }: PortfolioSectionProps) {
 													rel="noopener noreferrer"
 													className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 text-xs sm:text-sm font-semibold transition-all"
 												>
-													<span>Ao Vivo</span>
+													<span>{t.portfolio.live}</span>
 													<ExternalLink className="w-4 h-4" />
 												</a>
 												<Link
 													href={`/projects/${project.slug}`}
 													className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-white/20 bg-white/10 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 text-white text-xs sm:text-sm font-semibold transition-all group/btn"
 												>
-													<span>Ver Case</span>
+													<span>{t.portfolio.viewCase}</span>
 													<ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
 												</Link>
 											</>
@@ -139,7 +144,7 @@ export function PortfolioSection({ dbProjects }: PortfolioSectionProps) {
 												href={`/projects/${project.slug}`}
 												className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-white/20 bg-white/10 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 text-white text-xs sm:text-sm font-semibold transition-all group/btn"
 											>
-												<span>Ver Case Completo</span>
+												<span>{t.portfolio.viewFullCase}</span>
 												<ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
 											</Link>
 										)}

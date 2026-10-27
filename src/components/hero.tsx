@@ -2,10 +2,14 @@
 
 import { ArrowDown, Github, Linkedin, Mail, MessageCircle, Sparkles } from 'lucide-react'
 import Link from 'next/link'
+import { whatsappUrl } from '@/i18n/format'
+import { useI18n } from '@/i18n/provider'
 import { company } from '@/lib/company'
 import { BlurFade } from './ui/blur-fade'
 
 export function Hero() {
+	const { t } = useI18n()
+
 	return (
 		<section className="flex flex-col justify-center min-h-svh lg:min-h-screen relative z-10 pt-28 pb-16 sm:py-24 lg:py-28 px-4 sm:px-6">
 			<div className="max-w-3xl mx-auto w-full text-center">
@@ -16,7 +20,7 @@ export function Hero() {
 							<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
 							<span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
 						</span>
-						<span>Disponível para novos projetos freelance</span>
+						<span>{t.hero.available}</span>
 					</div>
 				</BlurFade>
 
@@ -26,14 +30,14 @@ export function Hero() {
 						Pedro Henrique Andrade
 					</h1>
 					<p className="text-base sm:text-xl text-yellow-400 font-semibold mt-4 tracking-normal">
-						Full Stack Engineer • Next.js & TypeScript
+						{t.hero.role}
 					</p>
 				</BlurFade>
 
 				{/* Value Statement */}
 				<BlurFade delay={0.2} inView>
 					<p className="text-base sm:text-lg text-zinc-300 text-balance mt-6 max-w-2xl mx-auto leading-relaxed">
-						Construo aplicações web de alta performance, plataformas SaaS escaláveis e landing pages focadas em conversão, do banco de dados ao deploy final.
+						{t.hero.value}
 					</p>
 				</BlurFade>
 
@@ -41,20 +45,20 @@ export function Hero() {
 				<BlurFade delay={0.3} inView>
 					<div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-9">
 						<a
-							href="https://wa.me/5541991798306?text=Ol%C3%A1%20Pedro!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20um%20projeto."
+							href={whatsappUrl(company.whatsapp, t.whatsapp.budget)}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-sm sm:text-base px-7 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold transition-all duration-200 shadow-lg shadow-emerald-500/25 hover:scale-[1.02]"
 						>
 							<MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-							<span>Falar no WhatsApp</span>
+							<span>{t.hero.cta}</span>
 						</a>
 
 						<Link
 							href="#portfolio"
 							className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-sm sm:text-base px-7 py-3.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/40 text-white font-medium transition-all duration-200"
 						>
-							<span>Ver Projetos</span>
+							<span>{t.hero.projects}</span>
 							<ArrowDown className="w-4 h-4 text-zinc-300" />
 						</Link>
 					</div>

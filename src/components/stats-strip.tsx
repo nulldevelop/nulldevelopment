@@ -1,36 +1,15 @@
 'use client'
 
 import { Clock, ShieldCheck, Users, Zap } from 'lucide-react'
+import { useI18n } from '@/i18n/provider'
 import { BlurFade } from './ui/blur-fade'
 
-const stats = [
-	{
-		value: '+770',
-		label: 'Usuários ativos',
-		detail: 'Sistemas rodando em produção',
-		icon: Users,
-	},
-	{
-		value: '95+',
-		label: 'Google Lighthouse',
-		detail: 'SEO, performance e acessibilidade',
-		icon: Zap,
-	},
-	{
-		value: '100%',
-		label: 'Código tipado',
-		detail: 'TypeScript estrito e boas práticas',
-		icon: ShieldCheck,
-	},
-	{
-		value: '1 a 3 sem',
-		label: 'Prazo médio de MVP',
-		detail: 'Desenvolvimento ágil e entregas rápidas',
-		icon: Clock,
-	},
-]
+const icons = [Users, Zap, ShieldCheck, Clock]
 
 export function StatsStrip() {
+	const { t } = useI18n()
+	const stats = t.stats.map((stat, i) => ({ ...stat, icon: icons[i] }))
+
 	return (
 		<section className="relative z-10 px-4 sm:px-6 py-12 border-y border-white/5 bg-zinc-950/40 backdrop-blur-xs">
 			<div className="max-w-6xl mx-auto w-full">

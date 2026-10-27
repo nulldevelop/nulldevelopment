@@ -1,52 +1,34 @@
 'use client'
 
 import { Calendar, CheckCircle2 } from 'lucide-react'
+import { useI18n } from '@/i18n/provider'
 import { BlurFade } from './ui/blur-fade'
 
-const experiences = [
+const meta = [
 	{
-		company: 'Prefeitura Municipal de Campina Grande do Sul',
-		role: 'Desenvolvedor Full Stack & Arquiteto de Software',
-		period: '2025 / Presente',
-		badge: 'Setor Público',
 		badgeColor: 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10',
-		description:
-			'Liderança técnica e desenvolvimento integral de sistemas corporativos governamentais em produção:',
-		highlights: [
-			'FootEasy: Gestão completa de torneios com 770+ associados, 24 times e 693 atletas cadastrados.',
-			'SIRA: Fiscalização de contratos públicos com relatórios PDF assinados digitalmente, QR Code e SSO Azure AD.',
-			'BookEase: Plataforma municipal de acervo com classificação DDC, controle de empréstimos e relatórios analíticos.',
-		],
 		stack: ['Next.js 16', 'TypeScript', 'Prisma ORM', 'MySQL', 'Azure AD', 'Tailwind CSS'],
 	},
 	{
-		company: 'Engenharia Web Freelance & Consultoria',
-		role: 'Desenvolvedor Full Stack Independente',
-		period: '2023 / Presente',
-		badge: 'Freelance',
 		badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
-		description:
-			'Desenvolvimento ponta a ponta de soluções digitais sob medida para empresas e empreendedores:',
-		highlights: [
-			'Landing pages de alta conversão com Lighthouse 95+ e integração instantânea ao WhatsApp.',
-			'Aplicações SaaS e painéis administrativos com autenticação segura e relatórios dinâmicos.',
-			'Integrações com gateways de pagamento (Stripe, Mercado Pago e PIX automatizado).',
-		],
 		stack: ['Next.js', 'React', 'Node.js', 'PostgreSQL', 'Neon DB', 'Docker'],
 	},
 ]
 
 export function Experience() {
+	const { t } = useI18n()
+	const experiences = t.experience.items.map((item, i) => ({ ...item, ...meta[i] }))
+
 	return (
 		<section className="min-h-screen flex flex-col justify-center py-24 lg:py-28 relative z-10 px-4 sm:px-6 scroll-mt-16 sm:scroll-mt-20" id="experiencia">
 			<div className="max-w-4xl mx-auto w-full">
 				{/* Section Header */}
 				<div className="mb-12 border-b border-white/10 pb-6">
 					<span className="text-xs sm:text-sm uppercase tracking-widest text-yellow-400 font-semibold">
-						Carreira
+						{t.experience.eyebrow}
 					</span>
 					<h2 className="text-3xl sm:text-5xl font-bold text-white mt-2">
-						Trajetória & Experiência
+						{t.experience.title}
 					</h2>
 				</div>
 

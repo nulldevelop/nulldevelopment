@@ -5,6 +5,9 @@ import * as Dialog from "@radix-ui/react-dialog"
 import { Menu, MessageCircle, X } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
+import { useI18n } from "@/i18n/provider"
+import { whatsappUrl } from "@/i18n/format"
+import { company } from "@/lib/company"
 
 interface MobileMenuProps {
   className?: string
@@ -12,13 +15,14 @@ interface MobileMenuProps {
 
 export const MobileMenu = ({ className }: MobileMenuProps) => {
   const [isOpen, setIsOpen] = useState(false)
+  const { t } = useI18n()
 
   const menuItems = [
-    { name: "Projetos", href: "#portfolio" },
-    { name: "Trajetória", href: "#experiencia" },
-    { name: "Serviços", href: "#servicos" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Contato", href: "#contato" },
+    { name: t.nav.projects, href: "/#portfolio" },
+    { name: t.nav.career, href: "/#experiencia" },
+    { name: t.nav.services, href: "/#servicos" },
+    { name: t.nav.faq, href: "/#faq" },
+    { name: t.nav.contact, href: "/#contato" },
   ]
 
   const handleLinkClick = () => {
@@ -33,7 +37,7 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
             "p-2 text-zinc-400 hover:text-white transition-colors rounded-xl border border-white/10 bg-black/40",
             className
           )}
-          aria-label="Abrir menu"
+          aria-label={t.nav.openMenu}
         >
           <Menu size={18} />
         </button>
@@ -51,14 +55,14 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
               <Dialog.Close asChild>
                 <button
                   className="p-1.5 text-zinc-400 hover:text-white transition-colors rounded-lg border border-white/10"
-                  aria-label="Fechar menu"
+                  aria-label={t.nav.closeMenu}
                 >
                   <X size={18} />
                 </button>
               </Dialog.Close>
             </div>
 
-            <Dialog.Title className="sr-only">Navegação</Dialog.Title>
+            <Dialog.Title className="sr-only">{t.nav.navigation}</Dialog.Title>
 
             <nav className="flex flex-col space-y-4 mt-6">
               {menuItems.map((item) => (
@@ -76,13 +80,13 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
 
           <div className="pt-6 border-t border-white/10">
             <a
-              href="https://wa.me/5541991798306?text=Ol%C3%A1%20Pedro!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20um%20projeto."
+              href={whatsappUrl(company.whatsapp, t.whatsapp.budget)}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center gap-2 font-mono text-xs uppercase h-11 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
-              WhatsApp Direto
+              {t.nav.whatsappDirect}
             </a>
           </div>
         </Dialog.Content>

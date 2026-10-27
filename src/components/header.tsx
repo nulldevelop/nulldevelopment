@@ -3,17 +3,21 @@
 import { Code2, MessageCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useI18n } from '@/i18n/provider'
+import { whatsappUrl } from '@/i18n/format'
+import { company } from '@/lib/company'
+import { LanguageSwitcher } from './language-switcher'
 import { MobileMenu } from './mobile-menu'
 
-const navItems = [
-	{ name: 'Projetos', href: '#portfolio' },
-	{ name: 'Trajetória', href: '#experiencia' },
-	{ name: 'Serviços', href: '#servicos' },
-	{ name: 'FAQ', href: '#faq' },
-	{ name: 'Contato', href: '#contato' },
-]
-
 export const Header = () => {
+	const { t } = useI18n()
+	const navItems = [
+		{ name: t.nav.projects, href: '/#portfolio' },
+		{ name: t.nav.career, href: '/#experiencia' },
+		{ name: t.nav.services, href: '/#servicos' },
+		{ name: t.nav.faq, href: '/#faq' },
+		{ name: t.nav.contact, href: '/#contato' },
+	]
 	const [scrolled, setScrolled] = useState(false)
 
 	useEffect(() => {
@@ -58,15 +62,16 @@ export const Header = () => {
 				</nav>
 
 				{/* Right CTA */}
-				<div className="flex items-center gap-3">
+				<div className="flex items-center gap-2 sm:gap-3">
+					<LanguageSwitcher />
 					<a
-						href="https://wa.me/5541991798306?text=Ol%C3%A1%20Pedro!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20um%20projeto."
+						href={whatsappUrl(company.whatsapp, t.whatsapp.budget)}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase px-4 py-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 transition-all font-semibold"
+						className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase px-3 sm:px-4 py-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 transition-all font-semibold"
 					>
 						<MessageCircle className="w-4 h-4" />
-						<span>WhatsApp</span>
+						<span className="hidden sm:inline">WhatsApp</span>
 					</a>
 
 					<div className="md:hidden">

@@ -1,13 +1,18 @@
+'use client'
+
 import { ArrowUp, Github, Linkedin, Mail, MessageCircle } from 'lucide-react'
 import Link from 'next/link'
+import { useI18n } from '@/i18n/provider'
 import { company, companyAddress } from '@/lib/company'
 
 export function Footer() {
+	const { t } = useI18n()
+
 	return (
 		<footer className="border-t border-white/10 py-10 px-4 relative z-10 bg-black">
 			<div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-zinc-400">
 				<div>
-					<span className="text-white font-semibold">{company.ownerName}</span> • Full Stack Engineer
+					<span className="text-white font-semibold">{company.ownerName}</span> • {t.footer.role}
 				</div>
 
 				<div className="flex items-center gap-5">
@@ -51,7 +56,7 @@ export function Footer() {
 					href="#"
 					className="hover:text-white transition-colors flex items-center gap-1"
 				>
-					<span>Topo</span>
+					<span>{t.footer.top}</span>
 					<ArrowUp className="w-3 h-3" />
 				</Link>
 			</div>
@@ -64,10 +69,10 @@ export function Footer() {
 				</p>
 				<nav className="flex items-center gap-4 shrink-0">
 					<Link href="/privacidade" className="hover:text-white transition-colors">
-						Política de Privacidade
+						{t.footer.privacy}
 					</Link>
 					<Link href="/termos" className="hover:text-white transition-colors">
-						Termos de Uso
+						{t.footer.terms}
 					</Link>
 				</nav>
 			</div>

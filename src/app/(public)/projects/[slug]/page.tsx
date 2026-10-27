@@ -17,6 +17,10 @@ import ReactMarkdown from 'react-markdown'
 import { HomeClient } from '@/components/home-client'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { GalleryLightbox } from '@/components/ui/gallery-lightbox'
+import { whatsappUrl } from '@/i18n/format'
+import { localizeProject } from '@/i18n/projects'
+import { getDictionary, getLocale } from '@/i18n/server'
+import { company } from '@/lib/company'
 import { getProjectBySlug, curatedProjects } from '@/lib/get-projetos'
 
 export async function generateStaticParams() {
@@ -31,17 +35,23 @@ export default async function ProjectPage({
 	params: Promise<{ slug: string }>
 }) {
 	const { slug } = await params
-	const project = await getProjectBySlug(slug)
+	const found = await getProjectBySlug(slug)
 
-	if (!project) {
+	if (!found) {
 		notFound()
 	}
 
-	const isLive = !!project.link
-	const badge = project.statusBadge || (isLive ? 'Ao Vivo' : 'Case Study')
+	const locale = await getLocale()
+	const t = await getDictionary()
+	const p = t.projectPage
+	const project = localizeProject(found, locale, t)
 
-	const whatsappMessage = encodeURIComponent(
-		`Olá Pedro! Vi o case do ${project.title} no seu portfólio e gostaria de um projeto similar para o meu negócio.`
+	const isLive = !!project.link
+	const badge = project.statusBadge || (isLive ? p.liveBadge : p.caseStudy)
+
+	const whatsappHref = whatsappUrl(
+		company.whatsapp,
+		t.whatsapp.similar.replace('{title}', project.title),
 	)
 
 	return (
@@ -55,11 +65,11 @@ export default async function ProjectPage({
 							className="inline-flex items-center gap-2 font-mono text-xs uppercase text-zinc-400 hover:text-white transition-colors group"
 						>
 							<ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-							<span>Voltar ao Portfólio</span>
+							<span>{p.backToPortfolio}</span>
 						</Link>
 
 						<div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
-							<span>Cases</span>
+							<span>{p.cases}</span>
 							<span>/</span>
 							<span className="text-zinc-300 font-medium">{project.title}</span>
 						</div>
@@ -92,19 +102,19 @@ export default async function ProjectPage({
 									rel="noopener noreferrer"
 									className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase px-6 py-3.5 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold transition-all shadow-md"
 								>
-									<span>Ver Projeto Ao Vivo</span>
+									<span>{p.viewLive}</span>
 									<ExternalLink className="w-4 h-4" />
 								</a>
 							)}
 
 							<a
-								href={`https://wa.me/5541991798306?text=${whatsappMessage}`}
+								href={whatsappHref}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase px-5 py-3.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 font-semibold transition-colors"
 							>
 								<MessageCircle className="w-4 h-4" />
-								<span className="hidden sm:inline">Projeto Similar</span>
+								<span className="hidden sm:inline">{p.similar}</span>
 							</a>
 						</div>
 					</div>
@@ -130,27 +140,27 @@ export default async function ProjectPage({
 					<div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 rounded-2xl border border-white/10 bg-zinc-900/50 backdrop-blur-xs mb-10">
 						<div>
 							<span className="text-zinc-400 uppercase text-xs tracking-wider block mb-1 font-medium">
-								Minha Atuação
+								{p.myRole}
 							</span>
-							<span className="text-zinc-100 font-semibold text-sm sm:text-base">Full Stack & Arquiteto</span>
+							<span className="text-zinc-100 font-semibold text-sm sm:text-base">{p.myRoleValue}</span>
 						</div>
 
 						<div>
 							<span className="text-zinc-400 uppercase text-xs tracking-wider block mb-1 font-medium">
-								Tipo de Solução
+								{p.solutionType}
 							</span>
 							<span className="text-zinc-100 font-semibold text-sm sm:text-base">
 								{project.category === 'saas'
-									? 'Plataforma SaaS'
+									? p.saas
 									: project.category === 'governamental'
-									? 'Setor Público'
-									: 'Landing Page & Web'}
+									? p.public
+									: p.landing}
 							</span>
 						</div>
 
 						<div>
 							<span className="text-zinc-400 uppercase text-xs tracking-wider block mb-1 font-medium">
-								Status
+								{p.status}
 							</span>
 							<span className="text-emerald-400 font-semibold text-sm sm:text-base flex items-center gap-2">
 								<span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -160,7 +170,7 @@ export default async function ProjectPage({
 
 						<div>
 							<span className="text-zinc-400 uppercase text-xs tracking-wider block mb-1 font-medium">
-								Código & Acesso
+								{p.access}
 							</span>
 							<span className="text-zinc-200 font-semibold text-sm sm:text-base">
 								{project.link ? (
@@ -170,11 +180,11 @@ export default async function ProjectPage({
 										rel="noopener noreferrer"
 										className="text-yellow-400 hover:underline flex items-center gap-1.5"
 									>
-										<span>Online</span>
+										<span>{p.online}</span>
 										<ArrowUpRight className="w-3.5 h-3.5" />
 									</a>
 								) : (
-									'Privado / Corporativo'
+									p.private
 								)}
 							</span>
 						</div>
@@ -191,7 +201,7 @@ export default async function ProjectPage({
 								{project.stack.length > 0 && (
 									<div>
 										<h3 className="text-xs uppercase tracking-widest text-yellow-400 mb-3 font-semibold">
-											Tecnologias Utilizadas:
+											{p.stack}
 										</h3>
 										<div className="flex flex-wrap gap-2">
 											{project.stack.map((tech) => (
@@ -260,10 +270,10 @@ export default async function ProjectPage({
 							<BlurFade delay={0.3}>
 								<div className="rounded-2xl border border-white/10 bg-zinc-900/40 backdrop-blur-xs p-6">
 									<h3 className="font-sentient text-base font-semibold text-white mb-2">
-										Telas do Projeto
+										{p.screens}
 									</h3>
 									<p className="font-mono text-xs text-zinc-400 mb-4">
-										Clique em qualquer captura para ampliar em alta resolução:
+										{p.screensHint}
 									</p>
 									<GalleryLightbox images={project.images} title={project.title} />
 								</div>
@@ -273,19 +283,19 @@ export default async function ProjectPage({
 							<BlurFade delay={0.35}>
 								<div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 text-center">
 									<h4 className="font-sentient text-base font-semibold text-emerald-200 mb-1.5">
-										Precisa de algo semelhante?
+										{p.needSimilar}
 									</h4>
 									<p className="font-mono text-xs text-emerald-300/80 mb-4">
-										Posso desenvolver uma solução com essa mesma qualidade para sua empresa.
+										{p.needSimilarText}
 									</p>
 									<a
-										href={`https://wa.me/5541991798306?text=${whatsappMessage}`}
+										href={whatsappHref}
 										target="_blank"
 										rel="noopener noreferrer"
 										className="w-full inline-flex items-center justify-center gap-2 font-mono text-xs uppercase px-4 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold transition-colors"
 									>
 										<MessageCircle className="w-4 h-4" />
-										<span>Falar no WhatsApp</span>
+										<span>{p.whatsapp}</span>
 									</a>
 								</div>
 							</BlurFade>
@@ -300,16 +310,16 @@ export default async function ProjectPage({
 						className="hover:text-white transition-colors flex items-center gap-1.5"
 					>
 						<ArrowLeft className="w-4 h-4" />
-						<span>Voltar ao Portfólio</span>
+						<span>{p.backToPortfolio}</span>
 					</Link>
 
 					<a
-						href={`https://wa.me/5541991798306?text=${whatsappMessage}`}
+						href={whatsappHref}
 						target="_blank"
 						rel="noopener noreferrer"
 						className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-1.5 font-medium"
 					>
-						<span>Solicitar Orçamento</span>
+						<span>{p.requestQuote}</span>
 						<ArrowUpRight className="w-4 h-4" />
 					</a>
 				</div>

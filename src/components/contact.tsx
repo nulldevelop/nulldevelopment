@@ -2,6 +2,8 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { whatsappUrl } from '@/i18n/format'
+import { useI18n } from '@/i18n/provider'
 import { company } from '@/lib/company'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -9,25 +11,29 @@ import { toast } from 'sonner'
 import * as z from 'zod'
 import { Check, Copy, Mail, MessageCircle, Send, Sparkles } from 'lucide-react'
 import { saveMessage } from '@/app/actions/contact'
+import type { Dictionary } from '@/i18n/dictionaries/types'
 import { BlurFade } from './ui/blur-fade'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { Textarea } from './ui/textarea'
 
-const contactSchema = z.object({
-	name: z.string().min(2, 'Informe seu nome.'),
-	phone: z.string().min(8, 'Informe seu WhatsApp ou telefone.'),
-	message: z.string().min(10, 'Descreva brevemente o que você precisa.'),
-})
+const createContactSchema = (t: Dictionary['contact']) =>
+	z.object({
+		name: z.string().min(2, t.errName),
+		phone: z.string().min(8, t.errPhone),
+		message: z.string().min(10, t.errMessage),
+	})
 
-type ContactValues = z.infer<typeof contactSchema>
+type ContactValues = z.infer<ReturnType<typeof createContactSchema>>
 
 export function Contact() {
+	const { t } = useI18n()
+	const tc = t.contact
 	const [isLoading, setIsLoading] = useState(false)
 	const [copied, setCopied] = useState(false)
 
 	const form = useForm<ContactValues>({
-		resolver: zodResolver(contactSchema),
+		resolver: zodResolver(createContactSchema(tc)),
 		defaultValues: {
 			name: '',
 			phone: '',
@@ -46,13 +52,13 @@ export function Contact() {
 			})
 
 			if (result.success) {
-				toast.success('Mensagem enviada! Responderei em breve.')
+				toast.success(tc.success)
 				form.reset()
 			} else {
-				toast.error('Erro ao enviar. Chame diretamente no WhatsApp!')
+				toast.error(tc.errorSend)
 			}
 		} catch {
-			toast.error('Erro de conexão. Fale comigo pelo WhatsApp!')
+			toast.error(tc.errorConnection)
 		} finally {
 			setIsLoading(false)
 		}
@@ -61,7 +67,7 @@ export function Contact() {
 	const copyEmail = () => {
 		navigator.clipboard.writeText(company.email)
 		setCopied(true)
-		toast.success('Email copiado!')
+		toast.success(tc.emailCopied)
 		setTimeout(() => setCopied(false), 2500)
 	}
 
@@ -71,13 +77,13 @@ export function Contact() {
 				{/* Section Header */}
 				<div className="text-center mb-14">
 					<span className="text-xs sm:text-sm uppercase tracking-widest text-yellow-400 font-semibold">
-						Contato Direto
+						{tc.eyebrow}
 					</span>
 					<h2 className="text-3xl sm:text-5xl font-bold text-white mt-2">
-						Vamos tirar sua ideia do papel?
+						{tc.title}
 					</h2>
 					<p className="text-sm sm:text-base text-zinc-300 max-w-lg mx-auto mt-3 leading-relaxed">
-						Chame direto no WhatsApp para uma resposta em poucos minutos ou envie os detalhes do seu projeto abaixo.
+						{tc.subtitle}
 					</p>
 				</div>
 
@@ -86,7 +92,7 @@ export function Contact() {
 					<div className="md:col-span-5 space-y-4">
 						{/* WhatsApp Card */}
 						<a
-							href="https://wa.me/5541991798306?text=Ol%C3%A1%20Pedro!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20um%20projeto."
+							href={whatsappUrl(company.whatsapp, t.whatsapp.budget)}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="block p-5 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/15 transition-all group"
@@ -97,7 +103,7 @@ export function Contact() {
 								</div>
 								<div>
 									<h3 className="text-lg font-bold text-emerald-200">
-										WhatsApp Direto
+										{tc.whatsappTitle}
 									</h3>
 									<p className="text-sm sm:text-base font-semibold text-emerald-400">
 										(41) 99179-8306
@@ -105,7 +111,7 @@ export function Contact() {
 								</div>
 							</div>
 							<p className="text-xs sm:text-sm text-emerald-300/80 mt-1">
-								Canal mais rápido para orçamentos e dúvidas.
+								{tc.whatsappNote}
 							</p>
 						</a>
 
@@ -122,7 +128,7 @@ export function Contact() {
 									</div>
 									<div>
 										<h3 className="text-lg font-bold text-white">
-											Email
+											{tc.emailTitle}
 										</h3>
 										<p className="text-sm text-zinc-300 font-medium">
 											{company.email}
@@ -131,7 +137,7 @@ export function Contact() {
 								</div>
 								<span className="text-xs sm:text-sm text-yellow-400 font-medium flex items-center gap-1">
 									{copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-									{copied ? 'Copiado' : 'Copiar'}
+									{copied ? tc.copied : tc.copy}
 								</span>
 							</div>
 						</button>
@@ -139,10 +145,10 @@ export function Contact() {
 						{/* Small Trust Note */}
 						<div className="p-4 rounded-xl border border-white/10 bg-zinc-900/40 text-xs sm:text-sm text-zinc-300 space-y-1.5">
 							<p className="flex items-center gap-2">
-								<span>⚡</span> Respondo em até 24 horas úteis
+								<span>⚡</span> {tc.reply}
 							</p>
 							<p className="flex items-center gap-2">
-								<span>📄</span> Emissão de Nota Fiscal de Serviços (PJ)
+								<span>📄</span> {tc.invoice}
 							</p>
 						</div>
 					</div>
@@ -155,11 +161,11 @@ export function Contact() {
 						>
 							<div className="grid gap-1.5">
 								<Label htmlFor="name" className="text-sm font-semibold text-zinc-200">
-									Seu Nome
+									{tc.name}
 								</Label>
 								<Input
 									id="name"
-									placeholder="Ex: Carlos Oliveira"
+									placeholder={tc.namePlaceholder}
 									className="h-11 bg-zinc-950/60 border-white/15 text-sm sm:text-base text-zinc-100 placeholder:text-zinc-500"
 									{...form.register('name')}
 								/>
@@ -172,7 +178,7 @@ export function Contact() {
 
 							<div className="grid gap-1.5">
 								<Label htmlFor="phone" className="text-sm font-semibold text-zinc-200">
-									WhatsApp ou Telefone
+									{tc.phone}
 								</Label>
 								<Input
 									id="phone"
@@ -189,11 +195,11 @@ export function Contact() {
 
 							<div className="grid gap-1.5">
 								<Label htmlFor="message" className="text-sm font-semibold text-zinc-200">
-									Como posso te ajudar?
+									{tc.message}
 								</Label>
 								<Textarea
 									id="message"
-									placeholder="Conte brevemente sobre o projeto ou sistema que você precisa..."
+									placeholder={tc.messagePlaceholder}
 									className="min-h-28 bg-zinc-950/60 border-white/15 text-sm sm:text-base text-zinc-100 placeholder:text-zinc-500 resize-none leading-relaxed"
 									{...form.register('message')}
 								/>
@@ -209,19 +215,19 @@ export function Contact() {
 								disabled={isLoading}
 								className="w-full inline-flex items-center justify-center gap-2 text-sm sm:text-base uppercase h-12 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold transition-all cursor-pointer disabled:opacity-50 shadow-md"
 							>
-								<span>{isLoading ? 'Enviando...' : 'Enviar Mensagem'}</span>
+								<span>{isLoading ? tc.sending : tc.submit}</span>
 								<Send className="w-4 h-4" />
 							</button>
 							<p className="text-xs text-zinc-400 text-center">
-								Ao enviar, você concorda com a{' '}
+								{tc.consentBefore}{' '}
 								<Link href="/privacidade" className="text-yellow-400 hover:underline">
-									Política de Privacidade
+									{t.footer.privacy}
 								</Link>{' '}
-								e os{' '}
+								{tc.consentMiddle}{' '}
 								<Link href="/termos" className="text-yellow-400 hover:underline">
-									Termos de Uso
+									{t.footer.terms}
 								</Link>
-								.
+								{tc.consentAfter}
 							</p>
 						</form>
 					</div>

@@ -2,43 +2,10 @@
 
 import { ArrowRight, Check, Code2, Cpu, Globe, LineChart, Sparkles } from 'lucide-react'
 import Link from 'next/link'
+import { useI18n } from '@/i18n/provider'
 import { BlurFade } from './ui/blur-fade'
 
-const services = [
-	{
-		title: 'SaaS & Aplicações Web',
-		icon: Cpu,
-		description: 'Produtos digitais do zero: modelagem de banco, autenticação segura, regras de negócio e interface fluida.',
-		deliverables: [
-			'Modelagem Postgres & Prisma ORM',
-			'Autenticação e controle de permissões (RBAC)',
-			'Painel administrativo e fluxo de checkout',
-			'Deploy automatizado em infraestrutura escalável',
-		],
-	},
-	{
-		title: 'Landing Pages de Conversão',
-		icon: Globe,
-		description: 'Páginas rápidas, acessíveis e focadas em vendas ou captação de leads, com integração direta ao WhatsApp.',
-		deliverables: [
-			'Design responsivo mobile-first',
-			'Pontuação Google Lighthouse 95+',
-			'Integração direta com WhatsApp e formulários',
-			'SEO técnico e tags Open Graph para redes',
-		],
-	},
-	{
-		title: 'Dashboards & Gestão',
-		icon: LineChart,
-		description: 'Painéis corporativos com métricas em tempo real, relatórios em PDF com QR Code e controle de acessos.',
-		deliverables: [
-			'Gráficos interativos em tempo real',
-			'Exportação de relatórios em PDF e Excel',
-			'Assinatura digital e validação por QR Code',
-			'Autenticação corporativa (SSO / Azure AD)',
-		],
-	},
-]
+const serviceIcons = [Cpu, Globe, LineChart]
 
 const technologies = [
 	{ name: 'Next.js 16', category: 'Frontend', color: 'text-white bg-white/10 border-white/20' },
@@ -54,6 +21,9 @@ const technologies = [
 ]
 
 export function ServicesSkills() {
+	const { t } = useI18n()
+	const services = t.services.items.map((item, i) => ({ ...item, icon: serviceIcons[i] }))
+
 	return (
 		<section className="min-h-screen flex flex-col justify-center py-24 lg:py-28 relative z-10 px-4 sm:px-6 scroll-mt-16 sm:scroll-mt-20" id="servicos">
 			<div className="max-w-6xl mx-auto w-full">
@@ -61,17 +31,17 @@ export function ServicesSkills() {
 				<div className="mb-12 border-b border-white/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
 					<div>
 						<span className="text-xs sm:text-sm uppercase tracking-widest text-yellow-400 font-semibold">
-							Soluções & Tecnologias
+							{t.services.eyebrow}
 						</span>
 						<h2 className="text-3xl sm:text-5xl font-bold text-white mt-2">
-							Como posso ajudar seu projeto
+							{t.services.title}
 						</h2>
 					</div>
 					<Link
 						href="#contato"
 						className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase text-yellow-400 hover:text-yellow-300 transition-colors"
 					>
-						<span>Pedir orçamento personalizado</span>
+						<span>{t.services.requestQuote}</span>
 						<ArrowRight className="w-4 h-4" />
 					</Link>
 				</div>
@@ -95,7 +65,7 @@ export function ServicesSkills() {
 									{/* Deliverables */}
 									<div className="space-y-2 pt-4 border-t border-white/10">
 										<span className="text-xs uppercase tracking-wider text-yellow-400 font-semibold block mb-2">
-											O que está incluso:
+											{t.services.included}
 										</span>
 										{item.deliverables.map((deliv) => (
 											<div key={deliv} className="flex items-start gap-2.5">
@@ -113,7 +83,7 @@ export function ServicesSkills() {
 										href="#contato"
 										className="text-xs sm:text-sm text-yellow-400 hover:text-yellow-300 font-semibold transition-colors flex items-center gap-1.5"
 									>
-										<span>Iniciar este projeto</span>
+										<span>{t.services.startProject}</span>
 										<ArrowRight className="w-3.5 h-3.5" />
 									</Link>
 								</div>
@@ -127,21 +97,21 @@ export function ServicesSkills() {
 					<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
 						<div>
 							<h4 className="text-xl font-bold text-white">
-								Tecnologias que domino
+								{t.services.techTitle}
 							</h4>
 							<p className="text-sm sm:text-base text-zinc-300 mt-1">
-								Stack moderna para garantir alta velocidade e facilidade de manutenção.
+								{t.services.techSubtitle}
 							</p>
 						</div>
 
 						<div className="flex items-center gap-5 text-xs sm:text-sm text-zinc-300 font-medium">
 							<span className="flex items-center gap-2">
 								<Check className="w-4 h-4 text-emerald-400" />
-								Código 100% seu
+								{t.services.ownCode}
 							</span>
 							<span className="flex items-center gap-2">
 								<Check className="w-4 h-4 text-emerald-400" />
-								Garantia inclusa
+								{t.services.warranty}
 							</span>
 						</div>
 					</div>

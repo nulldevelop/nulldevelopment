@@ -2,8 +2,12 @@
 
 import { MessageCircle } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { whatsappUrl } from '@/i18n/format'
+import { useI18n } from '@/i18n/provider'
+import { company } from '@/lib/company'
 
 export function FloatingWhatsApp() {
+	const { t } = useI18n()
 	const [visible, setVisible] = useState(false)
 
 	useEffect(() => {
@@ -21,15 +25,15 @@ export function FloatingWhatsApp() {
 
 	return (
 		<aside
-			aria-label="Atendimento rápido"
+			aria-label={t.floatingWhatsapp.aria}
 			className="fixed bottom-6 right-6 z-40 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
 		>
 			<a
-				href="https://wa.me/5541991798306?text=Ol%C3%A1%20Pedro!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20um%20projeto."
+				href={whatsappUrl(company.whatsapp, t.whatsapp.budget)}
 				target="_blank"
 				rel="noopener noreferrer"
 				className="group flex items-center gap-2.5 p-2 sm:px-4 sm:py-2.5 rounded-full border border-emerald-500/40 bg-zinc-950/90 hover:bg-emerald-950/40 text-emerald-400 backdrop-blur-md shadow-2xl transition-all duration-300 hover:scale-105 hover:border-emerald-400"
-				title="Conversar no WhatsApp agora"
+				title={t.floatingWhatsapp.title}
 			>
 				{/* Glowing Ping Status */}
 				<span className="relative flex h-2.5 w-2.5 shrink-0 ml-1 sm:ml-0">
@@ -41,7 +45,7 @@ export function FloatingWhatsApp() {
 
 				{/* Text visible on desktop / tablet */}
 				<span className="hidden sm:inline font-mono text-xs font-semibold tracking-wide text-zinc-100 group-hover:text-emerald-300">
-					Online • Orçamento rápido
+					{t.floatingWhatsapp.label}
 				</span>
 			</a>
 		</aside>
